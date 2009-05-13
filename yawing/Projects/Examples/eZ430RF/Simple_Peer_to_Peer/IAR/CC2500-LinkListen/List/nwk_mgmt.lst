@@ -1,8 +1,9 @@
 ###############################################################################
 #                                                                             #
-#                                                       13/May/2009  06:55:12 #
+#                                                       14/May/2009  07:30:34 #
 # IAR C/C++ Compiler V4.20.1.20017/W32, Evaluation edition for MSP430         #
 # Copyright 1996-2008 IAR Systems AB.                                         #
+# Time limited license: 26 days left                                          #
 #                                                                             #
 #    __rt_version  =  3                                                       #
 #    __double_size =  32                                                      #
@@ -10,60 +11,53 @@
 #    __reg_r5      =  free                                                    #
 #    __pic         =  no                                                      #
 #    __core        =  430                                                     #
-#    Source file   =  C:\Texas Instruments\SimpliciTI-IAR-1.1.0\Components\si #
-#                     mpliciti\nwk_applications\nwk_mgmt.c                    #
-#    Command line  =  -f "C:\Texas Instruments\SimpliciTI-IAR-1.1.0\Projects\ #
-#                     Examples\eZ430RF\Simple_Peer_to_Peer\IAR\Configuration\ #
-#                     End_Device\smpl_config.dat" (-DNUM_CONNECTIONS=2        #
-#                     -DSIZE_INFRAME_Q=2 -DSIZE_OUTFRAME_Q=2                  #
-#                     "-DTHIS_DEVICE_ADDRESS={0x79, 0x56, 0x34, 0x12}"        #
-#                     -DEND_DEVICE) -f "C:\Texas                              #
-#                     Instruments\SimpliciTI-IAR-1.1.0\Projects\Examples\eZ43 #
-#                     0RF\Simple_Peer_to_Peer\IAR\Configuration\smpl_nwk_conf #
-#                     ig.dat" (-DMAX_HOPS=3 -DMAX_HOPS_FROM_AP=1              #
-#                     -DMAX_NWK_PAYLOAD=9 -DMAX_APP_PAYLOAD=10                #
-#                     -DDEFAULT_LINK_TOKEN=0x01020304                         #
+#    Source file   =  D:\workbench\yawing\Components\simpliciti\nwk_applicati #
+#                     ons\nwk_mgmt.c                                          #
+#    Command line  =  -f D:\workbench\yawing\Projects\Examples\eZ430RF\Simple #
+#                     _Peer_to_Peer\IAR\Configuration\End_Device\smpl_config. #
+#                     dat (-DNUM_CONNECTIONS=2 -DSIZE_INFRAME_Q=2             #
+#                     -DSIZE_OUTFRAME_Q=2 "-DTHIS_DEVICE_ADDRESS={0x79,       #
+#                     0x56, 0x34, 0x12}" -DEND_DEVICE) -f                     #
+#                     D:\workbench\yawing\Projects\Examples\eZ430RF\Simple_Pe #
+#                     er_to_Peer\IAR\Configuration\smpl_nwk_config.dat        #
+#                     (-DMAX_HOPS=3 -DMAX_HOPS_FROM_AP=1 -DMAX_NWK_PAYLOAD=9  #
+#                     -DMAX_APP_PAYLOAD=10 -DDEFAULT_LINK_TOKEN=0x01020304    #
 #                     -DDEFAULT_JOIN_TOKEN=0x05060708 -DxFREQUENCY_AGILITY    #
 #                     -DxAPP_AUTO_ACK -DxEXTENDED_API -DxSMPL_SECURE          #
-#                     -DxNVOBJECT_SUPPORT -DSW_TIMER) "C:\Texas               #
-#                     Instruments\SimpliciTI-IAR-1.1.0\Components\simpliciti\ #
-#                     nwk_applications\nwk_mgmt.c" -D MRFI_CC2500 -lcN        #
-#                     "C:\Texas Instruments\SimpliciTI-IAR-1.1.0\Projects\Exa #
-#                     mples\eZ430RF\Simple_Peer_to_Peer\IAR\CC2500-LinkListen #
-#                     \List\" -o "C:\Texas Instruments\SimpliciTI-IAR-1.1.0\P #
-#                     rojects\Examples\eZ430RF\Simple_Peer_to_Peer\IAR\CC2500 #
-#                     -LinkListen\Obj\" --require_prototypes --debug          #
-#                     -D__MSP430F2274__ -e --double=32 -I "C:\Texas           #
-#                     Instruments\SimpliciTI-IAR-1.1.0\Projects\Examples\eZ43 #
-#                     0RF\Simple_Peer_to_Peer\IAR\..\..\..\..\..\Components\b #
-#                     sp\" -I "C:\Texas Instruments\SimpliciTI-IAR-1.1.0\Proj #
-#                     ects\Examples\eZ430RF\Simple_Peer_to_Peer\IAR\..\..\..\ #
-#                     ..\..\Components\bsp\drivers\" -I "C:\Texas             #
-#                     Instruments\SimpliciTI-IAR-1.1.0\Projects\Examples\eZ43 #
-#                     0RF\Simple_Peer_to_Peer\IAR\..\..\..\..\..\Components\b #
-#                     sp\boards\EZ430RF\" -I "C:\Texas                        #
-#                     Instruments\SimpliciTI-IAR-1.1.0\Projects\Examples\eZ43 #
-#                     0RF\Simple_Peer_to_Peer\IAR\..\..\..\..\..\Components\m #
-#                     rfi\" -I "C:\Texas Instruments\SimpliciTI-IAR-1.1.0\Pro #
-#                     jects\Examples\eZ430RF\Simple_Peer_to_Peer\IAR\..\..\.. #
-#                     \..\..\Components\SimpliciTI\nwk\" -I "C:\Texas         #
-#                     Instruments\SimpliciTI-IAR-1.1.0\Projects\Examples\eZ43 #
-#                     0RF\Simple_Peer_to_Peer\IAR\..\..\..\..\..\Components\S #
-#                     impliciTI\nwk_applications\" -I "C:\Program Files\IAR   #
-#                     Systems\Embedded Workbench 5.3 Evaluation\430\INC\" -I  #
-#                     "C:\Program Files\IAR Systems\Embedded Workbench 5.3    #
+#                     -DxNVOBJECT_SUPPORT -DSW_TIMER)                         #
+#                     D:\workbench\yawing\Components\simpliciti\nwk_applicati #
+#                     ons\nwk_mgmt.c -D MRFI_CC2500 -lcN                      #
+#                     D:\workbench\yawing\Projects\Examples\eZ430RF\Simple_Pe #
+#                     er_to_Peer\IAR\CC2500-LinkListen\List\ -o               #
+#                     D:\workbench\yawing\Projects\Examples\eZ430RF\Simple_Pe #
+#                     er_to_Peer\IAR\CC2500-LinkListen\Obj\                   #
+#                     --require_prototypes --debug -D__MSP430F2274__ -e       #
+#                     --double=32 -I D:\workbench\yawing\Projects\Examples\eZ #
+#                     430RF\Simple_Peer_to_Peer\IAR\..\..\..\..\..\Components #
+#                     \bsp\ -I D:\workbench\yawing\Projects\Examples\eZ430RF\ #
+#                     Simple_Peer_to_Peer\IAR\..\..\..\..\..\Components\bsp\d #
+#                     rivers\ -I D:\workbench\yawing\Projects\Examples\eZ430R #
+#                     F\Simple_Peer_to_Peer\IAR\..\..\..\..\..\Components\bsp #
+#                     \boards\EZ430RF\ -I D:\workbench\yawing\Projects\Exampl #
+#                     es\eZ430RF\Simple_Peer_to_Peer\IAR\..\..\..\..\..\Compo #
+#                     nents\mrfi\ -I D:\workbench\yawing\Projects\Examples\eZ #
+#                     430RF\Simple_Peer_to_Peer\IAR\..\..\..\..\..\Components #
+#                     \SimpliciTI\nwk\ -I D:\workbench\yawing\Projects\Exampl #
+#                     es\eZ430RF\Simple_Peer_to_Peer\IAR\..\..\..\..\..\Compo #
+#                     nents\SimpliciTI\nwk_applications\ -I "C:\Program       #
+#                     Files\IAR Systems\Embedded Workbench 5.3                #
+#                     Evaluation\430\INC\" -I "C:\Program Files\IAR           #
+#                     Systems\Embedded Workbench 5.3                          #
 #                     Evaluation\430\INC\CLIB\" -Ohz                          #
-#    List file     =  C:\Texas Instruments\SimpliciTI-IAR-1.1.0\Projects\Exam #
-#                     ples\eZ430RF\Simple_Peer_to_Peer\IAR\CC2500-LinkListen\ #
-#                     List\nwk_mgmt.lst                                       #
-#    Object file   =  C:\Texas Instruments\SimpliciTI-IAR-1.1.0\Projects\Exam #
-#                     ples\eZ430RF\Simple_Peer_to_Peer\IAR\CC2500-LinkListen\ #
-#                     Obj\nwk_mgmt.r43                                        #
+#    List file     =  D:\workbench\yawing\Projects\Examples\eZ430RF\Simple_Pe #
+#                     er_to_Peer\IAR\CC2500-LinkListen\List\nwk_mgmt.lst      #
+#    Object file   =  D:\workbench\yawing\Projects\Examples\eZ430RF\Simple_Pe #
+#                     er_to_Peer\IAR\CC2500-LinkListen\Obj\nwk_mgmt.r43       #
 #                                                                             #
 #                                                                             #
 ###############################################################################
 
-C:\Texas Instruments\SimpliciTI-IAR-1.1.0\Components\simpliciti\nwk_applications\nwk_mgmt.c
+D:\workbench\yawing\Components\simpliciti\nwk_applications\nwk_mgmt.c
       1          /**************************************************************************************************
       2            Filename:       nwk_mgmt.c
       3            Revised:        $Date: 2009-01-06 15:45:54 -0800 (Tue, 06 Jan 2009) $

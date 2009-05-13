@@ -43,6 +43,12 @@
 
 #include "app_remap_led.h"
 
+#define	GREEN	1
+#define RED		2
+#define	BSP_GREEN_LED_IS_ON	BSP_LED1_IS_ON
+#define	BSP_RED_LED_IS_ON	BSP_LED2_IS_ON
+#define	BSP_BUTTON 			BSP_BUTTON1
+
 static void linkFrom(void);
 
 void toggleLED(uint8_t);
@@ -79,18 +85,18 @@ void main (void)
   SMPL_Init(sRxCallback);
 
   /* turn on LEDs. */
-  if (!BSP_LED2_IS_ON())
+  if (!BSP_RED_LED_IS_ON())
   {
-    toggleLED(2);
+    toggleLED(RED);
   }
-  if (!BSP_LED1_IS_ON())
+  if (!BSP_GREEN_LED_IS_ON())
   {
-    toggleLED(1);
+    toggleLED(GREEN);
   }
 
   /* wait for a button press... */
   do {
-    if (BSP_BUTTON1() || BSP_BUTTON2())
+    if (BSP_BUTTON() )
     {
       break;
     }
@@ -110,7 +116,10 @@ static void linkFrom()
   /* Turn off one LED so we can tell the device is now listening.
    * Received messages will toggle the other LED.
    */
-  toggleLED(1);
+	  if (BSP_RED_LED_IS_ON())
+	  {
+		toggleLED(RED);
+	  }
 
    /* listen for link forever... */
   while (1)
@@ -121,7 +130,10 @@ static void linkFrom()
     }
     /* Implement fail-to-link policy here. otherwise, listen again. */
   }
-
+  if (!BSP_RED_LED_IS_ON())
+  {
+    toggleLED(RED);
+  }
    /* turn on LED1 on the peer in response to receiving a frame. */
    *msg = 0x01;
 
