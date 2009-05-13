@@ -19,8 +19,7 @@
   you may not use, reproduce, copy, prepare derivative works of, modify, distribute,
   perform, display or sell this Software and/or its documentation for any purpose.
 
-  YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE PROVIDED “AS IS”
-  WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION, ANY
+  YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE PROVIDED “AS IS?  WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION, ANY
   WARRANTY OF MERCHANTABILITY, TITLE, NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE.
   IN NO EVENT SHALL TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
   NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER LEGAL EQUITABLE
@@ -42,6 +41,11 @@
 
 #include "app_remap_led.h"
 
+#define	GREEN	1
+#define RED		2
+#define	BSP_GREEN_LED_IS_ON	BSP_LED1_IS_ON
+#define	BSP_RED_LED_IS_ON	BSP_LED2_IS_ON
+#define	BSP_BUTTON 			BSP_BUTTON1
 static void linkTo(void);
 
 void toggleLED(uint8_t);
@@ -78,23 +82,31 @@ void main (void)
    */
   SMPL_Init(sRxCallback);
 
-  /* turn on LEDs. */
-  if (!BSP_LED2_IS_ON())
+  /* turn on Green LEDs. */
+  if (!BSP_GREEN_LED_IS_ON())
   {
-    toggleLED(2);
+    toggleLED(GREEN);
   }
-  if (!BSP_LED1_IS_ON())
+  
+  /* turn off Red LEDs. */
+  if (BSP_RED_LED_IS_ON())
   {
-    toggleLED(1);
+    toggleLED(RED);
   }
 
   /* wait for a button press... */
   do {
-    if (BSP_BUTTON1() || BSP_BUTTON2())
+    if (BSP_BUTTON())
     {
       break;
     }
   } while (1);
+  
+  /* turn on Red LEDs. */
+  if (!BSP_RED_LED_IS_ON())
+  {
+    toggleLED(RED);
+  }
 
   /* never coming back... */
   linkTo();
@@ -110,15 +122,15 @@ static void linkTo()
   while (SMPL_SUCCESS != SMPL_Link(&sLinkID1))
   {
     /* blink LEDs until we link successfully */
-    toggleLED(1);
-    toggleLED(2);
+    //toggleLED(1);
+    //toggleLED(2);
     SPIN_ABOUT_A_SECOND;
   }
 
   /* we're linked. turn off red LED. received messages will toggle the green LED. */
-  if (BSP_LED2_IS_ON())
+  if (BSP_RED_LED_IS_ON())
   {
-    toggleLED(2);
+    toggleLED(RED);
   }
 
   /* turn on RX. default is RX off. */

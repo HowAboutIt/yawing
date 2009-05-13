@@ -5,10 +5,10 @@ Control Register=0
 NextState0=0
 NextState1=0
 [Action Register]
-Break=0
-State Storage=0
+Break=1
+State Storage=1
 [DebugChecksum]
-Checksum=-963698003
+Checksum=1978684441
 [DisAssemblyWindow]
 NumStates=_ 1
 State 1=_ 1
@@ -34,7 +34,10 @@ Category=_ 0
 LoggingEnabled=_ 0
 LogFile=_ ""
 [Breakpoints]
-Count=0
+Bp0=_ "STD_CODE" "{D:\workbench\yawing\Projects\Examples\Applications\main_LinkTo.c}.185.3@1" 0 0 0 0 "" 0 ""
+Bp1=_ "STD_CODE" "{D:\workbench\yawing\Projects\Examples\Applications\main_LinkListen.c}.133.3@1" 0 0 0 0 "" 0 ""
+Bp2=_ "STD_CODE" "{D:\workbench\yawing\Projects\Examples\Applications\main_LinkTo.c}.127.5@1" 1 0 0 0 "" 0 ""
+Count=3
 [FET]
 Clock mode=38
 Extended Clock mode=-1

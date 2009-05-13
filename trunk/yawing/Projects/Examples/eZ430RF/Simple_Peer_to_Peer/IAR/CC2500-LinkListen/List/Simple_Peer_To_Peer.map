@@ -2,70 +2,70 @@
 #                                                                              #
 #      IAR Universal Linker V4.61I/W32                                         #
 #                                                                              #
-#           Link time     =  13/May/2009  07:35:37                             #
+#           Link time     =  14/May/2009  07:35:19                             #
 #           Target CPU    =  MSP430                                            #
-#           List file     =  "C:\Texas Instruments\SimpliciTI-IAR-1.1.0\Projec #
-#                            ts\Examples\eZ430RF\Simple_Peer_to_Peer\IAR\CC250 #
-#                            0-LinkListen\List\Simple_Peer_To_Peer.map"        #
-#           Output file 1 =  "C:\Texas Instruments\SimpliciTI-IAR-1.1.0\Projec #
-#                            ts\Examples\eZ430RF\Simple_Peer_to_Peer\IAR\CC250 #
-#                            0-LinkListen\Exe\Simple_Peer_To_Peer.d43"         #
+#           List file     =  D:\workbench\yawing\Projects\Examples\eZ430RF\Sim #
+#                            ple_Peer_to_Peer\IAR\CC2500-LinkListen\List\Simpl #
+#                            e_Peer_To_Peer.map                                #
+#           Output file 1 =  D:\workbench\yawing\Projects\Examples\eZ430RF\Sim #
+#                            ple_Peer_to_Peer\IAR\CC2500-LinkListen\Exe\Simple #
+#                            _Peer_To_Peer.d43                                 #
 #                            Format: debug                                     #
 #                            UBROF version 10.0.2                              #
 #                            Using library modules for C-SPY (-rt)             #
-#           Command line  =  "C:\Texas Instruments\SimpliciTI-IAR-1.1.0\Projec #
-#                            ts\Examples\eZ430RF\Simple_Peer_to_Peer\IAR\CC250 #
-#                            0-LinkListen\Obj\bsp.r43"                         #
-#                            "C:\Texas Instruments\SimpliciTI-IAR-1.1.0\Projec #
-#                            ts\Examples\eZ430RF\Simple_Peer_to_Peer\IAR\CC250 #
-#                            0-LinkListen\Obj\main_LinkListen.r43"             #
-#                            "C:\Texas Instruments\SimpliciTI-IAR-1.1.0\Projec #
-#                            ts\Examples\eZ430RF\Simple_Peer_to_Peer\IAR\CC250 #
-#                            0-LinkListen\Obj\mrfi.r43"                        #
-#                            "C:\Texas Instruments\SimpliciTI-IAR-1.1.0\Projec #
-#                            ts\Examples\eZ430RF\Simple_Peer_to_Peer\IAR\CC250 #
-#                            0-LinkListen\Obj\nwk.r43"                         #
-#                            "C:\Texas Instruments\SimpliciTI-IAR-1.1.0\Projec #
-#                            ts\Examples\eZ430RF\Simple_Peer_to_Peer\IAR\CC250 #
-#                            0-LinkListen\Obj\nwk_QMgmt.r43"                   #
-#                            "C:\Texas Instruments\SimpliciTI-IAR-1.1.0\Projec #
-#                            ts\Examples\eZ430RF\Simple_Peer_to_Peer\IAR\CC250 #
-#                            0-LinkListen\Obj\nwk_api.r43"                     #
-#                            "C:\Texas Instruments\SimpliciTI-IAR-1.1.0\Projec #
-#                            ts\Examples\eZ430RF\Simple_Peer_to_Peer\IAR\CC250 #
-#                            0-LinkListen\Obj\nwk_frame.r43"                   #
-#                            "C:\Texas Instruments\SimpliciTI-IAR-1.1.0\Projec #
-#                            ts\Examples\eZ430RF\Simple_Peer_to_Peer\IAR\CC250 #
-#                            0-LinkListen\Obj\nwk_freq.r43"                    #
-#                            "C:\Texas Instruments\SimpliciTI-IAR-1.1.0\Projec #
-#                            ts\Examples\eZ430RF\Simple_Peer_to_Peer\IAR\CC250 #
-#                            0-LinkListen\Obj\nwk_globals.r43"                 #
-#                            "C:\Texas Instruments\SimpliciTI-IAR-1.1.0\Projec #
-#                            ts\Examples\eZ430RF\Simple_Peer_to_Peer\IAR\CC250 #
-#                            0-LinkListen\Obj\nwk_ioctl.r43"                   #
-#                            "C:\Texas Instruments\SimpliciTI-IAR-1.1.0\Projec #
-#                            ts\Examples\eZ430RF\Simple_Peer_to_Peer\IAR\CC250 #
-#                            0-LinkListen\Obj\nwk_join.r43"                    #
-#                            "C:\Texas Instruments\SimpliciTI-IAR-1.1.0\Projec #
-#                            ts\Examples\eZ430RF\Simple_Peer_to_Peer\IAR\CC250 #
-#                            0-LinkListen\Obj\nwk_link.r43"                    #
-#                            "C:\Texas Instruments\SimpliciTI-IAR-1.1.0\Projec #
-#                            ts\Examples\eZ430RF\Simple_Peer_to_Peer\IAR\CC250 #
-#                            0-LinkListen\Obj\nwk_mgmt.r43"                    #
-#                            "C:\Texas Instruments\SimpliciTI-IAR-1.1.0\Projec #
-#                            ts\Examples\eZ430RF\Simple_Peer_to_Peer\IAR\CC250 #
-#                            0-LinkListen\Obj\nwk_ping.r43"                    #
-#                            "C:\Texas Instruments\SimpliciTI-IAR-1.1.0\Projec #
-#                            ts\Examples\eZ430RF\Simple_Peer_to_Peer\IAR\CC250 #
-#                            0-LinkListen\Obj\nwk_security.r43"                #
+#           Command line  =  D:\workbench\yawing\Projects\Examples\eZ430RF\Sim #
+#                            ple_Peer_to_Peer\IAR\CC2500-LinkListen\Obj\bsp.r4 #
+#                            3                                                 #
+#                            D:\workbench\yawing\Projects\Examples\eZ430RF\Sim #
+#                            ple_Peer_to_Peer\IAR\CC2500-LinkListen\Obj\main_L #
+#                            inkListen.r43                                     #
+#                            D:\workbench\yawing\Projects\Examples\eZ430RF\Sim #
+#                            ple_Peer_to_Peer\IAR\CC2500-LinkListen\Obj\mrfi.r #
+#                            43                                                #
+#                            D:\workbench\yawing\Projects\Examples\eZ430RF\Sim #
+#                            ple_Peer_to_Peer\IAR\CC2500-LinkListen\Obj\nwk.r4 #
+#                            3                                                 #
+#                            D:\workbench\yawing\Projects\Examples\eZ430RF\Sim #
+#                            ple_Peer_to_Peer\IAR\CC2500-LinkListen\Obj\nwk_QM #
+#                            gmt.r43                                           #
+#                            D:\workbench\yawing\Projects\Examples\eZ430RF\Sim #
+#                            ple_Peer_to_Peer\IAR\CC2500-LinkListen\Obj\nwk_ap #
+#                            i.r43                                             #
+#                            D:\workbench\yawing\Projects\Examples\eZ430RF\Sim #
+#                            ple_Peer_to_Peer\IAR\CC2500-LinkListen\Obj\nwk_fr #
+#                            ame.r43                                           #
+#                            D:\workbench\yawing\Projects\Examples\eZ430RF\Sim #
+#                            ple_Peer_to_Peer\IAR\CC2500-LinkListen\Obj\nwk_fr #
+#                            eq.r43                                            #
+#                            D:\workbench\yawing\Projects\Examples\eZ430RF\Sim #
+#                            ple_Peer_to_Peer\IAR\CC2500-LinkListen\Obj\nwk_gl #
+#                            obals.r43                                         #
+#                            D:\workbench\yawing\Projects\Examples\eZ430RF\Sim #
+#                            ple_Peer_to_Peer\IAR\CC2500-LinkListen\Obj\nwk_io #
+#                            ctl.r43                                           #
+#                            D:\workbench\yawing\Projects\Examples\eZ430RF\Sim #
+#                            ple_Peer_to_Peer\IAR\CC2500-LinkListen\Obj\nwk_jo #
+#                            in.r43                                            #
+#                            D:\workbench\yawing\Projects\Examples\eZ430RF\Sim #
+#                            ple_Peer_to_Peer\IAR\CC2500-LinkListen\Obj\nwk_li #
+#                            nk.r43                                            #
+#                            D:\workbench\yawing\Projects\Examples\eZ430RF\Sim #
+#                            ple_Peer_to_Peer\IAR\CC2500-LinkListen\Obj\nwk_mg #
+#                            mt.r43                                            #
+#                            D:\workbench\yawing\Projects\Examples\eZ430RF\Sim #
+#                            ple_Peer_to_Peer\IAR\CC2500-LinkListen\Obj\nwk_pi #
+#                            ng.r43                                            #
+#                            D:\workbench\yawing\Projects\Examples\eZ430RF\Sim #
+#                            ple_Peer_to_Peer\IAR\CC2500-LinkListen\Obj\nwk_se #
+#                            curity.r43                                        #
 #                            -o                                                #
-#                            "C:\Texas Instruments\SimpliciTI-IAR-1.1.0\Projec #
-#                            ts\Examples\eZ430RF\Simple_Peer_to_Peer\IAR\CC250 #
-#                            0-LinkListen\Exe\Simple_Peer_To_Peer.d43"         #
+#                            D:\workbench\yawing\Projects\Examples\eZ430RF\Sim #
+#                            ple_Peer_to_Peer\IAR\CC2500-LinkListen\Exe\Simple #
+#                            _Peer_To_Peer.d43                                 #
 #                            -l                                                #
-#                            "C:\Texas Instruments\SimpliciTI-IAR-1.1.0\Projec #
-#                            ts\Examples\eZ430RF\Simple_Peer_to_Peer\IAR\CC250 #
-#                            0-LinkListen\List\Simple_Peer_To_Peer.map"        #
+#                            D:\workbench\yawing\Projects\Examples\eZ430RF\Sim #
+#                            ple_Peer_to_Peer\IAR\CC2500-LinkListen\List\Simpl #
+#                            e_Peer_To_Peer.map                                #
 #                            -xms                                              #
 #                            "-IC:\Program Files\IAR Systems\Embedded Workbenc #
 #                            h 5.3 Evaluation\430\LIB\"                        #
@@ -142,7 +142,7 @@ Absolute parts
            _STACK_SIZE             00C8 
     *************************************************************************
 
-  FILE NAME : C:\Texas Instruments\SimpliciTI-IAR-1.1.0\Projects\Examples\eZ430RF\Simple_Peer_to_Peer\IAR\CC2500-LinkListen\Obj\bsp.r43
+  FILE NAME : D:\workbench\yawing\Projects\Examples\eZ430RF\Simple_Peer_to_Peer\IAR\CC2500-LinkListen\Obj\bsp.r43
   PROGRAM MODULE, NAME : bsp
 
   SEGMENTS IN THE MODULE
@@ -167,7 +167,6 @@ DATA16_AN
                                                    BSP_InitLeds
                                                    linkFrom (main_LinkListen)
                                                    main (main_LinkListen)
-                                                   sRxCallback (main_LinkListen)
                                                    toggleLED (main_LinkListen)
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
@@ -216,11 +215,11 @@ DATA16_AN
            CALBC1_8MHZ             10FD 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9802 - 9819 (0x18 bytes), align: 1
+  Relative segment, address: 9832 - 9849 (0x18 bytes), align: 1
   Segment part 18.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           BSP_Init                9802            main (main_LinkListen)
+           BSP_Init                9832            main (main_LinkListen)
                calls direct
                CSTACK = 00000000 ( 00000004 )
     -------------------------------------------------------------------------
@@ -233,116 +232,131 @@ DATA16_Z
            sIterationsPerUsec      023C 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 997E - 9987 (0xa bytes), align: 1
+  Relative segment, address: 99AE - 99B7 (0xa bytes), align: 1
   Segment part 17. ROOT.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           __low_level_init        997E            ?cstart_call_low_level_init (?cstart)
+           __low_level_init        99AE            ?cstart_call_low_level_init (?cstart)
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9716 - 9735 (0x20 bytes), align: 1
+  Relative segment, address: 9746 - 9765 (0x20 bytes), align: 1
   Segment part 16.            Intra module refs:   BSP_Init
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           BSP_InitBoard           9716 
+           BSP_InitBoard           9746 
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 96F4 - 9715 (0x22 bytes), align: 1
+  Relative segment, address: 9724 - 9745 (0x22 bytes), align: 1
   Segment part 15.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           BSP_Delay               96F4            ?Subroutine9 (mrfi)
+           BSP_Delay               9724            ?Subroutine9 (mrfi)
                CSTACK = 00000000 ( 00000004 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 98E2 - 98F3 (0x12 bytes), align: 1
+  Relative segment, address: 9912 - 9923 (0x12 bytes), align: 1
   Segment part 13.            Intra module refs:   BSP_Init
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           BSP_InitLeds            98E2 
+           BSP_InitLeds            9912 
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9992 - 999B (0xa bytes), align: 1
+  Relative segment, address: 99C2 - 99CB (0xa bytes), align: 1
   Segment part 12.            Intra module refs:   BSP_Init
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           BSP_InitButtons         9992 
+           BSP_InitButtons         99C2 
                CSTACK = 00000000 ( 00000002 )
 
     *************************************************************************
 
-  FILE NAME : C:\Texas Instruments\SimpliciTI-IAR-1.1.0\Projects\Examples\eZ430RF\Simple_Peer_to_Peer\IAR\CC2500-LinkListen\Obj\main_LinkListen.r43
+  FILE NAME : D:\workbench\yawing\Projects\Examples\eZ430RF\Simple_Peer_to_Peer\IAR\CC2500-LinkListen\Obj\main_LinkListen.r43
   PROGRAM MODULE, NAME : main_LinkListen
 
   SEGMENTS IN THE MODULE
   ======================
+DATA16_AN
+  Relative segment, address: 0020 - 0020 (0x1 bytes), align: 0
+  Segment part 1.             Intra module refs:   main
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           P1IN                    0020 
+    -------------------------------------------------------------------------
 DATA16_Z
   Relative segment, address: 023D - 023D (0x1 bytes), align: 0
-  Segment part 3.             Intra module refs:   linkFrom
-                                                   sRxCallback
+  Segment part 4.             Intra module refs:   sRxCallback
            LOCAL                   ADDRESS         
            =====                   =======         
-           sLinkID2                023D 
+           sRxTid                  023D 
     -------------------------------------------------------------------------
 DATA16_Z
   Relative segment, address: 023E - 023E (0x1 bytes), align: 0
-  Segment part 4.             Intra module refs:   linkFrom
+  Segment part 5.             Intra module refs:   linkFrom
                                                    sRxCallback
            LOCAL                   ADDRESS         
            =====                   =======         
-           sSemaphore              023E 
+           sLinkID2                023E 
+    -------------------------------------------------------------------------
+DATA16_Z
+  Relative segment, address: 023F - 023F (0x1 bytes), align: 0
+  Segment part 6.             Intra module refs:   linkFrom
+                                                   sRxCallback
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           sSemaphore              023F 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 96D2 - 96F3 (0x22 bytes), align: 1
-  Segment part 8.
+  Relative segment, address: 968C - 96B3 (0x28 bytes), align: 1
+  Segment part 10.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           main                    96D2            Segment part 11 (?cstart)
+           main                    968C            Segment part 11 (?cstart)
                calls direct
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9940 - 994D (0xe bytes), align: 1
-  Segment part 9.             Intra module refs:   linkFrom
+  Relative segment, address: 9970 - 997D (0xe bytes), align: 1
+  Segment part 11.            Intra module refs:   linkFrom
                                                    main
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine0            9940 
+           ?Subroutine0            9970 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9374 - 93AD (0x3a bytes), align: 1
-  Segment part 7.             Intra module refs:   main
+  Relative segment, address: 9236 - 9285 (0x50 bytes), align: 1
+  Segment part 9.             Intra module refs:   main
            LOCAL                   ADDRESS         
            =====                   =======         
-           linkFrom                9374 
+           linkFrom                9236 
                calls direct
-               CSTACK = 00000000 ( 00000004 )
+               CSTACK = 00000000 ( 00000006 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9874 - 9887 (0x14 bytes), align: 1
-  Segment part 5.             Intra module refs:   ?Subroutine0
+  Relative segment, address: 98A4 - 98B7 (0x14 bytes), align: 1
+  Segment part 7.             Intra module refs:   ?Subroutine0
+                                                   linkFrom
                                                    main
                                                    sRxCallback
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           toggleLED               9874 
+           toggleLED               98A4 
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9226 - 926D (0x48 bytes), align: 1
-  Segment part 6.             Intra module refs:   main
+  Relative segment, address: 917E - 91D9 (0x5c bytes), align: 1
+  Segment part 8.             Intra module refs:   main
            LOCAL                   ADDRESS         
            =====                   =======         
-           sRxCallback             9226 
+           sRxCallback             917E 
                calls direct
                CSTACK = 00000000 ( 00000006 )
 
     *************************************************************************
 
-  FILE NAME : C:\Texas Instruments\SimpliciTI-IAR-1.1.0\Projects\Examples\eZ430RF\Simple_Peer_to_Peer\IAR\CC2500-LinkListen\Obj\mrfi.r43
+  FILE NAME : D:\workbench\yawing\Projects\Examples\eZ430RF\Simple_Peer_to_Peer\IAR\CC2500-LinkListen\Obj\mrfi.r43
   PROGRAM MODULE, NAME : mrfi
 
   SEGMENTS IN THE MODULE
@@ -490,7 +504,7 @@ DATA16_C
            mrfiRadioCfg            800C 
     -------------------------------------------------------------------------
 DATA16_Z
-  Relative segment, address: 023F - 023F (0x1 bytes), align: 0
+  Relative segment, address: 0240 - 0240 (0x1 bytes), align: 0
   Segment part 20.            Intra module refs:   ?Subroutine13
                                                    ?Subroutine3
                                                    ?Subroutine6
@@ -503,41 +517,41 @@ DATA16_Z
                                                    MRFI_WakeUp
            LOCAL                   ADDRESS         
            =====                   =======         
-           mrfiRadioState          023F 
+           mrfiRadioState          0240 
     -------------------------------------------------------------------------
 DATA16_Z
-  Relative segment, address: 0240 - 0257 (0x18 bytes), align: 0
+  Relative segment, address: 0241 - 0258 (0x18 bytes), align: 0
   Segment part 21.            Intra module refs:   MRFI_Init
                                                    MRFI_Receive
                                                    Mrfi_SyncPinRxIsr
                                                    Segment part 49
            LOCAL                   ADDRESS         
            =====                   =======         
-           mrfiIncomingPacket      0240 
+           mrfiIncomingPacket      0241 
     -------------------------------------------------------------------------
 DATA16_Z
-  Relative segment, address: 0258 - 0258 (0x1 bytes), align: 0
+  Relative segment, address: 0259 - 0259 (0x1 bytes), align: 0
   Segment part 22.            Intra module refs:   MRFI_Init
                                                    MRFI_RandomByte
            LOCAL                   ADDRESS         
            =====                   =======         
-           mrfiRndSeed             0258 
+           mrfiRndSeed             0259 
     -------------------------------------------------------------------------
 DATA16_Z
-  Relative segment, address: 0259 - 0259 (0x1 bytes), align: 0
+  Relative segment, address: 025A - 025A (0x1 bytes), align: 0
   Segment part 23.            Intra module refs:   MRFI_PostKillSem
                                                    MRFI_ReplyDelay
            LOCAL                   ADDRESS         
            =====                   =======         
-           sKillSem                0259 
+           sKillSem                025A 
     -------------------------------------------------------------------------
 DATA16_Z
-  Relative segment, address: 025A - 025A (0x1 bytes), align: 0
+  Relative segment, address: 025B - 025B (0x1 bytes), align: 0
   Segment part 24.            Intra module refs:   MRFI_PostKillSem
                                                    MRFI_ReplyDelay
            LOCAL                   ADDRESS         
            =====                   =======         
-           sReplyDelayContext      025A 
+           sReplyDelayContext      025B 
     -------------------------------------------------------------------------
 DATA16_Z
   Relative segment, address: 022A - 022B (0x2 bytes), align: 1
@@ -577,12 +591,12 @@ DATA16_C
            mrfiRFPowerTable        8050 
     -------------------------------------------------------------------------
 DATA16_Z
-  Relative segment, address: 025B - 025B (0x1 bytes), align: 0
+  Relative segment, address: 025C - 025C (0x1 bytes), align: 0
   Segment part 30.            Intra module refs:   MRFI_EnableRxAddrFilter
                                                    MRFI_RxAddrIsFiltered
            LOCAL                   ADDRESS         
            =====                   =======         
-           mrfiRxFilterEnabled     025B 
+           mrfiRxFilterEnabled     025C 
     -------------------------------------------------------------------------
 DATA16_I
   Relative segment, address: 0200 - 0203 (0x4 bytes), align: 0
@@ -1076,7 +1090,7 @@ DATA16_I
                CSTACK = 00000000 ( 00000006 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9904 - 9913 (0x10 bytes), align: 1
+  Relative segment, address: 9934 - 9943 (0x10 bytes), align: 1
   Segment part 86.            Intra module refs:   MRFI_Init
                                                    MRFI_Rssi
                                                    MRFI_Transmit
@@ -1084,15 +1098,15 @@ DATA16_I
                                                    mrfiSpiWriteReg
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine3            9904 
+           ?Subroutine3            9934 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9662 - 9689 (0x28 bytes), align: 1
+  Relative segment, address: 96B4 - 96DB (0x28 bytes), align: 1
   Segment part 33.            Intra module refs:   MRFI_Rssi
                                                    Mrfi_SyncPinRxIsr
            LOCAL                   ADDRESS         
            =====                   =======         
-           Mrfi_CalculateRssi      9662 
+           Mrfi_CalculateRssi      96B4 
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 INTVEC
@@ -1109,7 +1123,7 @@ DATA16_ID
 
     *************************************************************************
 
-  FILE NAME : C:\Texas Instruments\SimpliciTI-IAR-1.1.0\Projects\Examples\eZ430RF\Simple_Peer_to_Peer\IAR\CC2500-LinkListen\Obj\nwk.r43
+  FILE NAME : D:\workbench\yawing\Projects\Examples\eZ430RF\Simple_Peer_to_Peer\IAR\CC2500-LinkListen\Obj\nwk.r43
   PROGRAM MODULE, NAME : nwk
 
   SEGMENTS IN THE MODULE
@@ -1138,38 +1152,38 @@ DATA16_I
                CSTACK = 00000000 ( 00000004 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 91DA - 9225 (0x4c bytes), align: 1
+  Relative segment, address: 9286 - 92D1 (0x4c bytes), align: 1
   Segment part 21.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_getNextConnection   91DA            smpl_send_link_reply (nwk_link)
+           nwk_getNextConnection   9286            smpl_send_link_reply (nwk_link)
                calls direct
                CSTACK = 00000000 ( 00000004 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9584 - 95B1 (0x2e bytes), align: 1
+  Relative segment, address: 95AE - 95DB (0x2e bytes), align: 1
   Segment part 20.            Intra module refs:   nwk_getNextConnection
            LOCAL                   ADDRESS         
            =====                   =======         
-           initializeConnection    9584 
+           initializeConnection    95AE 
                calls direct
                CSTACK = 00000000 ( 00000004 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 99AE - 99B3 (0x6 bytes), align: 1
+  Relative segment, address: 99DE - 99E3 (0x6 bytes), align: 1
   Segment part 19.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_freeConnection      99AE            nwk_connectionControl (nwk_ioctl)
+           nwk_freeConnection      99DE            nwk_connectionControl (nwk_ioctl)
                                                    smpl_send_link_reply (nwk_link)
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 960C - 9637 (0x2c bytes), align: 1
+  Relative segment, address: 9636 - 9661 (0x2c bytes), align: 1
   Segment part 18.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_getConnInfo         960C            SMPL_Receive (nwk_api)
+           nwk_getConnInfo         9636            SMPL_Receive (nwk_api)
                                                    SMPL_SendOpt (nwk_api)
                                                    nwk_QfindOldest (nwk_QMgmt)
                                                    nwk_connectionControl (nwk_ioctl)
@@ -1179,38 +1193,38 @@ DATA16_I
                CSTACK = 00000000 ( 00000004 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 995C - 9967 (0xc bytes), align: 1
+  Relative segment, address: 998C - 9997 (0xc bytes), align: 1
   Segment part 14.            Intra module refs:   nwk_allocateLocalRxPort
                                                    nwk_isConnectionValid
                                                    nwk_isLinkDuplicate
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine1            995C 
+           ?Subroutine1            998C 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9338 - 9373 (0x3c bytes), align: 1
+  Relative segment, address: 939C - 93D7 (0x3c bytes), align: 1
   Segment part 17.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_isLinkDuplicate     9338            smpl_send_link_reply (nwk_link)
+           nwk_isLinkDuplicate     939C            smpl_send_link_reply (nwk_link)
                calls direct
                CSTACK = 00000000 ( 0000000A )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 968A - 96AF (0x26 bytes), align: 1
+  Relative segment, address: 96DC - 9701 (0x26 bytes), align: 1
   Segment part 15.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_checkConnInfo       968A            SMPL_Receive (nwk_api)
+           nwk_checkConnInfo       96DC            SMPL_Receive (nwk_api)
                                                    SMPL_SendOpt (nwk_api)
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 917E - 91D9 (0x5c bytes), align: 1
+  Relative segment, address: 91DA - 9235 (0x5c bytes), align: 1
   Segment part 13.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_isConnectionValid   917E            dispatchFrame (nwk_frame)
+           nwk_isConnectionValid   91DA            dispatchFrame (nwk_frame)
                calls direct
                CSTACK = 00000000 ( 0000000C )
     -------------------------------------------------------------------------
@@ -1264,12 +1278,12 @@ DATA16_I
                CSTACK = 00000000 ( 00000006 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9422 - 9457 (0x36 bytes), align: 1
+  Relative segment, address: 944C - 9481 (0x36 bytes), align: 1
   Segment part 5.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            nwk_putNumObjectIntoMsg
-                                   9422            nwk_join (nwk_join)
+                                   944C            nwk_join (nwk_join)
                calls direct
                CSTACK = 00000000 ( 00000008 )
     -------------------------------------------------------------------------
@@ -1279,35 +1293,35 @@ DATA16_ID
 
     *************************************************************************
 
-  FILE NAME : C:\Texas Instruments\SimpliciTI-IAR-1.1.0\Projects\Examples\eZ430RF\Simple_Peer_to_Peer\IAR\CC2500-LinkListen\Obj\nwk_QMgmt.r43
+  FILE NAME : D:\workbench\yawing\Projects\Examples\eZ430RF\Simple_Peer_to_Peer\IAR\CC2500-LinkListen\Obj\nwk_QMgmt.r43
   PROGRAM MODULE, NAME : nwk_QMgmt
 
   SEGMENTS IN THE MODULE
   ======================
 DATA16_Z
-  Relative segment, address: 025C - 028F (0x34 bytes), align: 0
+  Relative segment, address: 025D - 0290 (0x34 bytes), align: 0
   Segment part 2.             Intra module refs:   nwk_QInit
                                                    nwk_QadjustOrder
                                                    nwk_QfindOldest
                                                    nwk_QfindSlot
            LOCAL                   ADDRESS         
            =====                   =======         
-           sInFrameQ               025C 
+           sInFrameQ               025D 
     -------------------------------------------------------------------------
 DATA16_Z
-  Relative segment, address: 0290 - 02C3 (0x34 bytes), align: 0
+  Relative segment, address: 0291 - 02C4 (0x34 bytes), align: 0
   Segment part 3.             Intra module refs:   nwk_QInit
                                                    nwk_QfindSlot
            LOCAL                   ADDRESS         
            =====                   =======         
-           sOutFrameQ              0290 
+           sOutFrameQ              0291 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 97CC - 97E7 (0x1c bytes), align: 1
+  Relative segment, address: 97FC - 9817 (0x1c bytes), align: 1
   Segment part 8.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_QInit               97CC            nwk_nwkInit (nwk)
+           nwk_QInit               97FC            nwk_nwkInit (nwk)
                calls direct
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
@@ -1322,11 +1336,11 @@ DATA16_Z
                CSTACK = 00000000 ( 0000000A )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 95E0 - 960B (0x2c bytes), align: 1
+  Relative segment, address: 960A - 9635 (0x2c bytes), align: 1
   Segment part 6.             Intra module refs:   nwk_QfindSlot
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_QadjustOrder        95E0            nwk_retrieveFrame (nwk_frame)
+           nwk_QadjustOrder        960A            nwk_retrieveFrame (nwk_frame)
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
@@ -1340,25 +1354,25 @@ DATA16_Z
 
     *************************************************************************
 
-  FILE NAME : C:\Texas Instruments\SimpliciTI-IAR-1.1.0\Projects\Examples\eZ430RF\Simple_Peer_to_Peer\IAR\CC2500-LinkListen\Obj\nwk_api.r43
+  FILE NAME : D:\workbench\yawing\Projects\Examples\eZ430RF\Simple_Peer_to_Peer\IAR\CC2500-LinkListen\Obj\nwk_api.r43
   PROGRAM MODULE, NAME : nwk_api
 
   SEGMENTS IN THE MODULE
   ======================
 DATA16_Z
-  Relative segment, address: 02C4 - 02C4 (0x1 bytes), align: 0
+  Relative segment, address: 02C5 - 02C5 (0x1 bytes), align: 0
   Segment part 2.             Intra module refs:   SMPL_Init
                                                    SMPL_Ioctl
            LOCAL                   ADDRESS         
            =====                   =======         
-           sInit_done              02C4 
+           sInit_done              02C5 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 94C0 - 94F3 (0x34 bytes), align: 1
+  Relative segment, address: 94EA - 951D (0x34 bytes), align: 1
   Segment part 9.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           SMPL_Init               94C0            main (main_LinkListen)
+           SMPL_Init               94EA            main (main_LinkListen)
                calls direct
                CSTACK = 00000000 ( 00000004 )
     -------------------------------------------------------------------------
@@ -1372,11 +1386,11 @@ DATA16_Z
                CSTACK = 00000000 ( 0000000A )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 99A2 - 99A7 (0x6 bytes), align: 1
+  Relative segment, address: 99D2 - 99D7 (0x6 bytes), align: 1
   Segment part 7.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           SMPL_Send               99A2            linkFrom (main_LinkListen)
+           SMPL_Send               99D2            linkFrom (main_LinkListen)
                calls direct
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
@@ -1390,11 +1404,11 @@ DATA16_Z
                CSTACK = 00000000 ( 0000000C )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 92B4 - 92F9 (0x46 bytes), align: 1
+  Relative segment, address: 92D2 - 9317 (0x46 bytes), align: 1
   Segment part 5.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           SMPL_Receive            92B4            sRxCallback (main_LinkListen)
+           SMPL_Receive            92D2            sRxCallback (main_LinkListen)
                calls direct
                CSTACK = 00000000 ( 0000000E )
     -------------------------------------------------------------------------
@@ -1410,7 +1424,7 @@ DATA16_Z
 
     *************************************************************************
 
-  FILE NAME : C:\Texas Instruments\SimpliciTI-IAR-1.1.0\Projects\Examples\eZ430RF\Simple_Peer_to_Peer\IAR\CC2500-LinkListen\Obj\nwk_frame.r43
+  FILE NAME : D:\workbench\yawing\Projects\Examples\eZ430RF\Simple_Peer_to_Peer\IAR\CC2500-LinkListen\Obj\nwk_frame.r43
   PROGRAM MODULE, NAME : nwk_frame
 
   SEGMENTS IN THE MODULE
@@ -1423,12 +1437,12 @@ DATA16_C
            func                    8000 
     -------------------------------------------------------------------------
 DATA16_Z
-  Relative segment, address: 02C5 - 02C5 (0x1 bytes), align: 0
+  Relative segment, address: 02C6 - 02C6 (0x1 bytes), align: 0
   Segment part 3.             Intra module refs:   nwk_buildFrame
                                                    nwk_frameInit
            LOCAL                   ADDRESS         
            =====                   =======         
-           sTRACTID                02C5 
+           sTRACTID                02C6 
     -------------------------------------------------------------------------
 DATA16_Z
   Relative segment, address: 022E - 022F (0x2 bytes), align: 1
@@ -1440,20 +1454,20 @@ DATA16_Z
            sMyAddr                 022E 
     -------------------------------------------------------------------------
 DATA16_Z
-  Relative segment, address: 02C6 - 02C6 (0x1 bytes), align: 0
+  Relative segment, address: 02C7 - 02C7 (0x1 bytes), align: 0
   Segment part 5.             Intra module refs:   nwk_buildFrame
                                                    nwk_getMyRxType
            LOCAL                   ADDRESS         
            =====                   =======         
-           sMyRxType               02C6 
+           sMyRxType               02C7 
     -------------------------------------------------------------------------
 DATA16_Z
-  Relative segment, address: 02C7 - 02C7 (0x1 bytes), align: 0
+  Relative segment, address: 02C8 - 02C8 (0x1 bytes), align: 0
   Segment part 6.             Intra module refs:   nwk_frameInit
                                                    nwk_sendFrame
            LOCAL                   ADDRESS         
            =====                   =======         
-           sMyTxType               02C7 
+           sMyTxType               02C8 
     -------------------------------------------------------------------------
 DATA16_Z
   Relative segment, address: 0230 - 0231 (0x2 bytes), align: 1
@@ -1464,11 +1478,11 @@ DATA16_Z
            spCallback              0230 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9756 - 9773 (0x1e bytes), align: 1
+  Relative segment, address: 9786 - 97A3 (0x1e bytes), align: 1
   Segment part 14.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_frameInit           9756            nwk_nwkInit (nwk)
+           nwk_frameInit           9786            nwk_nwkInit (nwk)
                calls direct
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
@@ -1485,11 +1499,11 @@ DATA16_Z
                CSTACK = 00000000 ( 0000000C )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9792 - 97AF (0x1e bytes), align: 1
+  Relative segment, address: 97A4 - 97C1 (0x1e bytes), align: 1
   Segment part 12.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           MRFI_RxCompleteISR      9792            Mrfi_SyncPinRxIsr (mrfi)
+           MRFI_RxCompleteISR      97A4            Mrfi_SyncPinRxIsr (mrfi)
                calls direct
                CSTACK = 00000000 ( 00000004 )
     -------------------------------------------------------------------------
@@ -1513,11 +1527,11 @@ DATA16_Z
                CSTACK = 00000000 ( 00000008 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9556 - 9583 (0x2e bytes), align: 1
+  Relative segment, address: 9580 - 95AD (0x2e bytes), align: 1
   Segment part 9.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_sendFrame           9556            ?Subroutine1 (nwk_link)
+           nwk_sendFrame           9580            ?Subroutine1 (nwk_link)
                                                    SMPL_SendOpt (nwk_api)
                                                    nwk_rawSend (nwk_ioctl)
                                                    smpl_send_ping_reply (nwk_ping)
@@ -1525,39 +1539,39 @@ DATA16_Z
                CSTACK = 00000000 ( 00000004 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 99B4 - 99B9 (0x6 bytes), align: 1
+  Relative segment, address: 99E4 - 99E9 (0x6 bytes), align: 1
   Segment part 8.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_getMyRxType         99B4            smpl_send_link_reply (nwk_link)
+           nwk_getMyRxType         99E4            smpl_send_link_reply (nwk_link)
                CSTACK = 00000000 ( 00000002 )
 
     *************************************************************************
 
-  FILE NAME : C:\Texas Instruments\SimpliciTI-IAR-1.1.0\Projects\Examples\eZ430RF\Simple_Peer_to_Peer\IAR\CC2500-LinkListen\Obj\nwk_freq.r43
+  FILE NAME : D:\workbench\yawing\Projects\Examples\eZ430RF\Simple_Peer_to_Peer\IAR\CC2500-LinkListen\Obj\nwk_freq.r43
   PROGRAM MODULE, NAME : nwk_freq
 
   SEGMENTS IN THE MODULE
   ======================
 <CODE> 1 (was CODE)
-  Relative segment, address: 99D2 - 99D3 (0x2 bytes), align: 1
+  Relative segment, address: 9A02 - 9A03 (0x2 bytes), align: 1
   Segment part 3.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_freqInit            99D2            nwk_nwkInit (nwk)
+           nwk_freqInit            9A02            nwk_nwkInit (nwk)
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 99BE - 99C1 (0x4 bytes), align: 1
+  Relative segment, address: 99EE - 99F1 (0x4 bytes), align: 1
   Segment part 2.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_processFreq         99BE            func (nwk_frame)
+           nwk_processFreq         99EE            func (nwk_frame)
                CSTACK = 00000000 ( 00000002 )
 
     *************************************************************************
 
-  FILE NAME : C:\Texas Instruments\SimpliciTI-IAR-1.1.0\Projects\Examples\eZ430RF\Simple_Peer_to_Peer\IAR\CC2500-LinkListen\Obj\nwk_globals.r43
+  FILE NAME : D:\workbench\yawing\Projects\Examples\eZ430RF\Simple_Peer_to_Peer\IAR\CC2500-LinkListen\Obj\nwk_globals.r43
   PROGRAM MODULE, NAME : nwk_globals
 
   SEGMENTS IN THE MODULE
@@ -1571,31 +1585,31 @@ DATA16_C
            sMyROMAddress           8053 
     -------------------------------------------------------------------------
 DATA16_Z
-  Relative segment, address: 02C8 - 02CB (0x4 bytes), align: 0
+  Relative segment, address: 02C9 - 02CC (0x4 bytes), align: 0
   Segment part 3.             Intra module refs:   nwk_globalsInit
                                                    nwk_setAPAddress
            LOCAL                   ADDRESS         
            =====                   =======         
-           sAPAddress              02C8 
+           sAPAddress              02C9 
     -------------------------------------------------------------------------
 DATA16_Z
-  Relative segment, address: 02CC - 02CF (0x4 bytes), align: 0
+  Relative segment, address: 02CD - 02D0 (0x4 bytes), align: 0
   Segment part 4.             Intra module refs:   ?Subroutine0
                                                    nwk_getMyAddress
                                                    nwk_globalsInit
            LOCAL                   ADDRESS         
            =====                   =======         
-           sMyRAMAddress           02CC 
+           sMyRAMAddress           02CD 
     -------------------------------------------------------------------------
 DATA16_Z
-  Relative segment, address: 02D0 - 02D0 (0x1 bytes), align: 0
+  Relative segment, address: 02D1 - 02D1 (0x1 bytes), align: 0
   Segment part 5.             Intra module refs:   ?Subroutine0
                                                    nwk_getMyAddress
                                                    nwk_globalsInit
                                                    nwk_setMyAddress
            LOCAL                   ADDRESS         
            =====                   =======         
-           sRAMAddressIsSet        02D0 
+           sRAMAddressIsSet        02D1 
     -------------------------------------------------------------------------
 DATA16_C
   Relative segment, address: 8057 - 805B (0x5 bytes), align: 0
@@ -1605,28 +1619,28 @@ DATA16_C
            sVersionInfo            8057 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9638 - 9661 (0x2a bytes), align: 1
+  Relative segment, address: 9662 - 968B (0x2a bytes), align: 1
   Segment part 14.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_globalsInit         9638            nwk_nwkInit (nwk)
+           nwk_globalsInit         9662            nwk_nwkInit (nwk)
                calls direct
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9932 - 993F (0xe bytes), align: 1
+  Relative segment, address: 9962 - 996F (0xe bytes), align: 1
   Segment part 15.            Intra module refs:   nwk_globalsInit
                                                    nwk_setMyAddress
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine0            9932 
+           ?Subroutine0            9962 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 98AC - 98BD (0x12 bytes), align: 1
+  Relative segment, address: 98DC - 98ED (0x12 bytes), align: 1
   Segment part 13.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_getMyAddress        98AC            SMPL_Init (nwk_api)
+           nwk_getMyAddress        98DC            SMPL_Init (nwk_api)
                                                    nwk_deviceAddress (nwk_ioctl)
                                                    nwk_frameInit (nwk_frame)
                                                    nwk_isValidReply (nwk)
@@ -1634,54 +1648,54 @@ DATA16_C
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 99A8 - 99AD (0x6 bytes), align: 1
+  Relative segment, address: 99D8 - 99DD (0x6 bytes), align: 1
   Segment part 12.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_getFWVersion        99A8            SMPL_Ioctl (nwk_api)
+           nwk_getFWVersion        99D8            SMPL_Ioctl (nwk_api)
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 99C2 - 99C5 (0x4 bytes), align: 1
+  Relative segment, address: 99F2 - 99F5 (0x4 bytes), align: 1
   Segment part 11.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            nwk_getProtocolVersion
-                                   99C2            SMPL_Ioctl (nwk_api)
+                                   99F2            SMPL_Ioctl (nwk_api)
                                                    nwk_join (nwk_join)
                                                    smpl_send_link_reply (nwk_link)
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 984A - 985F (0x16 bytes), align: 1
+  Relative segment, address: 987A - 988F (0x16 bytes), align: 1
   Segment part 10.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_setMyAddress        984A            nwk_deviceAddress (nwk_ioctl)
+           nwk_setMyAddress        987A            nwk_deviceAddress (nwk_ioctl)
                calls direct
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9968 - 9973 (0xc bytes), align: 1
+  Relative segment, address: 9998 - 99A3 (0xc bytes), align: 1
   Segment part 9.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_setAPAddress        9968            nwk_join (nwk_join)
+           nwk_setAPAddress        9998            nwk_join (nwk_join)
                calls direct
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 999C - 99A1 (0x6 bytes), align: 1
+  Relative segment, address: 99CC - 99D1 (0x6 bytes), align: 1
   Segment part 7.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_getBCastAddress     999C            nwk_join (nwk_join)
+           nwk_getBCastAddress     99CC            nwk_join (nwk_join)
                                                    nwk_nwkInit (nwk)
                CSTACK = 00000000 ( 00000002 )
 
     *************************************************************************
 
-  FILE NAME : C:\Texas Instruments\SimpliciTI-IAR-1.1.0\Projects\Examples\eZ430RF\Simple_Peer_to_Peer\IAR\CC2500-LinkListen\Obj\nwk_ioctl.r43
+  FILE NAME : D:\workbench\yawing\Projects\Examples\eZ430RF\Simple_Peer_to_Peer\IAR\CC2500-LinkListen\Obj\nwk_ioctl.r43
   PROGRAM MODULE, NAME : nwk_ioctl
 
   SEGMENTS IN THE MODULE
@@ -1732,17 +1746,17 @@ DATA16_C
                CSTACK = 00000000 ( 00000006 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 96B0 - 96D1 (0x22 bytes), align: 1
+  Relative segment, address: 9702 - 9723 (0x22 bytes), align: 1
   Segment part 2.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_connectionControl   96B0            SMPL_Ioctl (nwk_api)
+           nwk_connectionControl   9702            SMPL_Ioctl (nwk_api)
                calls direct
                CSTACK = 00000000 ( 00000002 )
 
     *************************************************************************
 
-  FILE NAME : C:\Texas Instruments\SimpliciTI-IAR-1.1.0\Projects\Examples\eZ430RF\Simple_Peer_to_Peer\IAR\CC2500-LinkListen\Obj\nwk_join.r43
+  FILE NAME : D:\workbench\yawing\Projects\Examples\eZ430RF\Simple_Peer_to_Peer\IAR\CC2500-LinkListen\Obj\nwk_join.r43
   PROGRAM MODULE, NAME : nwk_join
 
   SEGMENTS IN THE MODULE
@@ -1763,20 +1777,20 @@ DATA16_Z
            spCallback              0236 
     -------------------------------------------------------------------------
 DATA16_Z
-  Relative segment, address: 02D1 - 02D1 (0x1 bytes), align: 0
+  Relative segment, address: 02D2 - 02D2 (0x1 bytes), align: 0
   Segment part 4.             Intra module refs:   nwk_join
                                                    nwk_joinInit
                                                    nwk_processJoin
            LOCAL                   ADDRESS         
            =====                   =======         
-           sTid                    02D1 
+           sTid                    02D2 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 97E8 - 9801 (0x1a bytes), align: 1
+  Relative segment, address: 9818 - 9831 (0x1a bytes), align: 1
   Segment part 9.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_joinInit            97E8            nwk_nwkInit (nwk)
+           nwk_joinInit            9818            nwk_nwkInit (nwk)
                calls direct
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
@@ -1790,17 +1804,17 @@ DATA16_Z
                CSTACK = 00000000 ( 00000022 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9736 - 9755 (0x20 bytes), align: 1
+  Relative segment, address: 9766 - 9785 (0x20 bytes), align: 1
   Segment part 5.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_processJoin         9736            func (nwk_frame)
+           nwk_processJoin         9766            func (nwk_frame)
                calls direct
                CSTACK = 00000000 ( 00000004 )
 
     *************************************************************************
 
-  FILE NAME : C:\Texas Instruments\SimpliciTI-IAR-1.1.0\Projects\Examples\eZ430RF\Simple_Peer_to_Peer\IAR\CC2500-LinkListen\Obj\nwk_link.r43
+  FILE NAME : D:\workbench\yawing\Projects\Examples\eZ430RF\Simple_Peer_to_Peer\IAR\CC2500-LinkListen\Obj\nwk_link.r43
   PROGRAM MODULE, NAME : nwk_link
 
   SEGMENTS IN THE MODULE
@@ -1815,53 +1829,53 @@ DATA16_Z
            sLinkToken              0238 
     -------------------------------------------------------------------------
 DATA16_Z
-  Relative segment, address: 02D2 - 02D2 (0x1 bytes), align: 0
+  Relative segment, address: 02D3 - 02D3 (0x1 bytes), align: 0
   Segment part 3.             Intra module refs:   nwk_setListenContext
                                                    smpl_send_link_reply
            LOCAL                   ADDRESS         
            =====                   =======         
-           sListenActive           02D2 
+           sListenActive           02D3 
     -------------------------------------------------------------------------
 DATA16_Z
-  Relative segment, address: 02D3 - 02D4 (0x2 bytes), align: 0
+  Relative segment, address: 02D4 - 02D5 (0x2 bytes), align: 0
   Segment part 4.             Intra module refs:   nwk_getLocalLinkID
                                                    nwk_linkInit
                                                    smpl_send_link_reply
            LOCAL                   ADDRESS         
            =====                   =======         
-           sServiceLinkID          02D3 
+           sServiceLinkID          02D4 
     -------------------------------------------------------------------------
 DATA16_Z
-  Relative segment, address: 02D5 - 02D5 (0x1 bytes), align: 0
+  Relative segment, address: 02D6 - 02D6 (0x1 bytes), align: 0
   Segment part 5.             Intra module refs:   nwk_getLocalLinkID
                                                    smpl_send_link_reply
            LOCAL                   ADDRESS         
            =====                   =======         
-           sNumLinkers             02D5 
+           sNumLinkers             02D6 
     -------------------------------------------------------------------------
 DATA16_Z
-  Relative segment, address: 02D6 - 02D6 (0x1 bytes), align: 0
+  Relative segment, address: 02D7 - 02D7 (0x1 bytes), align: 0
   Segment part 6.             Intra module refs:   nwk_linkInit
                                                    nwk_processLink
            LOCAL                   ADDRESS         
            =====                   =======         
-           sTid                    02D6 
+           sTid                    02D7 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9526 - 9555 (0x30 bytes), align: 1
+  Relative segment, address: 9550 - 957F (0x30 bytes), align: 1
   Segment part 17.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_linkInit            9526            nwk_nwkInit (nwk)
+           nwk_linkInit            9550            nwk_nwkInit (nwk)
                calls direct
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 98BE - 98CF (0x12 bytes), align: 1
+  Relative segment, address: 98EE - 98FF (0x12 bytes), align: 1
   Segment part 16.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_setLinkToken        98BE            nwk_join (nwk_join)
+           nwk_setLinkToken        98EE            nwk_join (nwk_join)
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
@@ -1874,148 +1888,148 @@ DATA16_Z
                CSTACK = 00000000 ( 00000012 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 98D0 - 98E1 (0x12 bytes), align: 1
+  Relative segment, address: 9900 - 9911 (0x12 bytes), align: 1
   Segment part 11.            Intra module refs:   smpl_send_link_reply
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine2            98D0 
+           ?Subroutine2            9900 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9860 - 9873 (0x14 bytes), align: 1
+  Relative segment, address: 9890 - 98A3 (0x14 bytes), align: 1
   Segment part 12.            Intra module refs:   smpl_send_link_reply
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine1            9860 
+           ?Subroutine1            9890 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9924 - 9931 (0xe bytes), align: 1
+  Relative segment, address: 9954 - 9961 (0xe bytes), align: 1
   Segment part 13.            Intra module refs:   smpl_send_link_reply
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine0            9924 
+           ?Subroutine0            9954 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 92FA - 9337 (0x3e bytes), align: 1
+  Relative segment, address: 935E - 939B (0x3e bytes), align: 1
   Segment part 9.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_processLink         92FA            func (nwk_frame)
+           nwk_processLink         935E            func (nwk_frame)
                calls direct
                CSTACK = 00000000 ( 00000004 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9458 - 948B (0x34 bytes), align: 1
+  Relative segment, address: 9482 - 94B5 (0x34 bytes), align: 1
   Segment part 8.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_getLocalLinkID      9458            SMPL_LinkListen (nwk_api)
+           nwk_getLocalLinkID      9482            SMPL_LinkListen (nwk_api)
                calls direct
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9914 - 9923 (0x10 bytes), align: 1
+  Relative segment, address: 9944 - 9953 (0x10 bytes), align: 1
   Segment part 7.             Intra module refs:   nwk_getLocalLinkID
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_setListenContext    9914            SMPL_LinkListen (nwk_api)
+           nwk_setListenContext    9944            SMPL_LinkListen (nwk_api)
                CSTACK = 00000000 ( 00000002 )
 
     *************************************************************************
 
-  FILE NAME : C:\Texas Instruments\SimpliciTI-IAR-1.1.0\Projects\Examples\eZ430RF\Simple_Peer_to_Peer\IAR\CC2500-LinkListen\Obj\nwk_mgmt.r43
+  FILE NAME : D:\workbench\yawing\Projects\Examples\eZ430RF\Simple_Peer_to_Peer\IAR\CC2500-LinkListen\Obj\nwk_mgmt.r43
   PROGRAM MODULE, NAME : nwk_mgmt
 
   SEGMENTS IN THE MODULE
   ======================
 DATA16_Z
-  Relative segment, address: 02D7 - 02D7 (0x1 bytes), align: 0
+  Relative segment, address: 02D8 - 02D8 (0x1 bytes), align: 0
   Segment part 3.             Intra module refs:   nwk_mgmtInit
                                                    nwk_processMgmt
-           LOCAL                   ADDRESS         
-           =====                   =======         
-           sTid                    02D7 
-    -------------------------------------------------------------------------
-<CODE> 1 (was CODE)
-  Relative segment, address: 9988 - 9991 (0xa bytes), align: 1
-  Segment part 6.
-           ENTRY                   ADDRESS         REF BY
-           =====                   =======         ======
-           nwk_mgmtInit            9988            nwk_nwkInit (nwk)
-               calls direct
-               CSTACK = 00000000 ( 00000002 )
-    -------------------------------------------------------------------------
-<CODE> 1 (was CODE)
-  Relative segment, address: 93AE - 93E7 (0x3a bytes), align: 1
-  Segment part 5.
-           ENTRY                   ADDRESS         REF BY
-           =====                   =======         ======
-           nwk_processMgmt         93AE            func (nwk_frame)
-               calls direct
-               CSTACK = 00000000 ( 00000004 )
-
-    *************************************************************************
-
-  FILE NAME : C:\Texas Instruments\SimpliciTI-IAR-1.1.0\Projects\Examples\eZ430RF\Simple_Peer_to_Peer\IAR\CC2500-LinkListen\Obj\nwk_ping.r43
-  PROGRAM MODULE, NAME : nwk_ping
-
-  SEGMENTS IN THE MODULE
-  ======================
-DATA16_Z
-  Relative segment, address: 02D8 - 02D8 (0x1 bytes), align: 0
-  Segment part 2.             Intra module refs:   nwk_pingInit
-                                                   nwk_processPing
            LOCAL                   ADDRESS         
            =====                   =======         
            sTid                    02D8 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9974 - 997D (0xa bytes), align: 1
+  Relative segment, address: 99B8 - 99C1 (0xa bytes), align: 1
   Segment part 6.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_pingInit            9974            nwk_nwkInit (nwk)
+           nwk_mgmtInit            99B8            nwk_nwkInit (nwk)
                calls direct
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 926E - 92B3 (0x46 bytes), align: 1
-  Segment part 4.             Intra module refs:   nwk_processPing
-           LOCAL                   ADDRESS         
-           =====                   =======         
-           smpl_send_ping_reply    926E 
-               calls direct
-               CSTACK = 00000000 ( 00000006 )
-    -------------------------------------------------------------------------
-<CODE> 1 (was CODE)
-  Relative segment, address: 95B2 - 95DF (0x2e bytes), align: 1
-  Segment part 3.
+  Relative segment, address: 93D8 - 9411 (0x3a bytes), align: 1
+  Segment part 5.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_processPing         95B2            func (nwk_frame)
+           nwk_processMgmt         93D8            func (nwk_frame)
                calls direct
                CSTACK = 00000000 ( 00000004 )
 
     *************************************************************************
 
-  FILE NAME : C:\Texas Instruments\SimpliciTI-IAR-1.1.0\Projects\Examples\eZ430RF\Simple_Peer_to_Peer\IAR\CC2500-LinkListen\Obj\nwk_security.r43
+  FILE NAME : D:\workbench\yawing\Projects\Examples\eZ430RF\Simple_Peer_to_Peer\IAR\CC2500-LinkListen\Obj\nwk_ping.r43
+  PROGRAM MODULE, NAME : nwk_ping
+
+  SEGMENTS IN THE MODULE
+  ======================
+DATA16_Z
+  Relative segment, address: 02D9 - 02D9 (0x1 bytes), align: 0
+  Segment part 2.             Intra module refs:   nwk_pingInit
+                                                   nwk_processPing
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           sTid                    02D9 
+    -------------------------------------------------------------------------
+<CODE> 1 (was CODE)
+  Relative segment, address: 99A4 - 99AD (0xa bytes), align: 1
+  Segment part 6.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           nwk_pingInit            99A4            nwk_nwkInit (nwk)
+               calls direct
+               CSTACK = 00000000 ( 00000002 )
+    -------------------------------------------------------------------------
+<CODE> 1 (was CODE)
+  Relative segment, address: 9318 - 935D (0x46 bytes), align: 1
+  Segment part 4.             Intra module refs:   nwk_processPing
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           smpl_send_ping_reply    9318 
+               calls direct
+               CSTACK = 00000000 ( 00000006 )
+    -------------------------------------------------------------------------
+<CODE> 1 (was CODE)
+  Relative segment, address: 95DC - 9609 (0x2e bytes), align: 1
+  Segment part 3.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           nwk_processPing         95DC            func (nwk_frame)
+               calls direct
+               CSTACK = 00000000 ( 00000004 )
+
+    *************************************************************************
+
+  FILE NAME : D:\workbench\yawing\Projects\Examples\eZ430RF\Simple_Peer_to_Peer\IAR\CC2500-LinkListen\Obj\nwk_security.r43
   PROGRAM MODULE, NAME : nwk_security
 
   SEGMENTS IN THE MODULE
   ======================
 <CODE> 1 (was CODE)
-  Relative segment, address: 99D4 - 99D5 (0x2 bytes), align: 1
+  Relative segment, address: 9A04 - 9A05 (0x2 bytes), align: 1
   Segment part 3.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_securityInit        99D4            nwk_nwkInit (nwk)
+           nwk_securityInit        9A04            nwk_nwkInit (nwk)
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 99BA - 99BD (0x4 bytes), align: 1
+  Relative segment, address: 99EA - 99ED (0x4 bytes), align: 1
   Segment part 2.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_processSecurity     99BA            func (nwk_frame)
+           nwk_processSecurity     99EA            func (nwk_frame)
                CSTACK = 00000000 ( 00000002 )
 
     *************************************************************************
@@ -2026,14 +2040,14 @@ DATA16_Z
   SEGMENTS IN THE MODULE
   ======================
 <CODE> 1 (was CODE)
-  Relative segment, address: 99C6, align: 1
+  Relative segment, address: 99F6, align: 1
   Segment part 0.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           _exit                   99C6            exit (?clibexit)
+           _exit                   99F6            exit (?clibexit)
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 99C6 - 99C9 (0x4 bytes), align: 1
+  Relative segment, address: 99F6 - 99F9 (0x4 bytes), align: 1
   Segment part 5.             Intra module refs:   _exit
 
     -------------------------------------------------------------------------
@@ -2042,11 +2056,11 @@ DATA16_Z
   SEGMENTS IN THE MODULE
   ======================
 <CODE> 1 (was CODE)
-  Relative segment, address: 99CA - 99CD (0x4 bytes), align: 1
+  Relative segment, address: 99FA - 99FD (0x4 bytes), align: 1
   Segment part 2.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           exit                    99CA            Segment part 11 (?cstart)
+           exit                    99FA            Segment part 11 (?cstart)
                calls direct
                CSTACK = 00000000 ( 00000002 )
 
@@ -2056,13 +2070,13 @@ DATA16_Z
   SEGMENTS IN THE MODULE
   ======================
 <CODE> 1 (was CODE)
-  Relative segment, address: 99D6 - 99D7 (0x2 bytes), align: 1
+  Relative segment, address: 9A06 - 9A07 (0x2 bytes), align: 1
   Segment part 0.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           __exit                  99D6            Segment part 5 (?_exit)
+           __exit                  9A06            Segment part 5 (?_exit)
                                                    _exit (?_exit)
-           ?C_EXIT                 99D6 
+           ?C_EXIT                 9A06 
 
     -------------------------------------------------------------------------
   LIBRARY MODULE, NAME : ?reset_vector
@@ -2142,6 +2156,7 @@ CSTART
                                                    sRAMAddressIsSet (nwk_globals)
                                                    sReplyDelayContext (mrfi)
                                                    sReplyDelayScalar (mrfi)
+                                                   sRxTid (main_LinkListen)
                                                    sSemaphore (main_LinkListen)
                                                    sServiceLinkID (nwk_link)
                                                    sTRACTID (nwk_frame)
@@ -2175,25 +2190,25 @@ CSTART
   SEGMENTS IN THE MODULE
   ======================
 <CODE> 1 (was CODE)
-  Relative segment, address: 989A - 98AB (0x12 bytes), align: 1
+  Relative segment, address: 98CA - 98DB (0x12 bytes), align: 1
   Segment part 0.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?Epilogue3              98A4            MRFI_ReplyDelay (mrfi)
+           ?Epilogue3              98D4            MRFI_ReplyDelay (mrfi)
                                                    SMPL_Receive (nwk_api)
-           ?Epilogue4              98A2            MRFI_Transmit (mrfi)
+           ?Epilogue4              98D2            MRFI_Transmit (mrfi)
                                                    SMPL_LinkListen (nwk_api)
                                                    nwk_QfindSlot (nwk_QMgmt)
                                                    nwk_isLinkDuplicate (nwk)
                                                    nwk_join (nwk_join)
                                                    smpl_send_link_reply (nwk_link)
-           ?Epilogue5              98A0            SMPL_SendOpt (nwk_api)
+           ?Epilogue5              98D0            SMPL_SendOpt (nwk_api)
                                                    nwk_allocateLocalRxPort (nwk)
                                                    nwk_buildFrame (nwk_frame)
                                                    nwk_isConnectionValid (nwk)
-           ?Epilogue6              989E 
-           ?Epilogue7              989C            nwk_retrieveFrame (nwk_frame)
-           ?Epilogue8              989A            nwk_QfindOldest (nwk_QMgmt)
+           ?Epilogue6              98CE 
+           ?Epilogue7              98CC            nwk_retrieveFrame (nwk_frame)
+           ?Epilogue8              98CA            nwk_QfindOldest (nwk_QMgmt)
 
     -------------------------------------------------------------------------
   LIBRARY MODULE, NAME : ?Mul816
@@ -2201,13 +2216,13 @@ CSTART
   SEGMENTS IN THE MODULE
   ======================
 <CODE> 1 (was CODE)
-  Relative segment, address: 94F4 - 9525 (0x32 bytes), align: 1
+  Relative segment, address: 951E - 954F (0x32 bytes), align: 1
   Segment part 0.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?Mul8                   94F4            MRFI_RandomByte (mrfi)
-           ?Mul16                  94F8            BSP_Delay (bsp)
-           ?Mul16to32u             94F8 
+           ?Mul8                   951E            MRFI_RandomByte (mrfi)
+           ?Mul16                  9522            BSP_Delay (bsp)
+           ?Mul16to32u             9522 
 
     -------------------------------------------------------------------------
   LIBRARY MODULE, NAME : ?DivMod816u
@@ -2215,12 +2230,12 @@ CSTART
   SEGMENTS IN THE MODULE
   ======================
 <CODE> 1 (was CODE)
-  Relative segment, address: 97B0 - 97CB (0x1c bytes), align: 1
+  Relative segment, address: 97E0 - 97FB (0x1c bytes), align: 1
   Segment part 0.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?DivMod8u               97B0 
-           ?DivMod16u              97B4            Segment part 0 (?DivMod816s)
+           ?DivMod8u               97E0 
+           ?DivMod16u              97E4            Segment part 0 (?DivMod816s)
 
     -------------------------------------------------------------------------
   LIBRARY MODULE, NAME : ?DivMod816s
@@ -2228,12 +2243,12 @@ CSTART
   SEGMENTS IN THE MODULE
   ======================
 <CODE> 1 (was CODE)
-  Relative segment, address: 948C - 94BF (0x34 bytes), align: 1
+  Relative segment, address: 94B6 - 94E9 (0x34 bytes), align: 1
   Segment part 0.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?DivMod8s               948C 
-           ?DivMod16s              9490            Mrfi_CalculateRssi (mrfi)
+           ?DivMod8s               94B6 
+           ?DivMod16s              94BA            Mrfi_CalculateRssi (mrfi)
 
     -------------------------------------------------------------------------
   LIBRARY MODULE, NAME : ?ShiftRight16u_n
@@ -2241,18 +2256,18 @@ CSTART
   SEGMENTS IN THE MODULE
   ======================
 <CODE> 1 (was CODE)
-  Relative segment, address: 994E - 9951 (0x4 bytes), align: 1
+  Relative segment, address: 997E - 9981 (0x4 bytes), align: 1
   Segment part 3.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?ShiftRight16u_4        994E            Mrfi_DelayUsec (mrfi)
+           ?ShiftRight16u_4        997E            Mrfi_DelayUsec (mrfi)
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9952 - 995B (0xa bytes), align: 1
+  Relative segment, address: 9982 - 998B (0xa bytes), align: 1
   Segment part 4.             Intra module refs:   ?ShiftRight16u_4
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?ShiftRight16u_3        9952 
+           ?ShiftRight16u_3        9982 
 
     -------------------------------------------------------------------------
   LIBRARY MODULE, NAME : ?memcmp
@@ -2260,11 +2275,11 @@ CSTART
   SEGMENTS IN THE MODULE
   ======================
 <CODE> 1 (was CODE)
-  Relative segment, address: 9774 - 9791 (0x1e bytes), align: 1
+  Relative segment, address: 97C2 - 97DF (0x1e bytes), align: 1
   Segment part 2.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           memcmp                  9774            ?Subroutine1 (nwk)
+           memcmp                  97C2            ?Subroutine1 (nwk)
                                                    dispatchFrame (nwk_frame)
                                                    nwk_QfindOldest (nwk_QMgmt)
                                                    nwk_isValidReply (nwk)
@@ -2277,11 +2292,11 @@ CSTART
   SEGMENTS IN THE MODULE
   ======================
 <CODE> 1 (was CODE)
-  Relative segment, address: 9832 - 9849 (0x18 bytes), align: 1
+  Relative segment, address: 9862 - 9879 (0x18 bytes), align: 1
   Segment part 2.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           memcpy                  9832            ?Subroutine0 (nwk_globals)
+           memcpy                  9862            ?Subroutine0 (nwk_globals)
                                                    ?Subroutine1 (nwk_link)
                                                    SMPL_Ioctl (nwk_api)
                                                    SMPL_SendOpt (nwk_api)
@@ -2304,11 +2319,11 @@ CSTART
   SEGMENTS IN THE MODULE
   ======================
 <CODE> 1 (was CODE)
-  Relative segment, address: 93E8 - 9421 (0x3a bytes), align: 1
+  Relative segment, address: 9412 - 944B (0x3a bytes), align: 1
   Segment part 2.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           memmove                 93E8            nwk_getNumObjectFromMsg (nwk)
+           memmove                 9412            nwk_getNumObjectFromMsg (nwk)
                                                    nwk_putNumObjectIntoMsg (nwk)
                CSTACK = 00000000 ( 00000004 )
 
@@ -2318,11 +2333,11 @@ CSTART
   SEGMENTS IN THE MODULE
   ======================
 <CODE> 1 (was CODE)
-  Relative segment, address: 98F4 - 9903 (0x10 bytes), align: 1
+  Relative segment, address: 9924 - 9933 (0x10 bytes), align: 1
   Segment part 0.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?CopyMemoryBytes        98F4            MRFI_Receive (mrfi)
+           ?CopyMemoryBytes        9924            MRFI_Receive (mrfi)
 
     -------------------------------------------------------------------------
   LIBRARY MODULE, NAME : ?memset
@@ -2330,11 +2345,11 @@ CSTART
   SEGMENTS IN THE MODULE
   ======================
 <CODE> 1 (was CODE)
-  Relative segment, address: 981A - 9831 (0x18 bytes), align: 1
+  Relative segment, address: 984A - 9861 (0x18 bytes), align: 1
   Segment part 2.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           memset                  981A            MRFI_Init (mrfi)
+           memset                  984A            MRFI_Init (mrfi)
                                                    Segment part 49 (mrfi)
                                                    nwk_QInit (nwk_QMgmt)
                                                    nwk_allocateLocalRxPort (nwk)
@@ -2349,19 +2364,19 @@ CSTART
   SEGMENTS IN THE MODULE
   ======================
 <CODE> 1 (was CODE)
-  Relative segment, address: 9888 - 9899 (0x12 bytes), align: 1
+  Relative segment, address: 98B8 - 98C9 (0x12 bytes), align: 1
   Segment part 4.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           __data16_memzero        9888            ?cstart_init_zero (?cstart)
+           __data16_memzero        98B8            ?cstart_init_zero (?cstart)
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 99CE - 99D1 (0x4 bytes), align: 1
+  Relative segment, address: 99FE - 9A01 (0x4 bytes), align: 1
   Segment part 3.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           __data16_memcpy         99CE            ?cstart_init_copy (?cstart)
+           __data16_memcpy         99FE            ?cstart_init_copy (?cstart)
                calls direct
                CSTACK = 00000000 ( 00000002 )
 
@@ -2379,7 +2394,7 @@ SEGMENT              SPACE    START ADDRESS   END ADDRESS     SIZE  TYPE  ALIGN
 =======              =====    =============   ===========     ====  ====  =====
 DATA16_AN                              0003 - 0003               1   rel    0
                                        0018 - 001B               4 
-                                       0021 - 0022               2 
+                                       0020 - 0022               3 
                                        0027 - 0028               2 
                                        002B - 002E               4 
                                        0056 - 0057               2 
@@ -2388,13 +2403,13 @@ DATA16_AN                              0003 - 0003               1   rel    0
                                        0120 - 0121               2 
                                        0160 - 0161               2 
 DATA16_I                               0200 - 0229              2A   rel    1
-DATA16_Z                               022A - 02D8              AF   rel    1
+DATA16_Z                               022A - 02D9              B0   rel    1
 CSTACK                                 0538 - 05FF              C8   rel    1
 DATA16_AN                              10FC - 10FD               2   rel    0
 DATA16_C                               8000 - 805B              5C   rel    1
 DATA16_ID                              805C - 8085              2A   rel    1
 CSTART                                 8086 - 80B5              30   rel    1
-<CODE> 1                               80B6 - 99D7            1922   rel    1
+<CODE> 1                               80B6 - 9A07            1952   rel    1
 INTVEC                                 FFE0 - FFE7               8   com    1
 RESET                                  FFFE - FFFF               2   rel    1
 
@@ -2404,8 +2419,8 @@ RESET                                  FFFE - FFFF               2   rel    1
                 *                                      *
                 ****************************************
 
- 6 492 bytes of CODE  memory
-   417 bytes of DATA  memory (+ 27 absolute )
+ 6 540 bytes of CODE  memory
+   418 bytes of DATA  memory (+ 28 absolute )
    134 bytes of CONST memory
 
 Errors: none
