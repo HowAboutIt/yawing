@@ -49,6 +49,8 @@
 #define	BSP_RED_LED_IS_ON	BSP_LED2_IS_ON
 #define	BSP_BUTTON 			BSP_BUTTON1
 
+#define	I_WANT_TO_CHANGE_DEFAULT_ROM_DEVICE_ADDRESS_PSEUDO_CODE
+
 static void linkFrom(void);
 
 void toggleLED(uint8_t);
@@ -72,8 +74,12 @@ void main (void)
 #ifdef I_WANT_TO_CHANGE_DEFAULT_ROM_DEVICE_ADDRESS_PSEUDO_CODE
   {
     addr_t lAddr;
+	lAddr.addr[0]=0x35;
+	lAddr.addr[1]=0x35;
+	lAddr.addr[2]=0x35;
+	lAddr.addr[3]=0x35;
 
-    createRandomAddress(&lAddr);
+    //createRandomAddress(&lAddr);
     SMPL_Ioctl(IOCTL_OBJ_ADDR, IOCTL_ACT_SET, &lAddr);
   }
 #endif /* I_WANT_TO_CHANGE_DEFAULT_ROM_DEVICE_ADDRESS_PSEUDO_CODE */

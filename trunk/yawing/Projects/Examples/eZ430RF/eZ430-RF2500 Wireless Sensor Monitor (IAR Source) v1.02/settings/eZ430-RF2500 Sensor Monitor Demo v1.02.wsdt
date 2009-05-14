@@ -5,7 +5,7 @@
     
     
     
-  <CurrentConfigs><Project>Access Point/Debug</Project><Project>End Device/Debug</Project></CurrentConfigs><CurrentProj>End Device</CurrentProj><OverviewSelected>1</OverviewSelected></ConfigDictionary>
+  <CurrentConfigs><Project>End Device/Debug</Project><Project>Access Point/Debug</Project></CurrentConfigs><CurrentProj>End Device</CurrentProj><OverviewSelected>1</OverviewSelected></ConfigDictionary>
   <Desktop>
     <Static>
       <Workspace>
@@ -14,7 +14,7 @@
           
           
           
-        <Column0>173</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+        <Column0>160</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
       </Workspace>
       <Build>
         
@@ -27,7 +27,7 @@
     <Windows>
       
       
-    <Wnd0>
+    <Wnd2>
         <Tabs>
           <Tab>
             <Identity>TabID-1442-610</Identity>
@@ -35,11 +35,11 @@
             <Factory>Workspace</Factory>
             <Session>
               
-            <NodeDict><ExpandedNode>&lt;ws></ExpandedNode><ExpandedNode>&lt;ws>/Access Point</ExpandedNode><ExpandedNode>&lt;ws>/Access Point/Application</ExpandedNode><ExpandedNode>&lt;ws>/End Device</ExpandedNode></NodeDict></Session>
+            <NodeDict><ExpandedNode>&lt;ws></ExpandedNode><ExpandedNode>&lt;ws>/Access Point</ExpandedNode><ExpandedNode>&lt;ws>/Access Point/Application</ExpandedNode><ExpandedNode>&lt;ws>/Access Point/Components</ExpandedNode><ExpandedNode>&lt;ws>/Access Point/Configuration</ExpandedNode><ExpandedNode>&lt;ws>/Access Point/Output</ExpandedNode><ExpandedNode>&lt;ws>/Access Point/Output/Access Point.d43</ExpandedNode><ExpandedNode>&lt;ws>/End Device</ExpandedNode></NodeDict></Session>
           </Tab>
         </Tabs>
         
-      <SelectedTab>0</SelectedTab></Wnd0><Wnd1>
+      <SelectedTab>0</SelectedTab></Wnd2><Wnd3>
         <Tabs>
           <Tab>
             <Identity>TabID-32119-649</Identity>
@@ -49,20 +49,20 @@
           </Tab>
         </Tabs>
         
-      <SelectedTab>0</SelectedTab></Wnd1></Windows>
+      <SelectedTab>0</SelectedTab></Wnd3></Windows>
     <Editor>
       
       
       
       
-    <Pane><Tab><Factory>TextEditor</Factory><Filename>D:\Download\ez430\Demo\eZ430-RF2500 Wireless Sensor Monitor (IAR Source) v1.02\demo_AP.c</Filename><XPos>0</XPos><YPos>436</YPos><SelStart>15615</SelStart><SelEnd>15615</SelEnd></Tab><ActiveTab>0</ActiveTab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>D:\workbench\yawing\Projects\Examples\eZ430RF\eZ430-RF2500 Wireless Sensor Monitor (IAR Source) v1.02\Configuration\Access Point\smpl_config.dat</Filename><XPos>0</XPos><YPos>50</YPos><SelStart>3796</SelStart><SelEnd>3815</SelEnd></Tab><ActiveTab>0</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>D:\workbench\yawing\Projects\Examples\eZ430RF\eZ430-RF2500 Wireless Sensor Monitor (IAR Source) v1.02\Configuration\smpl_nwk_config.dat</Filename><XPos>0</XPos><YPos>32</YPos><SelStart>2688</SelStart><SelEnd>2703</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>D:\workbench\yawing\Projects\Examples\eZ430RF\eZ430-RF2500 Wireless Sensor Monitor (IAR Source) v1.02\Debug\Exe\Access Point.d43</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>D:\workbench\yawing\Projects\Examples\eZ430RF\eZ430-RF2500 Wireless Sensor Monitor (IAR Source) v1.02\demo_AP.c</Filename><XPos>0</XPos><YPos>100</YPos><SelStart>4052</SelStart><SelEnd>4052</SelEnd></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
     <Positions>
       
       
       
       
       
-    <Top><Row0><Sizes><Toolbar-00b7a068><key>iaridepm.enu1</key></Toolbar-00b7a068></Sizes></Row0></Top><Left><Row0><Sizes><Wnd0><Rect><Top>-2</Top><Left>-2</Left><Bottom>288</Bottom><Right>247</Right><x>-2</x><y>-2</y><xscreen>160</xscreen><yscreen>145</yscreen><sizeHorzCX>210526</sizeHorzCX><sizeHorzCY>304622</sizeHorzCY><sizeVertCX>327632</sizeVertCX><sizeVertCY>609244</sizeVertCY></Rect></Wnd0></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd1><Rect><Top>-2</Top><Left>-2</Left><Bottom>143</Bottom><Right>762</Right><x>-2</x><y>-2</y><xscreen>764</xscreen><yscreen>145</yscreen><sizeHorzCX>1005263</sizeHorzCX><sizeHorzCY>304622</sizeHorzCY><sizeVertCX>210526</sizeVertCX><sizeVertCY>304622</sizeVertCY></Rect></Wnd1></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+    <Top><Row0><Sizes><Toolbar-00b7a008><key>iaridepm.enu1</key></Toolbar-00b7a008></Sizes></Row0></Top><Left><Row0><Sizes><Wnd2><Rect><Top>-2</Top><Left>-2</Left><Bottom>438</Bottom><Right>251</Right><x>-2</x><y>-2</y><xscreen>216</xscreen><yscreen>211</yscreen><sizeHorzCX>210938</sizeHorzCX><sizeHorzCY>304913</sizeHorzCY><sizeVertCX>247070</sizeVertCX><sizeVertCY>635838</sizeVertCY></Rect></Wnd2></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd3><Rect><Top>-2</Top><Left>-2</Left><Bottom>209</Bottom><Right>1026</Right><x>-2</x><y>-2</y><xscreen>1028</xscreen><yscreen>211</yscreen><sizeHorzCX>1003906</sizeHorzCX><sizeHorzCY>304913</sizeHorzCY><sizeVertCX>210938</sizeVertCX><sizeVertCY>304913</sizeVertCY></Rect></Wnd3></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
   </Desktop>
 </Workspace>
 
