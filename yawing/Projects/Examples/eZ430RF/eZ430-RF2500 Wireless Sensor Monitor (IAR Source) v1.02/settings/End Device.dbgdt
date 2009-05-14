@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Project>
+  <Desktop>
+    <Static>
+      <Debug-Log/>
+      <Build>
+        <ColumnWidth0>20</ColumnWidth0>
+        <ColumnWidth1>916</ColumnWidth1>
+        <ColumnWidth2>244</ColumnWidth2>
+        <ColumnWidth3>61</ColumnWidth3>
+      </Build>
+      <Workspace>
+        <ColumnWidths>
+          
+          
+          
+          
+        <Column0>224</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+      </Workspace>
+      <Disassembly>
+        
+        
+        
+      <CodeCovEnabled>0</CodeCovEnabled><MixedMode>0</MixedMode><CodeCovShow>0</CodeCovShow></Disassembly>
+    <Memory><PreferedWindows><Position>3</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows/></PreferedWindows><FindDirection>1</FindDirection><FindAsHex>0</FindAsHex></Memory></Static>
+    <Windows>
+      
+      
+      
+    <Wnd3>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-17435-26523</Identity>
+            <TabName>Debug Log</TabName>
+            <Factory>Debug-Log</Factory>
+            <Session/>
+          </Tab>
+          <Tab>
+            <Identity>TabID-5118-26549</Identity>
+            <TabName>Build</TabName>
+            <Factory>Build</Factory>
+            <Session/>
+          </Tab>
+        </Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd3><Wnd4>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-28183-26527</Identity>
+            <TabName>Workspace</TabName>
+            <Factory>Workspace</Factory>
+            <Session>
+              
+            <NodeDict><ExpandedNode>&lt;ws></ExpandedNode><ExpandedNode>End Device</ExpandedNode></NodeDict></Session>
+          </Tab>
+        </Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd4><Wnd5>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-6164-26530</Identity>
+            <TabName>Disassembly</TabName>
+            <Factory>Disassembly</Factory>
+            <Session/>
+          </Tab>
+        </Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd5></Windows>
+    <Editor>
+      
+      
+      
+      
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>C:\Documents and Settings\&#x5F90;&#x5F00;\&#x684C;&#x9762;\ez430\Demo\eZ430-RF2500 Wireless Sensor Monitor (IAR Source) v1.02\demo_AP.c</Filename><XPos>0</XPos><YPos>102</YPos><SelStart>5388</SelStart><SelEnd>5388</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\Documents and Settings\&#x5F90;&#x5F00;\&#x684C;&#x9762;\ez430\Demo\eZ430-RF2500 Wireless Sensor Monitor (IAR Source) v1.02\demo_ED.c</Filename><XPos>0</XPos><YPos>75</YPos><SelStart>4141</SelStart><SelEnd>4141</SelEnd></Tab><ActiveTab>1</ActiveTab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Positions>
+      
+      
+      
+      
+      
+    <Top><Row0><Sizes><Toolbar-015b8a30><key>iaridepm.enu1</key></Toolbar-015b8a30></Sizes></Row0><Row1><Sizes><Toolbar-016518d8><key>debuggergui.enu1</key></Toolbar-016518d8></Sizes></Row1><Row2><Sizes><Toolbar-035220f8><key>430fet1</key></Toolbar-035220f8></Sizes></Row2><Row3><Sizes/></Row3></Top><Left><Row0><Sizes><Wnd4><Rect><Top>-2</Top><Left>-2</Left><Bottom>671</Bottom><Right>298</Right><x>-2</x><y>-2</y><xscreen>200</xscreen><yscreen>194</yscreen><sizeHorzCX>156250</sizeHorzCX><sizeHorzCY>202929</sizeHorzCY><sizeVertCX>234375</sizeVertCX><sizeVertCY>703975</sizeVertCY></Rect></Wnd4></Sizes></Row0></Left><Right><Row0><Sizes><Wnd5><Rect><Top>-2</Top><Left>-2</Left><Bottom>671</Bottom><Right>304</Right><x>-2</x><y>-2</y><xscreen>200</xscreen><yscreen>194</yscreen><sizeHorzCX>156250</sizeHorzCX><sizeHorzCY>202929</sizeHorzCY><sizeVertCX>239063</sizeVertCX><sizeVertCY>703975</sizeVertCY></Rect></Wnd5></Sizes></Row0></Right><Bottom><Row0><Sizes><Wnd3><Rect><Top>-2</Top><Left>-2</Left><Bottom>192</Bottom><Right>1282</Right><x>-2</x><y>-2</y><xscreen>1284</xscreen><yscreen>194</yscreen><sizeHorzCX>1003125</sizeHorzCX><sizeHorzCY>202929</sizeHorzCY><sizeVertCX>156250</sizeVertCX><sizeVertCY>202929</sizeVertCY></Rect></Wnd3></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+  </Desktop>
+</Project>
+
+
