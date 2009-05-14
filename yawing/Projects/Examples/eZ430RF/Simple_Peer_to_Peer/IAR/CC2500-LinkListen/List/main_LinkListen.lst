@@ -1,8 +1,9 @@
 ###############################################################################
 #                                                                             #
-#                                                       14/May/2009  07:35:19 #
+#                                                       15/May/2009  07:34:01 #
 # IAR C/C++ Compiler V4.20.1.20017/W32, Evaluation edition for MSP430         #
 # Copyright 1996-2008 IAR Systems AB.                                         #
+# Time limited license: 25 days left                                          #
 #                                                                             #
 #    __rt_version  =  3                                                       #
 #    __double_size =  32                                                      #
@@ -110,175 +111,181 @@ D:\workbench\yawing\Projects\Examples\Applications\main_LinkListen.c
      49          #define	BSP_RED_LED_IS_ON	BSP_LED2_IS_ON
      50          #define	BSP_BUTTON 			BSP_BUTTON1
      51          
-     52          static void linkFrom(void);
+     52          #define	I_WANT_TO_CHANGE_DEFAULT_ROM_DEVICE_ADDRESS_PSEUDO_CODE
      53          
-     54          void toggleLED(uint8_t);
+     54          static void linkFrom(void);
      55          
-     56          static          uint8_t  sRxTid = 0;
-     57          static          linkID_t sLinkID2 = 0;
-     58          static volatile uint8_t  sSemaphore = 0;
-     59          
-     60          /* Rx callback handler */
-     61          static uint8_t sRxCallback(linkID_t);
-     62          
-     63          void main (void)
-     64          {
-     65            BSP_Init();
-     66          
-     67            /* If an on-the-fly device address is generated it must be done before the
-     68             * call to SMPL_Init(). If the address is set here the ROM value will not
-     69             * be used. If SMPL_Init() runs before this IOCTL is used the IOCTL call
-     70             * will not take effect. One shot only. The IOCTL call below is conformal.
-     71             */
-     72          #ifdef I_WANT_TO_CHANGE_DEFAULT_ROM_DEVICE_ADDRESS_PSEUDO_CODE
-     73            {
-     74              addr_t lAddr;
-     75          
-     76              createRandomAddress(&lAddr);
-     77              SMPL_Ioctl(IOCTL_OBJ_ADDR, IOCTL_ACT_SET, &lAddr);
-     78            }
-     79          #endif /* I_WANT_TO_CHANGE_DEFAULT_ROM_DEVICE_ADDRESS_PSEUDO_CODE */
-     80          
-     81            /* This call will fail because the join will fail since there is no Access Point
-     82             * in this scenario. But we don't care -- just use the default link token later.
-     83             * We supply a callback pointer to handle the message returned by the peer.
-     84             */
-     85            SMPL_Init(sRxCallback);
+     56          void toggleLED(uint8_t);
+     57          
+     58          static          uint8_t  sRxTid = 0;
+     59          static          linkID_t sLinkID2 = 0;
+     60          static volatile uint8_t  sSemaphore = 0;
+     61          
+     62          /* Rx callback handler */
+     63          static uint8_t sRxCallback(linkID_t);
+     64          
+     65          void main (void)
+     66          {
+     67            BSP_Init();
+     68          
+     69            /* If an on-the-fly device address is generated it must be done before the
+     70             * call to SMPL_Init(). If the address is set here the ROM value will not
+     71             * be used. If SMPL_Init() runs before this IOCTL is used the IOCTL call
+     72             * will not take effect. One shot only. The IOCTL call below is conformal.
+     73             */
+     74          #ifdef I_WANT_TO_CHANGE_DEFAULT_ROM_DEVICE_ADDRESS_PSEUDO_CODE
+     75            {
+     76              addr_t lAddr;
+     77          	lAddr.addr[0]=0x35;
+     78          	lAddr.addr[1]=0x35;
+     79          	lAddr.addr[2]=0x35;
+     80          	lAddr.addr[3]=0x35;
+     81          
+     82              //createRandomAddress(&lAddr);
+     83              SMPL_Ioctl(IOCTL_OBJ_ADDR, IOCTL_ACT_SET, &lAddr);
+     84            }
+     85          #endif /* I_WANT_TO_CHANGE_DEFAULT_ROM_DEVICE_ADDRESS_PSEUDO_CODE */
      86          
-     87            /* turn on LEDs. */
-     88            if (!BSP_RED_LED_IS_ON())
-     89            {
-     90              toggleLED(RED);
-     91            }
-     92            if (!BSP_GREEN_LED_IS_ON())
-     93            {
-     94              toggleLED(GREEN);
-     95            }
-     96          
-     97            /* wait for a button press... */
-     98            do {
-     99              if (BSP_BUTTON() )
-    100              {
-    101                break;
-    102              }
-    103            } while (1);
-    104          
-    105            /* never coming back... */
-    106            linkFrom();
-    107          
-    108            /* but in case we do... */
-    109            while (1) ;
-    110          }
-    111          
-    112          static void linkFrom()
-    113          {
-    114            uint8_t     msg[2], tid = 0;
-    115          
-    116            /* Turn off one LED so we can tell the device is now listening.
-    117             * Received messages will toggle the other LED.
-    118             */
-    119          	  if (BSP_RED_LED_IS_ON())
-    120          	  {
-    121          		toggleLED(RED);
-    122          	  }
-    123          
-    124             /* listen for link forever... */
-    125            while (1)
-    126            {
-    127              if (SMPL_SUCCESS == SMPL_LinkListen(&sLinkID2))
-    128              {
-    129                break;
-    130              }
-    131              /* Implement fail-to-link policy here. otherwise, listen again. */
-    132            }
-    133            if (!BSP_RED_LED_IS_ON())
-    134            {
-    135              toggleLED(RED);
-    136            }
-    137             /* turn on LED1 on the peer in response to receiving a frame. */
-    138             *msg = 0x01;
-    139          
-    140             /* turn on RX. default is RX off. */
-    141             SMPL_Ioctl( IOCTL_OBJ_RADIO, IOCTL_ACT_RADIO_RXON, 0);
-    142          
-    143             while (1)
-    144             {
-    145               /* Wait for a frame to be received. The Rx handler, which is running in
-    146                * ISR thread, will post to this semaphore allowing the application to
-    147                * send the reply message in the user thread.
-    148                */
-    149               if (sSemaphore)
-    150               {
-    151                 *(msg+1) = ++tid;
-    152                 SMPL_Send(sLinkID2, msg, 2);
-    153          
-    154                 /* Reset semaphore. This is not properly protected and there is a race
-    155                  * here. In theory we could miss a message. Good enough for a demo, though.
-    156                  */
-    157                 sSemaphore = 0;
-    158               }
-    159             }
-    160          }
-    161          
-    162          void toggleLED(uint8_t which)
-    163          {
-    164            if (1 == which)
-    165            {
-    166              BSP_TOGGLE_LED1();
-    167            }
-    168            else if (2 == which)
-    169            {
-    170              BSP_TOGGLE_LED2();
-    171            }
-    172            return;
-    173          }
-    174          
-    175          /* handle received messages */
-    176          static uint8_t sRxCallback(linkID_t port)
-    177          {
-    178            uint8_t msg[2], len, tid;
-    179          
-    180            /* is the callback for the link ID we want to handle? */
-    181            if (port == sLinkID2)
-    182            {
-    183              /* yes. go get the frame. we know this call will succeed. */
-    184               if ((SMPL_SUCCESS == SMPL_Receive(sLinkID2, msg, &len)) && len)
-    185               {
-    186                 /* Check the application sequence number to detect
-    187                  * late or missing frames...
-    188                  */
-    189                 tid = *(msg+1);
-    190                 if (tid)
-    191                 {
-    192                   if (tid > sRxTid)
-    193                   {
-    194                     /* we're good. toggle LED */
-    195                     toggleLED(*msg);
-    196                     sRxTid = tid;
-    197                   }
-    198                 }
-    199                 else
-    200                 {
-    201                   /* wrap case... */
-    202                   if (sRxTid)
-    203                   {
-    204                     /* we're good. toggle LED */
-    205                     toggleLED(*msg);
-    206                     sRxTid = tid;
-    207                   }
-    208                 }
-    209                 /* Post to the semaphore to let application know so it sends
-    210                  * the reply
-    211                  */
-    212                 sSemaphore = 1;
-    213                 /* drop frame. we're done with it. */
-    214                 return 1;
-    215               }
-    216            }
-    217            /* keep frame for later handling */
-    218            return 0;
-    219          }
-    220          
+     87            /* This call will fail because the join will fail since there is no Access Point
+     88             * in this scenario. But we don't care -- just use the default link token later.
+     89             * We supply a callback pointer to handle the message returned by the peer.
+     90             */
+     91            SMPL_Init(sRxCallback);
+     92          
+     93            /* turn on LEDs. */
+     94            if (!BSP_RED_LED_IS_ON())
+     95            {
+     96              toggleLED(RED);
+     97            }
+     98            if (!BSP_GREEN_LED_IS_ON())
+     99            {
+    100              toggleLED(GREEN);
+    101            }
+    102          
+    103            /* wait for a button press... */
+    104            do {
+    105              if (BSP_BUTTON() )
+    106              {
+    107                break;
+    108              }
+    109            } while (1);
+    110          
+    111            /* never coming back... */
+    112            linkFrom();
+    113          
+    114            /* but in case we do... */
+    115            while (1) ;
+    116          }
+    117          
+    118          static void linkFrom()
+    119          {
+    120            uint8_t     msg[2], tid = 0;
+    121          
+    122            /* Turn off one LED so we can tell the device is now listening.
+    123             * Received messages will toggle the other LED.
+    124             */
+    125          	  if (BSP_RED_LED_IS_ON())
+    126          	  {
+    127          		toggleLED(RED);
+    128          	  }
+    129          
+    130             /* listen for link forever... */
+    131            while (1)
+    132            {
+    133              if (SMPL_SUCCESS == SMPL_LinkListen(&sLinkID2))
+    134              {
+    135                break;
+    136              }
+    137              /* Implement fail-to-link policy here. otherwise, listen again. */
+    138            }
+    139            if (!BSP_RED_LED_IS_ON())
+    140            {
+    141              toggleLED(RED);
+    142            }
+    143             /* turn on LED1 on the peer in response to receiving a frame. */
+    144             *msg = 0x01;
+    145          
+    146             /* turn on RX. default is RX off. */
+    147             SMPL_Ioctl( IOCTL_OBJ_RADIO, IOCTL_ACT_RADIO_RXON, 0);
+    148          
+    149             while (1)
+    150             {
+    151               /* Wait for a frame to be received. The Rx handler, which is running in
+    152                * ISR thread, will post to this semaphore allowing the application to
+    153                * send the reply message in the user thread.
+    154                */
+    155               if (sSemaphore)
+    156               {
+    157                 *(msg+1) = ++tid;
+    158                 SMPL_Send(sLinkID2, msg, 2);
+    159          
+    160                 /* Reset semaphore. This is not properly protected and there is a race
+    161                  * here. In theory we could miss a message. Good enough for a demo, though.
+    162                  */
+    163                 sSemaphore = 0;
+    164               }
+    165             }
+    166          }
+    167          
+    168          void toggleLED(uint8_t which)
+    169          {
+    170            if (1 == which)
+    171            {
+    172              BSP_TOGGLE_LED1();
+    173            }
+    174            else if (2 == which)
+    175            {
+    176              BSP_TOGGLE_LED2();
+    177            }
+    178            return;
+    179          }
+    180          
+    181          /* handle received messages */
+    182          static uint8_t sRxCallback(linkID_t port)
+    183          {
+    184            uint8_t msg[2], len, tid;
+    185          
+    186            /* is the callback for the link ID we want to handle? */
+    187            if (port == sLinkID2)
+    188            {
+    189              /* yes. go get the frame. we know this call will succeed. */
+    190               if ((SMPL_SUCCESS == SMPL_Receive(sLinkID2, msg, &len)) && len)
+    191               {
+    192                 /* Check the application sequence number to detect
+    193                  * late or missing frames...
+    194                  */
+    195                 tid = *(msg+1);
+    196                 if (tid)
+    197                 {
+    198                   if (tid > sRxTid)
+    199                   {
+    200                     /* we're good. toggle LED */
+    201                     toggleLED(*msg);
+    202                     sRxTid = tid;
+    203                   }
+    204                 }
+    205                 else
+    206                 {
+    207                   /* wrap case... */
+    208                   if (sRxTid)
+    209                   {
+    210                     /* we're good. toggle LED */
+    211                     toggleLED(*msg);
+    212                     sRxTid = tid;
+    213                   }
+    214                 }
+    215                 /* Post to the semaphore to let application know so it sends
+    216                  * the reply
+    217                  */
+    218                 sSemaphore = 1;
+    219                 /* drop frame. we're done with it. */
+    220                 return 1;
+    221               }
+    222            }
+    223            /* keep frame for later handling */
+    224            return 0;
+    225          }
+    226          
 
    Maximum stack usage in bytes:
 
@@ -290,12 +297,13 @@ D:\workbench\yawing\Projects\Examples\Applications\main_LinkListen.c
        -> toggleLED           6
        -> SMPL_Ioctl          6
        -> SMPL_Send           6
-     main                     2
-       -> BSP_Init            2
-       -> SMPL_Init           2
-       -> toggleLED           2
-       -> toggleLED           2
-       -> linkFrom            2
+     main                     6
+       -> BSP_Init            6
+       -> SMPL_Ioctl          6
+       -> SMPL_Init           6
+       -> toggleLED           6
+       -> toggleLED           6
+       -> linkFrom            6
      sRxCallback              6
        -> SMPL_Receive        6
        -> toggleLED           6
@@ -312,18 +320,18 @@ D:\workbench\yawing\Projects\Examples\Applications\main_LinkListen.c
      sRxTid            1
      sLinkID2          1
      sSemaphore        1
-     main             40
+     main             74
      ?Subroutine0     14
      linkFrom         80
      toggleLED        20
      sRxCallback      92
 
  
- 246 bytes in segment CODE
+ 280 bytes in segment CODE
    2 bytes in segment DATA16_AN
    3 bytes in segment DATA16_Z
  
- 246 bytes of CODE memory
+ 280 bytes of CODE memory
    3 bytes of DATA memory (+ 2 bytes shared)
 
 Errors: none

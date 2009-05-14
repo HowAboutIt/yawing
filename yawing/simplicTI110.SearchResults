@@ -1,1 +1,37 @@
----- MRFI_RADIO_FAMILY Matches (0 in 0 files) ----
+---- createRandomAddress Matches (9 in 9 files) ----
+main_2EDOnePolls.c (projects\...\applications):70
+    createRandomAddress(&lAddr);
+    SMPL_Ioctl(IOCTL_OBJ_ADDR, IOCTL_ACT_SET, &lAddr);
+  }
+main_AP_Async_Listen.c (projects\...\applications):152
+    createRandomAddress(&lAddr);
+    SMPL_Ioctl(IOCTL_OBJ_ADDR, IOCTL_ACT_SET, &lAddr);
+  }
+main_AP_Async_Listen_autoack.c (projects\...\applications):156
+    createRandomAddress(&lAddr);
+    SMPL_Ioctl(IOCTL_OBJ_ADDR, IOCTL_ACT_SET, &lAddr);
+  }
+main_AP_RE.c (projects\...\applications):61
+    createRandomAddress(&lAddr);
+    SMPL_Ioctl(IOCTL_OBJ_ADDR, IOCTL_ACT_SET, &lAddr);
+  }
+Main_babble.c (projects\...\applications):70
+    createRandomAddress(&lAddr);
+    SMPL_Ioctl(IOCTL_OBJ_ADDR, IOCTL_ACT_SET, &lAddr);
+  }
+main_LinkListen.c (projects\...\applications):78
+    createRandomAddress(&lAddr);
+    SMPL_Ioctl(IOCTL_OBJ_ADDR, IOCTL_ACT_SET, &lAddr);
+  }
+main_LinkTo.c (projects\...\applications):77
+    createRandomAddress(&lAddr);
+    SMPL_Ioctl(IOCTL_OBJ_ADDR, IOCTL_ACT_SET, &lAddr);
+  }
+main_manyEDs.c (projects\...\applications):76
+    createRandomAddress(&lAddr);
+    SMPL_Ioctl(IOCTL_OBJ_ADDR, IOCTL_ACT_SET, &lAddr);
+  }
+main_manyEDs_autoack.c (projects\...\applications):75
+    createRandomAddress(&lAddr);
+    SMPL_Ioctl(IOCTL_OBJ_ADDR, IOCTL_ACT_SET, &lAddr);
+  }

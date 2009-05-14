@@ -46,6 +46,9 @@
 #define	BSP_GREEN_LED_IS_ON	BSP_LED1_IS_ON
 #define	BSP_RED_LED_IS_ON	BSP_LED2_IS_ON
 #define	BSP_BUTTON 			BSP_BUTTON1
+
+//#define	I_WANT_TO_CHANGE_DEFAULT_ROM_DEVICE_ADDRESS_PSEUDO_CODE
+
 static void linkTo(void);
 
 void toggleLED(uint8_t);
