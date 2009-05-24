@@ -1,0 +1,871 @@
+//////////////////////////////////////////////////////////////////////////////
+//                                                                           /
+//                                                     11/Dec/2008  17:55:51 /
+// IAR Atmel AVR C/C++ Compiler V4.20A/W32, Evaluation Version               /
+// Copyright 1996-2006 IAR Systems. All rights reserved.                     /
+//                                                                           /
+//    Source file  =  E:\Â¼ÒôºÐ¹¤×÷Ä¿Â¼\Èí¼þ½âÂë²âÊÔ\·¢²¼DTMF½âÂëMega³ÌÐò\dt /
+//                    mf.c                                                   /
+//    Command line =  E:\Â¼ÒôºÐ¹¤×÷Ä¿Â¼\Èí¼þ½âÂë²âÊÔ\·¢²¼DTMF½âÂëMega³ÌÐò\dt /
+//                    mf.c --cpu=m8 -ms -o E:\Â¼ÒôºÐ¹¤×÷Ä¿Â¼\Èí¼þ½âÂë²âÊÔ\·¢ /
+//                    ²¼DTMF½âÂëMega³ÌÐò\Debug\Obj\ -lC                      /
+//                    E:\Â¼ÒôºÐ¹¤×÷Ä¿Â¼\Èí¼þ½âÂë²âÊÔ\·¢²¼DTMF½âÂëMega³ÌÐò\De /
+//                    bug\List\ -lA E:\Â¼ÒôºÐ¹¤×÷Ä¿Â¼\Èí¼þ½âÂë²âÊÔ\·¢²¼DTMF½ /
+//                    âÂëMega³ÌÐò\Debug\List\ --initializers_in_flash -z3    /
+//                    --no_cse --no_inline --no_code_motion --no_cross_call  /
+//                    --no_clustering --no_tbaa --debug                      /
+//                    -DENABLE_BIT_DEFINITIONS -e -I "C:\Program Files\IAR   /
+//                    Systems\Embedded Workbench 4.0 Evaluation\avr\INC\"    /
+//                    -I "C:\Program Files\IAR Systems\Embedded Workbench    /
+//                    4.0 Evaluation\avr\INC\CLIB\" --eeprom_size 512        /
+//    List file    =  E:\Â¼ÒôºÐ¹¤×÷Ä¿Â¼\Èí¼þ½âÂë²âÊÔ\·¢²¼DTMF½âÂëMega³ÌÐò\De /
+//                    bug\List\dtmf.s90                                      /
+//                                                                           /
+//                                                                           /
+//////////////////////////////////////////////////////////////////////////////
+
+        NAME dtmf
+
+        RTMODEL "__64bit_doubles", "disabled"
+        RTMODEL "__cpu", "1"
+        RTMODEL "__cpu_name", "ATmega8"
+        RTMODEL "__enhanced_core", "enabled"
+        RTMODEL "__has_elpm", "false"
+        RTMODEL "__memory_model", "2"
+        RTMODEL "__rt_version", "3"
+
+        RSEG CSTACK:DATA:NOROOT(0)
+        RSEG RSTACK:DATA:NOROOT(0)
+
+        EXTERN ?EPILOGUE_B5_L09
+        EXTERN ?PROLOGUE5_L09
+        EXTERN ?Register_R4_is_cg_reg
+        EXTERN ?need_segment_init
+
+        PUBWEAK `?<Segment init: NEAR_I>`
+        PUBWEAK `?<Segment init: NEAR_Z>`
+        PUBWEAK __?EEARH
+        PUBWEAK __?EEARL
+        PUBWEAK __?EECR
+        PUBWEAK __?EEDR
+        PUBLIC decode_dtmf
+        FUNCTION decode_dtmf,021203H
+        LOCFRAME CSTACK, 5, STACK
+        LOCFRAME RSTACK, 2, STACK
+        PUBLIC g_cos_table
+        PUBLIC g_sin_table
+        PUBLIC g_sincos_len
+        PUBLIC init_dtmf_decoder
+        FUNCTION init_dtmf_decoder,021201H
+        LOCFRAME RSTACK, 2, STACK
+        PUBLIC s_dtmf_image
+        PUBLIC s_dtmf_p
+        PUBLIC s_dtmf_real
+        
+        CFI Names cfiNames0
+        CFI StackFrame CFA_Y Y DATA
+        CFI StackFrame CFA_SP SP DATA
+        CFI VirtualResource ?RetPad:1, ?RetHigh:8, ?RetLow:8, ?Ret:17
+        CFI Resource R0:8, R1:8, R2:8, R3:8, R4:8, R5:8, R6:8, R7:8, R8:8, R9:8
+        CFI Resource R10:8, R11:8, R12:8, R13:8, R14:8, R15:8, R16:8, R17:8
+        CFI Resource R18:8, R19:8, R20:8, R21:8, R22:8, R23:8, R24:8, R25:8
+        CFI Resource R26:8, R27:8, R28:8, R29:8, R30:8, R31:8
+        CFI Resource ?RetHighByteMask:8, SP:16, SPH:8, SPL:8, Y:16
+        CFI ResourceParts ?Ret ?RetHigh, ?RetLow, ?RetPad
+        CFI ResourceParts SP SPH, SPL
+        CFI ResourceParts Y R29, R28
+        CFI EndNames cfiNames0
+        
+        CFI Common cfiCommon0 Using cfiNames0
+        CFI CodeAlign 1
+        CFI DataAlign 1
+        CFI ReturnAddress ?Ret CODE
+        CFI CFA_Y Y+0
+        CFI CFA_SP SP+2
+        CFI ?RetPad 0
+        CFI ?RetHigh and(load(1, DATA, sub(CFA_SP, 1)), ?RetHighByteMask)
+        CFI ?RetLow Frame(CFA_SP, 0)
+        CFI ?Ret Concat
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI R8 SameValue
+        CFI R9 SameValue
+        CFI R10 SameValue
+        CFI R11 SameValue
+        CFI R12 SameValue
+        CFI R13 SameValue
+        CFI R14 SameValue
+        CFI R15 SameValue
+        CFI R16 Undefined
+        CFI R17 Undefined
+        CFI R18 Undefined
+        CFI R19 Undefined
+        CFI R20 Undefined
+        CFI R21 Undefined
+        CFI R22 Undefined
+        CFI R23 Undefined
+        CFI R24 SameValue
+        CFI R25 SameValue
+        CFI R26 SameValue
+        CFI R27 SameValue
+        CFI R28 Undefined
+        CFI R29 Undefined
+        CFI R30 Undefined
+        CFI R31 Undefined
+        CFI ?RetHighByteMask SameValue
+        CFI SPH Undefined
+        CFI SPL Undefined
+        CFI EndCommon cfiCommon0
+        
+        EXTERN memset
+        FUNCTION memset,010202H
+        EXTERN labs
+        FUNCTION labs,010202H
+
+// E:\Â¼ÒôºÐ¹¤×÷Ä¿Â¼\Èí¼þ½âÂë²âÊÔ\·¢²¼DTMF½âÂëMega³ÌÐò\dtmf.c
+//    1 
+//    2 
+//    3 #include <string.h>
+//    4 #include <stdlib.h>
+//    5 
+//    6 
+//    7 //
+//    8 // DTMF ½âÂë³ÌÐò
+//    9 // author: hendry
+//   10 // date: 2008/11
+//   11 //
+//   12 
+//   13 //
+//   14 // ×¢Òâ£º1) ²ÉÑùÂÊ 4000 bps£¨²ÉÑùÂÊºÜµÍ£¬½µµÍ¶ÔÏµÍ³ÒªÇó£¬½âÂë×¼È·¶ÈÒ»µã²»º¬ºý£¬(*^__^*) ÎûÎû¡­¡­) 
+//   15 //
+//   16 //      2) ²ÉÑù¾«¶È 8bit, signed char, ×¢ÒâÊÇ ¡°ÓÐ·ûºÅÊý¡±°¡!! Ç§Íò±ð¸ã´íÁË, Èç¹ûÊäÈëÎÞ·ûºÅÊý£¬¿ÞÈ¥°É.. 
+//   17 //
+//   18 //      3) Ã¿ÊäÈë 50 ¸ö²ÉÑùµã¾ÍµÃµ½Ò»´Î DTMF ½âÂë£¬ÀúÊ± 12.5ms, ¹ú±êÒªÇó DTMF Âë³ÖÐøÊ±¼ä >= 40ms, Òò´ËÁ¬Ðø½âÂëµÄ»°¿ÉÒÔµÃµ½Á¬Ðø3¸öÏàÍ¬ÂëÖµ£¬Êµ¼ÊÉÏ£¬ÎÒ¾ÍÊÇÕâÑùÌá¸ß¿¹¸ÉÈÅÐÔµÄ¡£ 
+//   19 //
+//   20 //     4) ÊôÓÚ±¾ÈËÔ­´´£¬ÇëÎðÓÃ×÷ÉÌÓÃ£¬·ñÔò±£Áô×·¾¿È¨Àû¡£ 
+//   21 //
+//   22 // by hendry, 2008/11 
+//   23 //
+//   24 
+
+        RSEG NEAR_Z:DATA:NOROOT(0)
+        REQUIRE `?<Segment init: NEAR_Z>`
+//   25 unsigned char	s_dtmf_p;
+s_dtmf_p:
+        DS 1
+
+        RSEG NEAR_Z:DATA:NOROOT(0)
+        REQUIRE `?<Segment init: NEAR_Z>`
+//   26 long			s_dtmf_real[8];
+s_dtmf_real:
+        DS 32
+
+        RSEG NEAR_Z:DATA:NOROOT(0)
+        REQUIRE `?<Segment init: NEAR_Z>`
+//   27 long			s_dtmf_image[8];
+s_dtmf_image:
+        DS 32
+//   28 
+
+        RSEG NEAR_I:DATA:NOROOT(0)
+        REQUIRE `?<Segment init: NEAR_I>`
+//   29 const unsigned char g_sincos_len = 50;
+g_sincos_len:
+        DS 1
+        REQUIRE `?<Initializer for g_sincos_len>`
+
+        RSEG NEAR_I:DATA:NOROOT(0)
+        REQUIRE `?<Segment init: NEAR_I>`
+//   30 const signed char g_cos_table[400] = {(signed char)0x7E,(signed char)0x3A,(signed char)0xB7,(signed char)0x83,(signed char)0xD7,(signed char)0x57,(signed char)0x79,(signed char)0x18,(signed char)0x9D,(signed char)0x8D,(signed char)0xFA,(signed char)0x6D,(signed char)0x6A,(signed char)0xF4,(signed char)0x8B,(signed char)0xA1,(signed char)0x1E,(signed char)0x7A,(signed char)0x52,(signed char)0xD1,(signed char)0x83,(signed char)0xBC,(signed char)0x3F,(signed char)0x7E,(signed char)0x34,(signed char)0xB2,(signed char)0x84,(signed char)0xDD,(signed char)0x5B,(signed char)0x77,(signed char)0x12,(signed char)0x99,(signed char)0x90,(signed char)0x00,(signed char)0x70,(signed char)0x67,(signed char)0xEE,(signed char)0x89,(signed char)0xA5,(signed char)0x24,
+g_cos_table:
+        DS 400
+        REQUIRE `?<Initializer for g_cos_table>`
+//   31 (signed char)0x7C,(signed char)0x4E,(signed char)0xCB,(signed char)0x82,(signed char)0xC1,(signed char)0x44,(signed char)0x7D,(signed char)0x2F,(signed char)0xAD,(signed char)0x86,(signed char)0x7E,(signed char)0x2D,(signed char)0xA1,(signed char)0x91,(signed char)0x10,(signed char)0x7B,(signed char)0x47,(signed char)0xB8,(signed char)0x86,(signed char)0xF2,(signed char)0x70,(signed char)0x5D,(signed char)0xD2,(signed char)0x82,(signed char)0xD5,(signed char)0x60,(signed char)0x6E,(signed char)0xEE,(signed char)0x85,(signed char)0xBB,(signed char)0x4A,(signed char)0x7A,(signed char)0x0C,(signed char)0x8F,(signed char)0xA4,(signed char)0x30,(signed char)0x7E,(signed char)0x29,(signed char)0x9F,(signed char)0x93,
+//   32 (signed char)0x14,(signed char)0x7B,(signed char)0x44,(signed char)0xB4,(signed char)0x87,(signed char)0xF6,(signed char)0x72,(signed char)0x5A,(signed char)0xCE,(signed char)0x82,(signed char)0xD9,(signed char)0x62,(signed char)0x6C,(signed char)0xEA,(signed char)0x84,(signed char)0xBE,(signed char)0x4D,(signed char)0x78,(signed char)0x08,(signed char)0x8D,(signed char)0x7E,(signed char)0x1D,(signed char)0x8F,(signed char)0xAF,(signed char)0x4B,(signed char)0x74,(signed char)0xEA,(signed char)0x82,(signed char)0xDC,(signed char)0x6D,(signed char)0x56,(signed char)0xBA,(signed char)0x8A,(signed char)0x0F,(signed char)0x7D,(signed char)0x2B,(signed char)0x96,(signed char)0xA5,(signed char)0x3F,(signed char)0x79,
+//   33 (signed char)0xF8,(signed char)0x84,(signed char)0xCF,(signed char)0x65,(signed char)0x60,(signed char)0xC7,(signed char)0x86,(signed char)0x01,(signed char)0x7B,(signed char)0x38,(signed char)0x9F,(signed char)0x9B,(signed char)0x33,(signed char)0x7C,(signed char)0x06,(signed char)0x87,(signed char)0xC2,(signed char)0x5C,(signed char)0x69,(signed char)0xD4,(signed char)0x83,(signed char)0xF3,(signed char)0x77,(signed char)0x44,(signed char)0xA9,(signed char)0x94,(signed char)0x25,(signed char)0x7E,(signed char)0x14,(signed char)0x8C,(signed char)0x7E,(signed char)0x0C,(signed char)0x84,(signed char)0xDD,(signed char)0x75,(signed char)0x38,(signed char)0x95,(signed char)0xB4,(signed char)0x5D,(signed char)0x5D,
+//   34 (signed char)0xB4,(signed char)0x95,(signed char)0x38,(signed char)0x76,(signed char)0xDE,(signed char)0x84,(signed char)0x0B,(signed char)0x7E,(signed char)0x0C,(signed char)0x84,(signed char)0xDD,(signed char)0x75,(signed char)0x39,(signed char)0x95,(signed char)0xB3,(signed char)0x5D,(signed char)0x5E,(signed char)0xB5,(signed char)0x94,(signed char)0x37,(signed char)0x76,(signed char)0xDF,(signed char)0x84,(signed char)0x0A,(signed char)0x7E,(signed char)0x0D,(signed char)0x84,(signed char)0xDC,(signed char)0x75,(signed char)0x39,(signed char)0x96,(signed char)0xB3,(signed char)0x5C,(signed char)0x5E,(signed char)0xB5,(signed char)0x94,(signed char)0x37,(signed char)0x76,(signed char)0xDF,(signed char)0x84,
+//   35 (signed char)0x7E,(signed char)0xD7,(signed char)0x9C,(signed char)0x69,(signed char)0x20,(signed char)0x82,(signed char)0x31,(signed char)0x5E,(signed char)0x92,(signed char)0xE9,(signed char)0x7D,(signed char)0xC7,(signed char)0xA8,(signed char)0x72,(signed char)0x0F,(signed char)0x85,(signed char)0x41,(signed char)0x51,(signed char)0x8B,(signed char)0xFA,(signed char)0x79,(signed char)0xB8,(signed char)0xB6,(signed char)0x78,(signed char)0xFD,(signed char)0x8A,(signed char)0x4F,(signed char)0x43,(signed char)0x85,(signed char)0x0C,(signed char)0x73,(signed char)0xAA,(signed char)0xC5,(signed char)0x7C,(signed char)0xEB,(signed char)0x91,(signed char)0x5C,(signed char)0x33,(signed char)0x83,(signed char)0x1E,
+//   36 (signed char)0x6A,(signed char)0x9E,(signed char)0xD5,(signed char)0x7E,(signed char)0xDA,(signed char)0x9B,(signed char)0x68,(signed char)0x23,(signed char)0x82,(signed char)0x2F,(signed char)0x7E,(signed char)0xC1,(signed char)0xC2,(signed char)0x7E,(signed char)0xBF,(signed char)0xC3,(signed char)0x7E,(signed char)0xBE,(signed char)0xC5,(signed char)0x7E,(signed char)0xBC,(signed char)0xC6,(signed char)0x7E,(signed char)0xBB,(signed char)0xC8,(signed char)0x7E,(signed char)0xBA,(signed char)0xC9,(signed char)0x7E,(signed char)0xB9,(signed char)0xCA,(signed char)0x7E,(signed char)0xB7,(signed char)0xCC,(signed char)0x7D,(signed char)0xB6,(signed char)0xCD,(signed char)0x7D,(signed char)0xB5,(signed char)0xCF,
+//   37 (signed char)0x7D,(signed char)0xB3,(signed char)0xD0,(signed char)0x7D,(signed char)0xB2,(signed char)0xD2,(signed char)0x7D,(signed char)0xB1,(signed char)0xD3,(signed char)0x7C,(signed char)0xB0,(signed char)0xD5,(signed char)0x7C,(signed char)0xAE,(signed char)0xD6,(signed char)0x7C,(signed char)0xAD,(signed char)0xD8,(signed char)0x7B,(signed char)0xAC,(signed char)0x7E,(signed char)0xAA,(signed char)0xF7,(signed char)0x62,(signed char)0x83,(signed char)0x48,(signed char)0x1B,(signed char)0x93,(signed char)0x79,(signed char)0xC8,(signed char)0xD3,(signed char)0x75,(signed char)0x8E,(signed char)0x27,(signed char)0x3D,(signed char)0x86,(signed char)0x6A,(signed char)0xEB,(signed char)0xB4,(signed char)0x7D,
+//   38 (signed char)0xA1,(signed char)0x03,(signed char)0x5A,(signed char)0x82,(signed char)0x52,(signed char)0x0F,(signed char)0x9A,(signed char)0x7C,(signed char)0xBD,(signed char)0xDF,(signed char)0x6F,(signed char)0x89,(signed char)0x33,(signed char)0x32,(signed char)0x89,(signed char)0x70,(signed char)0xDE,(signed char)0xBE,(signed char)0x7C,(signed char)0x9A,(signed char)0x10,(signed char)0x51,(signed char)0x82,(signed char)0x5B,(signed char)0x02,(signed char)0xA2,(signed char)0x7D,(signed char)0xB3,(signed char)0xEC,(signed char)0x69,(signed char)0x7E,(signed char)0x96,(signed char)0x33,(signed char)0x14,(signed char)0xAB,(signed char)0x7A,(signed char)0x88,(signed char)0x4F,(signed char)0xF3,(signed char)0xC6,
+//   39 (signed char)0x6D,(signed char)0x82,(signed char)0x65,(signed char)0xD4,(signed char)0xE5,(signed char)0x5A,(signed char)0x85,(signed char)0x75,(signed char)0xB7,(signed char)0x05,(signed char)0x40,(signed char)0x8F,(signed char)0x7D,(signed char)0x9F,(signed char)0x25,(signed char)0x22,(signed char)0xA1,(signed char)0x7D,(signed char)0x8E,(signed char)0x43,(signed char)0x02,(signed char)0xBA,(signed char)0x74,(signed char)0x84,(signed char)0x5C,(signed char)0xE2,(signed char)0xD7,(signed char)0x63,(signed char)0x82,(signed char)0x6F,(signed char)0xC3,(signed char)0xF7,(signed char)0x4C,(signed char)0x89,(signed char)0x7B,(signed char)0xA9,(signed char)0x17,(signed char)0x30,(signed char)0x98,(signed char)0x7E
+//   40 };
+
+        RSEG NEAR_I:DATA:NOROOT(0)
+        REQUIRE `?<Segment init: NEAR_I>`
+//   41 const signed char g_sin_table[400] = {(signed char)0x00,(signed char)0x70,(signed char)0x67,(signed char)0xEE,(signed char)0x89,(signed char)0xA5,(signed char)0x24,(signed char)0x7C,(signed char)0x4E,(signed char)0xCC,(signed char)0x82,(signed char)0xC1,(signed char)0x44,(signed char)0x7D,(signed char)0x2F,(signed char)0xAD,(signed char)0x86,(signed char)0xE2,(signed char)0x5F,(signed char)0x75,(signed char)0x0C,(signed char)0x96,(signed char)0x93,(signed char)0x06,(signed char)0x73,(signed char)0x63,(signed char)0xE8,(signed char)0x87,(signed char)0xA9,(signed char)0x29,(signed char)0x7D,(signed char)0x49,(signed char)0xC6,(signed char)0x82,(signed char)0xC6,(signed char)0x49,(signed char)0x7D,(signed char)0x29,(signed char)0xA9,(signed char)0x87,
+g_sin_table:
+        DS 400
+        REQUIRE `?<Initializer for g_sin_table>`
+//   42 (signed char)0xE8,(signed char)0x63,(signed char)0x73,(signed char)0x06,(signed char)0x93,(signed char)0x96,(signed char)0x0C,(signed char)0x75,(signed char)0x5F,(signed char)0xE2,(signed char)0x00,(signed char)0x76,(signed char)0x53,(signed char)0xC5,(signed char)0x83,(signed char)0xE3,(signed char)0x68,(signed char)0x67,(signed char)0xE1,(signed char)0x83,(signed char)0xC7,(signed char)0x55,(signed char)0x75,(signed char)0xFE,(signed char)0x89,(signed char)0xAE,(signed char)0x3D,(signed char)0x7D,(signed char)0x1B,(signed char)0x97,(signed char)0x9A,(signed char)0x21,(signed char)0x7D,(signed char)0x37,(signed char)0xAA,(signed char)0x8C,(signed char)0x04,(signed char)0x77,(signed char)0x50,(signed char)0xC2,
+//   43 (signed char)0x84,(signed char)0xE6,(signed char)0x6A,(signed char)0x65,(signed char)0xDD,(signed char)0x82,(signed char)0xCA,(signed char)0x58,(signed char)0x74,(signed char)0xFA,(signed char)0x88,(signed char)0xB1,(signed char)0x40,(signed char)0x7C,(signed char)0x18,(signed char)0x95,(signed char)0x9C,(signed char)0x25,(signed char)0x7E,(signed char)0x34,(signed char)0x00,(signed char)0x7B,(signed char)0x38,(signed char)0x9F,(signed char)0x9B,(signed char)0x32,(signed char)0x7C,(signed char)0x07,(signed char)0x87,(signed char)0xC1,(signed char)0x5C,(signed char)0x69,(signed char)0xD5,(signed char)0x83,(signed char)0xF2,(signed char)0x77,(signed char)0x45,(signed char)0xA9,(signed char)0x93,(signed char)0x25,
+//   44 (signed char)0x7E,(signed char)0x15,(signed char)0x8C,(signed char)0xB5,(signed char)0x52,(signed char)0x70,(signed char)0xE2,(signed char)0x82,(signed char)0xE4,(signed char)0x71,(signed char)0x50,(signed char)0xB4,(signed char)0x8D,(signed char)0x17,(signed char)0x7E,(signed char)0x23,(signed char)0x92,(signed char)0xAA,(signed char)0x46,(signed char)0x76,(signed char)0xF0,(signed char)0x83,(signed char)0xD6,(signed char)0x6A,(signed char)0x5B,(signed char)0xC0,(signed char)0x88,(signed char)0x09,(signed char)0x7C,(signed char)0x31,(signed char)0x00,(signed char)0x7D,(signed char)0x17,(signed char)0x87,(signed char)0xD2,(signed char)0x71,(signed char)0x43,(signed char)0x9C,(signed char)0xAB,(signed char)0x55,
+//   45 (signed char)0x65,(signed char)0xBE,(signed char)0x8F,(signed char)0x2D,(signed char)0x79,(signed char)0xE9,(signed char)0x82,(signed char)0xFF,(signed char)0x7D,(signed char)0x18,(signed char)0x87,(signed char)0xD2,(signed char)0x70,(signed char)0x43,(signed char)0x9C,(signed char)0xAA,(signed char)0x54,(signed char)0x65,(signed char)0xBF,(signed char)0x8F,(signed char)0x2D,(signed char)0x79,(signed char)0xEA,(signed char)0x82,(signed char)0xFF,(signed char)0x7D,(signed char)0x18,(signed char)0x87,(signed char)0xD1,(signed char)0x70,(signed char)0x44,(signed char)0x9C,(signed char)0xAA,(signed char)0x54,(signed char)0x65,(signed char)0xBF,(signed char)0x8F,(signed char)0x2C,(signed char)0x7A,(signed char)0xEB,
+//   46 (signed char)0x00,(signed char)0x77,(signed char)0xB3,(signed char)0xBA,(signed char)0x7A,(signed char)0xF7,(signed char)0x8C,(signed char)0x54,(signed char)0x3E,(signed char)0x84,(signed char)0x12,(signed char)0x70,(signed char)0xA6,(signed char)0xCA,(signed char)0x7D,(signed char)0xE5,(signed char)0x94,(signed char)0x60,(signed char)0x2E,(signed char)0x82,(signed char)0x23,(signed char)0x67,(signed char)0x9A,(signed char)0xDA,(signed char)0x7E,(signed char)0xD4,(signed char)0x9E,(signed char)0x6B,(signed char)0x1D,(signed char)0x83,(signed char)0x34,(signed char)0x5C,(signed char)0x91,(signed char)0xEC,(signed char)0x7C,(signed char)0xC4,(signed char)0xAA,(signed char)0x73,(signed char)0x0B,(signed char)0x86,
+//   47 (signed char)0x44,(signed char)0x4F,(signed char)0x8A,(signed char)0xFD,(signed char)0x78,(signed char)0xB5,(signed char)0xB8,(signed char)0x79,(signed char)0xFA,(signed char)0x8B,(signed char)0x00,(signed char)0x6D,(signed char)0x92,(signed char)0x02,(signed char)0x6C,(signed char)0x92,(signed char)0x03,(signed char)0x6B,(signed char)0x91,(signed char)0x05,(signed char)0x6A,(signed char)0x90,(signed char)0x06,(signed char)0x6A,(signed char)0x8F,(signed char)0x08,(signed char)0x69,(signed char)0x8F,(signed char)0x09,(signed char)0x68,(signed char)0x8E,(signed char)0x0B,(signed char)0x67,(signed char)0x8D,(signed char)0x0D,(signed char)0x66,(signed char)0x8D,(signed char)0x0E,(signed char)0x65,(signed char)0x8C,
+//   48 (signed char)0x10,(signed char)0x64,(signed char)0x8B,(signed char)0x11,(signed char)0x63,(signed char)0x8B,(signed char)0x13,(signed char)0x62,(signed char)0x8A,(signed char)0x14,(signed char)0x61,(signed char)0x8A,(signed char)0x16,(signed char)0x60,(signed char)0x89,(signed char)0x18,(signed char)0x5F,(signed char)0x89,(signed char)0x19,(signed char)0x5E,(signed char)0x00,(signed char)0x5C,(signed char)0x82,(signed char)0x4F,(signed char)0x12,(signed char)0x98,(signed char)0x7B,(signed char)0xC0,(signed char)0xDC,(signed char)0x71,(signed char)0x8A,(signed char)0x30,(signed char)0x35,(signed char)0x88,(signed char)0x6E,(signed char)0xE2,(signed char)0xBB,(signed char)0x7C,(signed char)0x9C,(signed char)0x0C,
+//   49 (signed char)0x53,(signed char)0x82,(signed char)0x58,(signed char)0x06,(signed char)0xA0,(signed char)0x7D,(signed char)0xB6,(signed char)0xE8,(signed char)0x6B,(signed char)0x86,(signed char)0x3B,(signed char)0x29,(signed char)0x8D,(signed char)0x74,(signed char)0xD6,(signed char)0xC6,(signed char)0x79,(signed char)0x95,(signed char)0x19,(signed char)0x4A,(signed char)0x83,(signed char)0x61,(signed char)0xF9,(signed char)0xA8,(signed char)0x7E,(signed char)0xAC,(signed char)0xF5,(signed char)0x64,(signed char)0x84,(signed char)0x46,(signed char)0x00,(signed char)0x45,(signed char)0x8D,(signed char)0x7C,(signed char)0xA3,(signed char)0x20,(signed char)0x27,(signed char)0x9E,(signed char)0x7D,(signed char)0x90,
+//   50 (signed char)0x3E,(signed char)0x07,(signed char)0xB5,(signed char)0x76,(signed char)0x85,(signed char)0x58,(signed char)0xE7,(signed char)0xD2,(signed char)0x67,(signed char)0x82,(signed char)0x6C,(signed char)0xC8,(signed char)0xF1,(signed char)0x50,(signed char)0x88,(signed char)0x79,(signed char)0xAD,(signed char)0x12,(signed char)0x35,(signed char)0x95,(signed char)0x7E,(signed char)0x97,(signed char)0x31,(signed char)0x16,(signed char)0xAA,(signed char)0x7A,(signed char)0x89,(signed char)0x4D,(signed char)0xF5,(signed char)0xC5,(signed char)0x6E,(signed char)0x82,(signed char)0x64,(signed char)0xD6,(signed char)0xE3,(signed char)0x5B,(signed char)0x84,(signed char)0x74,(signed char)0xB9,(signed char)0x03
+//   51 };
+//   52 
+//   53 
+//   54 
+//   55 //
+//   56 // dtmf decode initiation
+//   57 //
+
+        RSEG CODE:CODE:NOROOT(1)
+//   58 void init_dtmf_decoder()
+init_dtmf_decoder:
+        CFI Block cfiBlock0 Using cfiCommon0
+        CFI Function init_dtmf_decoder
+//   59 {
+//   60 	s_dtmf_p = 0;
+        FUNCALL init_dtmf_decoder, memset
+        LOCFRAME RSTACK, 2, STACK
+        FUNCALL init_dtmf_decoder, memset
+        LOCFRAME RSTACK, 2, STACK
+        LDI     R16, 0
+        STS     s_dtmf_p, R16
+//   61 	memset(s_dtmf_real, 0, sizeof(long) * 8);
+        LDI     R20, 32
+        LDI     R21, 0
+        LDI     R18, 0
+        LDI     R19, 0
+        LDI     R16, LOW(s_dtmf_real)
+        LDI     R17, (s_dtmf_real) >> 8
+        RCALL   memset
+//   62 	memset(s_dtmf_image, 0, sizeof(long) * 8);
+        LDI     R20, 32
+        LDI     R21, 0
+        LDI     R18, 0
+        LDI     R19, 0
+        LDI     R16, LOW(s_dtmf_image)
+        LDI     R17, (s_dtmf_image) >> 8
+        RCALL   memset
+//   63 }
+        RET
+        CFI EndBlock cfiBlock0
+//   64 
+//   65 //
+//   66 // dtmf decode program
+//   67 //
+//   68 // input: sample = DTMF wave sample value, 
+//   69 //        sample rate = 4000 point per second
+//   70 //		  NOTE!! sample is "SIGNED" char, NOT "UNSIGNED" char !!
+//   71 // output: 0 = decoded not completed yet
+//   72 //		   '0123456789*#ABCD' = dtmf code
+//   73 //
+
+        RSEG CODE:CODE:NOROOT(1)
+//   74 unsigned char decode_dtmf(signed char sample)
+decode_dtmf:
+        CFI Block cfiBlock1 Using cfiCommon0
+        CFI Function decode_dtmf
+//   75 {
+        FUNCALL decode_dtmf, labs
+        LOCFRAME CSTACK, 5, STACK
+        LOCFRAME RSTACK, 2, STACK
+        FUNCALL decode_dtmf, labs
+        LOCFRAME CSTACK, 5, STACK
+        LOCFRAME RSTACK, 2, STACK
+        FUNCALL decode_dtmf, memset
+        LOCFRAME CSTACK, 5, STACK
+        LOCFRAME RSTACK, 2, STACK
+        FUNCALL decode_dtmf, memset
+        LOCFRAME CSTACK, 5, STACK
+        LOCFRAME RSTACK, 2, STACK
+        RCALL   ?PROLOGUE5_L09
+        CFI R4 Frame(CFA_Y, -1)
+        CFI R27 Frame(CFA_Y, -2)
+        CFI R26 Frame(CFA_Y, -3)
+        CFI R25 Frame(CFA_Y, -4)
+        CFI R24 Frame(CFA_Y, -5)
+        CFI CFA_Y Y+5
+        REQUIRE ?Register_R4_is_cg_reg
+//   76 	unsigned char	i, low_freq, high_freq;
+//   77 	unsigned short	offset;
+//   78 	
+//   79 	for (i = 0, offset = s_dtmf_p; i < 8; i ++, offset += g_sincos_len)
+        CLR     R4
+        LDS     R20, s_dtmf_p
+        LDI     R21, 0
+        RJMP    ??decode_dtmf_0
+//   80 	{
+//   81 		s_dtmf_real[i] += sample * g_cos_table[offset];
+??decode_dtmf_1:
+        MOVW    R31:R30, R21:R20
+        SUBI    R30, LOW((-(g_cos_table) & 0xFFFF))
+        SBCI    R31, (-(g_cos_table) & 0xFFFF) >> 8
+        LD      R17, Z
+        MULS    R16, R17
+        MOV     R2, R1
+        LSL     R2
+        SBC     R2, R2
+        MOV     R3, R2
+        MOV     R18, R4
+        LDI     R19, 0
+        LSL     R18
+        ROL     R19
+        LSL     R18
+        ROL     R19
+        MOVW    R31:R30, R19:R18
+        SUBI    R30, LOW((-(s_dtmf_real) & 0xFFFF))
+        SBCI    R31, (-(s_dtmf_real) & 0xFFFF) >> 8
+        LD      R24, Z
+        LDD     R25, Z+1
+        LDD     R26, Z+2
+        LDD     R27, Z+3
+        ADD     R24, R0
+        ADC     R25, R1
+        ADC     R26, R2
+        ADC     R27, R3
+        ST      Z, R24
+        STD     Z+1, R25
+        STD     Z+2, R26
+        STD     Z+3, R27
+//   82 		s_dtmf_image[i] += sample * g_sin_table[offset];
+        MOVW    R31:R30, R21:R20
+        SUBI    R30, LOW((-(g_sin_table) & 0xFFFF))
+        SBCI    R31, (-(g_sin_table) & 0xFFFF) >> 8
+        LD      R17, Z
+        MULS    R16, R17
+        MOV     R2, R1
+        LSL     R2
+        SBC     R2, R2
+        MOV     R3, R2
+        MOV     R18, R4
+        LDI     R19, 0
+        LSL     R18
+        ROL     R19
+        LSL     R18
+        ROL     R19
+        MOVW    R31:R30, R19:R18
+        SUBI    R30, LOW((-(s_dtmf_image) & 0xFFFF))
+        SBCI    R31, (-(s_dtmf_image) & 0xFFFF) >> 8
+        LD      R24, Z
+        LDD     R25, Z+1
+        LDD     R26, Z+2
+        LDD     R27, Z+3
+        ADD     R24, R0
+        ADC     R25, R1
+        ADC     R26, R2
+        ADC     R27, R3
+        ST      Z, R24
+        STD     Z+1, R25
+        STD     Z+2, R26
+        STD     Z+3, R27
+//   83 	}
+        INC     R4
+        LDS     R18, g_sincos_len
+        LDI     R19, 0
+        ADD     R20, R18
+        ADC     R21, R19
+??decode_dtmf_0:
+        LDI     R17, 8
+        CP      R4, R17
+        BRCC    $+2+2
+        RJMP    ??decode_dtmf_1
+//   84 
+//   85 	s_dtmf_p ++;
+        LDI     R30, LOW(s_dtmf_p)
+        LDI     R31, (s_dtmf_p) >> 8
+        LD      R16, Z
+        INC     R16
+        ST      Z, R16
+//   86 
+//   87 	if (s_dtmf_p == g_sincos_len)	// 50 sample has inputed, let's look at the result...
+        LDS     R16, s_dtmf_p
+        LDS     R17, g_sincos_len
+        CP      R16, R17
+        BREQ    $+2+2
+        RJMP    ??decode_dtmf_2
+//   88 	{
+//   89 		// calculate |R| + |I|
+//   90 		for (i = 0; i < 8; i ++)
+        CLR     R4
+        RJMP    ??decode_dtmf_3
+//   91 		{
+//   92 			s_dtmf_real[i] = labs(s_dtmf_real[i]) + labs(s_dtmf_image[i]);
+??decode_dtmf_4:
+        MOV     R16, R4
+        LDI     R17, 0
+        LSL     R16
+        ROL     R17
+        LSL     R16
+        ROL     R17
+        MOVW    R31:R30, R17:R16
+        SUBI    R30, LOW((-(s_dtmf_real) & 0xFFFF))
+        SBCI    R31, (-(s_dtmf_real) & 0xFFFF) >> 8
+        LD      R16, Z
+        LDD     R17, Z+1
+        LDD     R18, Z+2
+        LDD     R19, Z+3
+        RCALL   labs
+        MOVW    R25:R24, R17:R16
+        MOVW    R27:R26, R19:R18
+        MOV     R16, R4
+        LDI     R17, 0
+        LSL     R16
+        ROL     R17
+        LSL     R16
+        ROL     R17
+        MOVW    R31:R30, R17:R16
+        SUBI    R30, LOW((-(s_dtmf_image) & 0xFFFF))
+        SBCI    R31, (-(s_dtmf_image) & 0xFFFF) >> 8
+        LD      R16, Z
+        LDD     R17, Z+1
+        LDD     R18, Z+2
+        LDD     R19, Z+3
+        RCALL   labs
+        ADD     R16, R24
+        ADC     R17, R25
+        ADC     R18, R26
+        ADC     R19, R27
+        MOV     R20, R4
+        LDI     R21, 0
+        LSL     R20
+        ROL     R21
+        LSL     R20
+        ROL     R21
+        MOVW    R31:R30, R21:R20
+        SUBI    R30, LOW((-(s_dtmf_real) & 0xFFFF))
+        SBCI    R31, (-(s_dtmf_real) & 0xFFFF) >> 8
+        ST      Z, R16
+        STD     Z+1, R17
+        STD     Z+2, R18
+        STD     Z+3, R19
+//   93 		}
+        INC     R4
+??decode_dtmf_3:
+        LDI     R16, 8
+        CP      R4, R16
+        BRCS    ??decode_dtmf_4
+//   94 
+//   95 		// find max value of low freq
+//   96 		for (low_freq = 0, i = 1; i < 4; i ++)
+        LDI     R26, 0
+        CLR     R4
+        INC     R4
+        RJMP    ??decode_dtmf_5
+//   97 		{
+//   98 			if (s_dtmf_real[i] > s_dtmf_real[low_freq])
+??decode_dtmf_6:
+        MOV     R16, R26
+        LDI     R17, 0
+        LSL     R16
+        ROL     R17
+        LSL     R16
+        ROL     R17
+        MOVW    R31:R30, R17:R16
+        SUBI    R30, LOW((-(s_dtmf_real) & 0xFFFF))
+        SBCI    R31, (-(s_dtmf_real) & 0xFFFF) >> 8
+        LD      R20, Z
+        LDD     R21, Z+1
+        LDD     R22, Z+2
+        LDD     R23, Z+3
+        MOV     R16, R4
+        LDI     R17, 0
+        LSL     R16
+        ROL     R17
+        LSL     R16
+        ROL     R17
+        MOVW    R31:R30, R17:R16
+        SUBI    R30, LOW((-(s_dtmf_real) & 0xFFFF))
+        SBCI    R31, (-(s_dtmf_real) & 0xFFFF) >> 8
+        LD      R16, Z
+        LDD     R17, Z+1
+        LDD     R18, Z+2
+        LDD     R19, Z+3
+        CP      R20, R16
+        CPC     R21, R17
+        CPC     R22, R18
+        CPC     R23, R19
+        BRGE    ??decode_dtmf_7
+//   99 			{
+//  100 				low_freq = i;
+        MOV     R26, R4
+//  101 			}
+//  102 		}
+??decode_dtmf_7:
+        INC     R4
+??decode_dtmf_5:
+        LDI     R16, 4
+        CP      R4, R16
+        BRCS    ??decode_dtmf_6
+//  103 
+//  104 		// find max value of high freq
+//  105 		for (high_freq = 4, i = 5; i < 8; i ++)
+        LDI     R24, 4
+        LDI     R16, 5
+        MOV     R4, R16
+        RJMP    ??decode_dtmf_8
+//  106 		{
+//  107 			if (s_dtmf_real[i] > s_dtmf_real[high_freq])
+??decode_dtmf_9:
+        MOV     R16, R24
+        LDI     R17, 0
+        LSL     R16
+        ROL     R17
+        LSL     R16
+        ROL     R17
+        MOVW    R31:R30, R17:R16
+        SUBI    R30, LOW((-(s_dtmf_real) & 0xFFFF))
+        SBCI    R31, (-(s_dtmf_real) & 0xFFFF) >> 8
+        LD      R20, Z
+        LDD     R21, Z+1
+        LDD     R22, Z+2
+        LDD     R23, Z+3
+        MOV     R16, R4
+        LDI     R17, 0
+        LSL     R16
+        ROL     R17
+        LSL     R16
+        ROL     R17
+        MOVW    R31:R30, R17:R16
+        SUBI    R30, LOW((-(s_dtmf_real) & 0xFFFF))
+        SBCI    R31, (-(s_dtmf_real) & 0xFFFF) >> 8
+        LD      R16, Z
+        LDD     R17, Z+1
+        LDD     R18, Z+2
+        LDD     R19, Z+3
+        CP      R20, R16
+        CPC     R21, R17
+        CPC     R22, R18
+        CPC     R23, R19
+        BRGE    ??decode_dtmf_10
+//  108 			{
+//  109 				high_freq = i;
+        MOV     R24, R4
+//  110 			}
+//  111 		}
+??decode_dtmf_10:
+        INC     R4
+??decode_dtmf_8:
+        LDI     R16, 8
+        CP      R4, R16
+        BRCS    ??decode_dtmf_9
+//  112 
+//  113 		// clean up for continuous decoding
+//  114 		s_dtmf_p = 0;
+        LDI     R16, 0
+        STS     s_dtmf_p, R16
+//  115 		memset(s_dtmf_real, 0, 32);
+        LDI     R20, 32
+        LDI     R21, 0
+        LDI     R18, 0
+        LDI     R19, 0
+        LDI     R16, LOW(s_dtmf_real)
+        LDI     R17, (s_dtmf_real) >> 8
+        RCALL   memset
+//  116 		memset(s_dtmf_image, 0, 32);
+        LDI     R20, 32
+        LDI     R21, 0
+        LDI     R18, 0
+        LDI     R19, 0
+        LDI     R16, LOW(s_dtmf_image)
+        LDI     R17, (s_dtmf_image) >> 8
+        RCALL   memset
+//  117 		
+//  118 
+//  119 		// combine low and high frequency and decode out dtmf code
+//  120 		if ((low_freq == 0) && (high_freq == 4))
+        TST     R26
+        BRNE    ??decode_dtmf_11
+        CPI     R24, 4
+        BRNE    ??decode_dtmf_11
+//  121 		{
+//  122 			return '1';
+        LDI     R16, 49
+        RJMP    ??decode_dtmf_12
+//  123 		}
+//  124 		else if ((low_freq == 0) && (high_freq == 5))
+??decode_dtmf_11:
+        TST     R26
+        BRNE    ??decode_dtmf_13
+        CPI     R24, 5
+        BRNE    ??decode_dtmf_13
+//  125 		{
+//  126 			return '2';
+        LDI     R16, 50
+        RJMP    ??decode_dtmf_12
+//  127 		}
+//  128 		else if ((low_freq == 0) && (high_freq == 6))
+??decode_dtmf_13:
+        TST     R26
+        BRNE    ??decode_dtmf_14
+        CPI     R24, 6
+        BRNE    ??decode_dtmf_14
+//  129 		{
+//  130 			return '3';
+        LDI     R16, 51
+        RJMP    ??decode_dtmf_12
+//  131 		}
+//  132 		else if ((low_freq == 0) && (high_freq == 7))
+??decode_dtmf_14:
+        TST     R26
+        BRNE    ??decode_dtmf_15
+        CPI     R24, 7
+        BRNE    ??decode_dtmf_15
+//  133 		{
+//  134 			return 'A';
+        LDI     R16, 65
+        RJMP    ??decode_dtmf_12
+//  135 		}
+//  136 		else if ((low_freq == 1) && (high_freq == 4))
+??decode_dtmf_15:
+        CPI     R26, 1
+        BRNE    ??decode_dtmf_16
+        CPI     R24, 4
+        BRNE    ??decode_dtmf_16
+//  137 		{
+//  138 			return '4';
+        LDI     R16, 52
+        RJMP    ??decode_dtmf_12
+//  139 		}
+//  140 		else if ((low_freq == 1) && (high_freq == 5))
+??decode_dtmf_16:
+        CPI     R26, 1
+        BRNE    ??decode_dtmf_17
+        CPI     R24, 5
+        BRNE    ??decode_dtmf_17
+//  141 		{
+//  142 			return '5';
+        LDI     R16, 53
+        RJMP    ??decode_dtmf_12
+//  143 		}
+//  144 		else if ((low_freq == 1) && (high_freq == 6))
+??decode_dtmf_17:
+        CPI     R26, 1
+        BRNE    ??decode_dtmf_18
+        CPI     R24, 6
+        BRNE    ??decode_dtmf_18
+//  145 		{
+//  146 			return '6';
+        LDI     R16, 54
+        RJMP    ??decode_dtmf_12
+//  147 		}
+//  148 		else if ((low_freq == 1) && (high_freq == 7))
+??decode_dtmf_18:
+        CPI     R26, 1
+        BRNE    ??decode_dtmf_19
+        CPI     R24, 7
+        BRNE    ??decode_dtmf_19
+//  149 		{
+//  150 			return 'B';
+        LDI     R16, 66
+        RJMP    ??decode_dtmf_12
+//  151 		}
+//  152 		else if ((low_freq == 2) && (high_freq == 4))
+??decode_dtmf_19:
+        CPI     R26, 2
+        BRNE    ??decode_dtmf_20
+        CPI     R24, 4
+        BRNE    ??decode_dtmf_20
+//  153 		{
+//  154 			return '7';
+        LDI     R16, 55
+        RJMP    ??decode_dtmf_12
+//  155 		}
+//  156 		else if ((low_freq == 2) && (high_freq == 5))
+??decode_dtmf_20:
+        CPI     R26, 2
+        BRNE    ??decode_dtmf_21
+        CPI     R24, 5
+        BRNE    ??decode_dtmf_21
+//  157 		{
+//  158 			return '8';
+        LDI     R16, 56
+        RJMP    ??decode_dtmf_12
+//  159 		}
+//  160 		else if ((low_freq == 2) && (high_freq == 6))
+??decode_dtmf_21:
+        CPI     R26, 2
+        BRNE    ??decode_dtmf_22
+        CPI     R24, 6
+        BRNE    ??decode_dtmf_22
+//  161 		{
+//  162 			return '9';
+        LDI     R16, 57
+        RJMP    ??decode_dtmf_12
+//  163 		}
+//  164 		else if ((low_freq == 2) && (high_freq == 7))
+??decode_dtmf_22:
+        CPI     R26, 2
+        BRNE    ??decode_dtmf_23
+        CPI     R24, 7
+        BRNE    ??decode_dtmf_23
+//  165 		{
+//  166 			return 'C';
+        LDI     R16, 67
+        RJMP    ??decode_dtmf_12
+//  167 		}
+//  168 		else if ((low_freq == 3) && (high_freq == 4))
+??decode_dtmf_23:
+        CPI     R26, 3
+        BRNE    ??decode_dtmf_24
+        CPI     R24, 4
+        BRNE    ??decode_dtmf_24
+//  169 		{
+//  170 			return '*';
+        LDI     R16, 42
+        RJMP    ??decode_dtmf_12
+//  171 		}
+//  172 		else if ((low_freq == 3) && (high_freq == 5))
+??decode_dtmf_24:
+        CPI     R26, 3
+        BRNE    ??decode_dtmf_25
+        CPI     R24, 5
+        BRNE    ??decode_dtmf_25
+//  173 		{
+//  174 			return '0';
+        LDI     R16, 48
+        RJMP    ??decode_dtmf_12
+//  175 		}
+//  176 		else if ((low_freq == 3) && (high_freq == 6))
+??decode_dtmf_25:
+        CPI     R26, 3
+        BRNE    ??decode_dtmf_26
+        CPI     R24, 6
+        BRNE    ??decode_dtmf_26
+//  177 		{
+//  178 			return '#';
+        LDI     R16, 35
+        RJMP    ??decode_dtmf_12
+//  179 		}
+//  180 		else if ((low_freq == 3) && (high_freq == 7))
+??decode_dtmf_26:
+        CPI     R26, 3
+        BRNE    ??decode_dtmf_2
+        CPI     R24, 7
+        BRNE    ??decode_dtmf_2
+//  181 		{
+//  182 			return 'D';
+        LDI     R16, 68
+        RJMP    ??decode_dtmf_12
+//  183 		}
+//  184 	}
+//  185 
+//  186 	return	0;
+??decode_dtmf_2:
+        LDI     R16, 0
+??decode_dtmf_12:
+        LDI     R30, 5
+        RJMP    ?EPILOGUE_B5_L09
+        CFI EndBlock cfiBlock1
+//  187 }
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01cH
+__?EECR:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01dH
+__?EEDR:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01eH
+__?EEARL:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01fH
+__?EEARH:
+
+        RSEG INITTAB:CODE:NOROOT(0)
+`?<Segment init: NEAR_Z>`:
+        DW      SFE(NEAR_Z) - SFB(NEAR_Z)
+        DW      SFB(NEAR_Z)
+        DW      0
+        REQUIRE ?need_segment_init
+
+        RSEG NEAR_ID:CODE:NOROOT(0)
+`?<Initializer for g_sincos_len>`:
+        DB 50
+
+        RSEG INITTAB:CODE:NOROOT(0)
+`?<Segment init: NEAR_I>`:
+        DW      SFE(NEAR_I) - SFB(NEAR_I)
+        DW      SFB(NEAR_I)
+        DW      SFB(NEAR_ID)
+        REQUIRE ?need_segment_init
+
+        RSEG NEAR_ID:CODE:NOROOT(0)
+`?<Initializer for g_cos_table>`:
+        DB 126, 58, -73, -125, -41, 87, 121, 24, -99, -115, -6, 109, 106, -12
+        DB -117, -95, 30, 122, 82, -47, -125, -68, 63, 126, 52, -78, -124, -35
+        DB 91, 119, 18, -103, -112, 0, 112, 103, -18, -119, -91, 36, 124, 78
+        DB -53, -126, -63, 68, 125, 47, -83, -122, 126, 45, -95, -111, 16, 123
+        DB 71, -72, -122, -14, 112, 93, -46, -126, -43, 96, 110, -18, -123, -69
+        DB 74, 122, 12, -113, -92, 48, 126, 41, -97, -109, 20, 123, 68, -76
+        DB -121, -10, 114, 90, -50, -126, -39, 98, 108, -22, -124, -66, 77, 120
+        DB 8, -115, 126, 29, -113, -81, 75, 116, -22, -126, -36, 109, 86, -70
+        DB -118, 15, 125, 43, -106, -91, 63, 121, -8, -124, -49, 101, 96, -57
+        DB -122, 1, 123, 56, -97, -101, 51, 124, 6, -121, -62, 92, 105, -44
+        DB -125, -13, 119, 68, -87, -108, 37, 126, 20, -116, 126, 12, -124, -35
+        DB 117, 56, -107, -76, 93, 93, -76, -107, 56, 118, -34, -124, 11, 126
+        DB 12, -124, -35, 117, 57, -107, -77, 93, 94, -75, -108, 55, 118, -33
+        DB -124, 10, 126, 13, -124, -36, 117, 57, -106, -77, 92, 94, -75, -108
+        DB 55, 118, -33, -124, 126, -41, -100, 105, 32, -126, 49, 94, -110, -23
+        DB 125, -57, -88, 114, 15, -123, 65, 81, -117, -6, 121, -72, -74, 120
+        DB -3, -118, 79, 67, -123, 12, 115, -86, -59, 124, -21, -111, 92, 51
+        DB -125, 30, 106, -98, -43, 126, -38, -101, 104, 35, -126, 47, 126, -63
+        DB -62, 126, -65, -61, 126, -66, -59, 126, -68, -58, 126, -69, -56, 126
+        DB -70, -55, 126, -71, -54, 126, -73, -52, 125, -74, -51, 125, -75, -49
+        DB 125, -77, -48, 125, -78, -46, 125, -79, -45, 124, -80, -43, 124, -82
+        DB -42, 124, -83, -40, 123, -84, 126, -86, -9, 98, -125, 72, 27, -109
+        DB 121, -56, -45, 117, -114, 39, 61, -122, 106, -21, -76, 125, -95, 3
+        DB 90, -126, 82, 15, -102, 124, -67, -33, 111, -119, 51, 50, -119, 112
+        DB -34, -66, 124, -102, 16, 81, -126, 91, 2, -94, 125, -77, -20, 105
+        DB 126, -106, 51, 20, -85, 122, -120, 79, -13, -58, 109, -126, 101, -44
+        DB -27, 90, -123, 117, -73, 5, 64, -113, 125, -97, 37, 34, -95, 125
+        DB -114, 67, 2, -70, 116, -124, 92, -30, -41, 99, -126, 111, -61, -9
+        DB 76, -119, 123, -87, 23, 48, -104, 126
+
+        RSEG NEAR_ID:CODE:NOROOT(0)
+`?<Initializer for g_sin_table>`:
+        DB 0, 112, 103, -18, -119, -91, 36, 124, 78, -52, -126, -63, 68, 125
+        DB 47, -83, -122, -30, 95, 117, 12, -106, -109, 6, 115, 99, -24, -121
+        DB -87, 41, 125, 73, -58, -126, -58, 73, 125, 41, -87, -121, -24, 99
+        DB 115, 6, -109, -106, 12, 117, 95, -30, 0, 118, 83, -59, -125, -29
+        DB 104, 103, -31, -125, -57, 85, 117, -2, -119, -82, 61, 125, 27, -105
+        DB -102, 33, 125, 55, -86, -116, 4, 119, 80, -62, -124, -26, 106, 101
+        DB -35, -126, -54, 88, 116, -6, -120, -79, 64, 124, 24, -107, -100, 37
+        DB 126, 52, 0, 123, 56, -97, -101, 50, 124, 7, -121, -63, 92, 105, -43
+        DB -125, -14, 119, 69, -87, -109, 37, 126, 21, -116, -75, 82, 112, -30
+        DB -126, -28, 113, 80, -76, -115, 23, 126, 35, -110, -86, 70, 118, -16
+        DB -125, -42, 106, 91, -64, -120, 9, 124, 49, 0, 125, 23, -121, -46
+        DB 113, 67, -100, -85, 85, 101, -66, -113, 45, 121, -23, -126, -1, 125
+        DB 24, -121, -46, 112, 67, -100, -86, 84, 101, -65, -113, 45, 121, -22
+        DB -126, -1, 125, 24, -121, -47, 112, 68, -100, -86, 84, 101, -65, -113
+        DB 44, 122, -21, 0, 119, -77, -70, 122, -9, -116, 84, 62, -124, 18, 112
+        DB -90, -54, 125, -27, -108, 96, 46, -126, 35, 103, -102, -38, 126, -44
+        DB -98, 107, 29, -125, 52, 92, -111, -20, 124, -60, -86, 115, 11, -122
+        DB 68, 79, -118, -3, 120, -75, -72, 121, -6, -117, 0, 109, -110, 2, 108
+        DB -110, 3, 107, -111, 5, 106, -112, 6, 106, -113, 8, 105, -113, 9, 104
+        DB -114, 11, 103, -115, 13, 102, -115, 14, 101, -116, 16, 100, -117, 17
+        DB 99, -117, 19, 98, -118, 20, 97, -118, 22, 96, -119, 24, 95, -119, 25
+        DB 94, 0, 92, -126, 79, 18, -104, 123, -64, -36, 113, -118, 48, 53
+        DB -120, 110, -30, -69, 124, -100, 12, 83, -126, 88, 6, -96, 125, -74
+        DB -24, 107, -122, 59, 41, -115, 116, -42, -58, 121, -107, 25, 74, -125
+        DB 97, -7, -88, 126, -84, -11, 100, -124, 70, 0, 69, -115, 124, -93, 32
+        DB 39, -98, 125, -112, 62, 7, -75, 118, -123, 88, -25, -46, 103, -126
+        DB 108, -56, -15, 80, -120, 121, -83, 18, 53, -107, 126, -105, 49, 22
+        DB -86, 122, -119, 77, -11, -59, 110, -126, 100, -42, -29, 91, -124
+        DB 116, -71, 3
+
+        END
+//  188 
+// 
+// 710 bytes in segment CODE
+//  12 bytes in segment INITTAB
+// 801 bytes in segment NEAR_I
+// 801 bytes in segment NEAR_ID
+//  65 bytes in segment NEAR_Z
+// 
+// 1 511 bytes of CODE memory (+ 12 bytes shared)
+//   866 bytes of DATA memory
+//
+//Errors: none
+//Warnings: none

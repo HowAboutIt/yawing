@@ -1,0 +1,1126 @@
+; THIS PROGRAM IS PROVIDED "AS IS". TI MAKES NO WARRANTIES OR
+; REPRESENTATIONS, EITHER EXPRESS, IMPLIED OR STATUTORY, 
+; INCLUDING ANY IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS 
+; FOR A PARTICULAR PURPOSE, LACK OF VIRUSES, ACCURACY OR 
+; COMPLETENESS OF RESPONSES, RESULTS AND LACK OF NEGLIGENCE. 
+; TI DISCLAIMS ANY WARRANTY OF TITLE, QUIET ENJOYMENT, QUIET 
+; POSSESSION, AND NON-INFRINGEMENT OF ANY THIRD PARTY 
+; INTELLECTUAL PROPERTY RIGHTS WITH REGARD TO THE PROGRAM OR 
+; YOUR USE OF THE PROGRAM.
+;
+; IN NO EVENT SHALL TI BE LIABLE FOR ANY SPECIAL, INCIDENTAL, 
+; CONSEQUENTIAL OR INDIRECT DAMAGES, HOWEVER CAUSED, ON ANY 
+; THEORY OF LIABILITY AND WHETHER OR NOT TI HAS BEEN ADVISED 
+; OF THE POSSIBILITY OF SUCH DAMAGES, ARISING IN ANY WAY OUT 
+; OF THIS AGREEMENT, THE PROGRAM, OR YOUR USE OF THE PROGRAM. 
+; EXCLUDED DAMAGES INCLUDE, BUT ARE NOT LIMITED TO, COST OF 
+; REMOVAL OR REINSTALLATION, COMPUTER TIME, LABOR COSTS, LOSS 
+; OF GOODWILL, LOSS OF PROFITS, LOSS OF SAVINGS, OR LOSS OF 
+; USE OR INTERRUPTION OF BUSINESS. IN NO EVENT WILL TI'S 
+; AGGREGATE LIABILITY UNDER THIS AGREEMENT OR ARISING OUT OF 
+; YOUR USE OF THE PROGRAM EXCEED FIVE HUNDRED DOLLARS 
+; (U.S.$500).
+;
+; Unless otherwise stated, the Program written and copyrighted 
+; by Texas Instruments is distributed as "freeware".  You may, 
+; only under TI's copyright in the Program, use and modify the 
+; Program without any charge or restriction.  You may 
+; distribute to third parties, provided that you transfer a 
+; copy of this license to the third party and the third party 
+; agrees to these terms by its first use of the Program. You 
+; must reproduce the copyright notice and any other legend of 
+; ownership on each copy or partial copy, of the Program.
+;
+; You acknowledge and agree that the Program contains 
+; copyrighted material, trade secrets and other TI proprietary 
+; information and is protected by copyright laws, 
+; international copyright treaties, and trade secret laws, as 
+; well as other intellectual property laws.  To protect TI's 
+; rights in the Program, you agree not to decompile, reverse 
+; engineer, disassemble or otherwise translate any object code 
+; versions of the Program to a human-readable form.  You agree 
+; that in no event will you alter, remove or destroy any 
+; copyright notice included in the Program.  TI reserves all 
+; rights not specifically granted under this license. Except 
+; as specifically provided herein, nothing in this agreement 
+; shall be construed as conferring by implication, estoppel, 
+; or otherwise, upon you, any license or other right under any 
+; TI patents, copyrights or trade secrets.
+;
+; You may not use the Program in non-TI devices.
+
+;***********************************************************************************************************************
+;***********************************************************************************************************************
+;*** Program for DTMF-Controlled Remote Switching Application
+;*** MSP430F1232 Reference Design 
+;*** Texas Instruments, MSP430 Group, August 2002
+;*** Arthur Musah
+;*** DTMF Decoding Algorithm: Robert Siwy, Murugavel Raju
+;***********************************************************************************************************************
+;***********************************************************************************************************************
+
+;________________________________________________________________________________________________________________________
+;;;;;;;;;;; MSP430F1232 Pin Functions:
+;;; P1.0     - SSR control
+;;; P1.2/TA1 - PWM output
+;;; P2.0/A0  - ADC10 input
+;;; P2.2     - Ring detect 
+;;; P2.5     - opamp shutdown
+;;; P3.x     - 8 LED controls
+;________________________________________________________________________________________________________________________
+
+
+
+
+
+#include  "msp430x12x2.h"
+
+;_______________________________________________________________________________________________________________________
+; Constants/Constant Variables
+;_______________________________________________________________________________________________________________________
+RING_TIMES          equ     005h             ; number of rings to go off-hook
+PASSWORD_LENGTH     equ     004h             ; length of password sequence
+ACTION_LENGTH       equ     002h             ; length of correct switch action command
+TIMEOUT_VALUE       equ   071C0h             ; TIMEOUT_VALUE/Sampling freq. = Time out duration
+                                             ; 29120/3640 = 8 seconds 
+;-----------------------------------------------------------------------------------------------------------------------
+FILTER_1  equ 1 ;enable 1633 Filter
+FILTER_2  equ 1 ;enable 1477 Filter
+FILTER_3  equ 1 ;enable 1336 Filter
+FILTER_4  equ 1 ;enable 1209 Filter
+FILTER_5  equ 1 ;enable 941 Filter
+FILTER_6  equ 1 ;enable 852 Filter
+FILTER_7  equ 1 ;enable 770 Filter
+FILTER_8  equ 1 ;enable 697 Filter
+;-----------------------------------------------------------------------------------------------------------------------
+LENGTH    equ 7     ;(Length+1) * 5.48ms=Signallength
+THRE      equ 128   ;threshold for noise	 
+;-----------------------------------------------------------------------------------------------------------------------              
+      
+;_______________________________________________________________________________________________________________________
+; Software Definitions 
+;_______________________________________________________________________________________________________________________
+#define FLAG_REG  R4
+#define LCOUNT    R5
+#define ROW       R6 
+#define COL       R7 
+#define MAXLO     R8
+#define in        R9 
+#define MAXHI     R10
+#define OUTPUT    R13
+#define COUNT     R15
+
+;_______________________________________________________________________________________________________________________
+; Word Variable Definitions
+;_______________________________________________________________________________________________________________________
+;
+; Memory Allocation for 8 Filters
+;-----------------------------------------------------------------------------------------------------------------------
+         RSEG UDATA0
+	
+	 T1_1633: DS 2
+	 T2_1633: DS 2
+	 T1_1477: DS 2
+	 T2_1477: DS 2
+	 T1_1336: DS 2
+	 T2_1336: DS 2
+	 T1_1209: DS 2
+	 T2_1209: DS 2
+	 T1_941:  DS 2
+	 T2_941:  DS 2
+	 T1_852:  DS 2
+	 T2_852:  DS 2
+	 T1_770:  DS 2
+	 T2_770:  DS 2
+	 T1_697:  DS 2
+	 T2_697:  DS 2
+	
+; Memory allocation for maximum of 6 decoded DTMF characters 
+; (Used for storing decoded sequence in both Password_Mode and Switch_Mode)
+;-----------------------------------------------------------------------------------------------------------------------
+        SeqBuffer:  DS 8      	
+	
+; Other program variables
+;-----------------------------------------------------------------------------------------------------------------------
+         RingCnt:    DS    2    ; keeps track of number of consecutive rings detected
+         DTMFCnt:    DS    2    ; keeps track of length of DTMF char sequence in Password_Mode
+         ActionCnt:  DS    2    ; keeps track of lenght of DTMF char sequence in Switch_Mode
+         ModeControl: DS   2    ; 0 => Password_Mode
+                                ; 1 => Switch_Mode
+         TimeOutCnt: DS    2    ; time out counter
+
+	 
+;************************************************
+                    RSEG    CSTACK
+                    DS      0
+;************************************************
+NAME DTMFdecoder
+
+                    RSEG    CODE
+main
+;-----------------------------------------------------------------------------------------------------------------------
+RESET  
+      mov     #SFE(CSTACK),SP         ; define stack pointer
+StopWDT     
+      mov     #WDTPW+WDTHOLD,&WDTCTL  ; stop watchdog timer
+Start                    
+      mov.b   #0e0h,&DCOCTL           ; set DCO to run at fastest setting -> 3.58+MHz, adequate for this application
+      bis.b   #07h,&BCSCTL1
+      call    #Init_Sys               ; initialize     
+GoIntoLPM  
+      bis.b   #BIT2,&P2IE             ; re-enable ring interrupts 
+      eint                            ; enable general interrupts
+      bis.b   #LPM0,SR                ; go into LPM0
+;-----------------------------------------------------------------------------------------------------------------------
+FromRingInt      
+      cmp     #RING_TIMES,RingCnt     ; RingCnt >= RING_TIMES ? 
+      jge     EnoughRings             ; yes, then stop waiting for rings and proceed, else
+NextRing           
+      jmp     GoIntoLPM               ; go on to wait for next Ring Interrupt
+EnoughRings      
+      bic.b   #BIT2,&P2IE             ; disable ring interrupts
+      mov     #0,RingCnt              ; reset RingCnt
+GoOffhook      
+      bis.b   #BIT0,&P1DIR            ; P1.0 output mode for switching SSR
+      bis.b   #BIT0,&P1OUT            ; turn P1.0 high to switch on SSR -> phone line offhook
+OffhookNotify
+      call    #PWM_out_mode           ; prepare pins to output PWM wave
+      call    #OutputPWM_AllGood      ; output AllGood signal
+PasswordDecode
+      mov     #0,ModeControl          ; select Password_Mode
+      call    #DTMF_in_mode           ; prepare pins to receive DTMF
+      call    #DTMFDecode             ; call DTMFDecode subroutine
+P_TermCheck    
+      mov     #SeqBuffer,r14          ; move address of SeqBuffer into r14    
+      cmp     #0eh,0(r14)             ; is first char the termination char?
+      jz      Term_Now                ; yes, then stop and exit, else
+PasswordValidate          
+; NB: the ff. cmp instructions have to be BYTE instructions, 
+; since comparing byte constant (from Password_Tab) with word lower byte (from SeqBuffer)             
+      mov     #SeqBuffer,r14
+      mov     #Password_Tab,r12
+      cmp.b   0(r12),0(r14)         ; compare password char 1
+      jnz     PasswordBad 
+      cmp.b   1(r12),2(r14)         ; compare password char 2
+      jnz     PasswordBad
+      cmp.b   2(r12),4(r14)         ; compare password char 3
+      jnz     PasswordBad
+      cmp.b   3(r12),6(r14)         ; compare password char 4
+      jeq     PasswordGood            
+PasswordBad
+      call    #ClearSeqBuffer       ; clear the incorrect password sequence entered by user
+      mov     #0,DTMFCnt            ; clear DTMFCnt variable
+HangUpNotify      
+      call    #PWM_out_mode         ; prepare pins to output PWM wave
+      call    #OutputPWM_Bad        ; output hang-up notification tone
+      call    #Delay                ; short delay      
+      bic.b   #BIT0,&P1OUT          ; turn off hookswitch relay
+      ; jmp     Start                 ; go to Start label
+      jmp     RESET                 ; go and reinitialize stack
+PasswordGood
+      call    #ClearSeqBuffer       ; clear decoded password sequence
+      call    #PWM_out_mode         ; prepare pins to output PWM wave
+      call    #OutputPWM_AllGood    ; output password confirmed notification 
+SwitchPrep
+      mov.b   #1,ModeControl        ; turn to Switch_Mode
+      call    #DTMF_in_mode         ; prepare pins to receive DTMF 
+      call    #DTMFDecode           ; perform DTMF decoding in Switch_Mode
+S_TermCheck
+      mov     #SeqBuffer,r14        ; load address of SeqBuffer into r14
+      cmp     #0eh,0(r14)           ; is first char in SeqBuffer the termination char?
+      jz      Term_Now              ; yes, then stop and exit
+IsTarget_Pin0      
+      cmp     #0,0(r14)             ;
+      jne     IsTarget_Pin1         ; no, then jump,else
+      bis.b   #BIT0,&P3DIR          ; P3.0 to output
+      mov     #BIT0,r12             ; BIT reference of pin to be switched into r12 
+      jmp     CheckChar2            ;
+IsTarget_Pin1
+      cmp     #01h,0(r14)           ;
+      jne     IsTarget_Pin2         ; no, then jump,else
+      bis.b   #BIT1,&P3DIR          ; P3.1 to output
+      mov     #BIT1,r12             ; BIT reference of pin to be switched into r12
+      jmp     CheckChar2            ;
+IsTarget_Pin2
+      cmp     #02h,0(r14)           ;
+      jne     IsTarget_Pin3         ; no, then jump, else
+      bis.b   #BIT2,&P3DIR          ; P3.2 to output
+      mov     #BIT2,r12             ; BIT reference of pin to be switched into r12
+      jmp     CheckChar2            ;
+IsTarget_Pin3
+      cmp     #03h,0(r14)           ;
+      jne     IsTarget_Pin4         ; no, then jump, else
+      bis.b   #BIT3,&P3DIR          ; P3.3 to output
+      mov     #BIT3,r12             ; BIT reference of pin to be switched into r12
+      jmp     CheckChar2            ; 
+IsTarget_Pin4
+      cmp     #04h,0(r14)           ;
+      jne     IsTarget_Pin5         ; no, then jump, else
+      bis.b   #BIT4,&P3DIR          ; P3.4 to output
+      mov     #BIT4,r12             ; BIT reference of pin to be switched into r12
+      jmp     CheckChar2            ;
+IsTarget_Pin5
+      cmp     #05h,0(r14)           ;
+      jne     IsTarget_Pin6         ; no, then jump, else
+      bis.b   #BIT5,&P3DIR          ; P3.5 to output
+      mov     #BIT5,r12             ; BIT reference of pin to be switched into r12
+      jmp     CheckChar2            ; 
+IsTarget_Pin6
+      cmp     #06h,0(r14)           ;
+      jne     IsTarget_Pin7         ; no, then jump, else
+      bis.b   #BIT6,&P3DIR          ; P3.6 to output
+      mov     #BIT6,r12             ; BIT reference of pin to be switched into r12
+      jmp     CheckChar2            ; 
+IsTarget_Pin7
+      cmp     #07h,0(r14)           ;
+      jne     SwitchErrorNotify     ; no, then go to notify of error (wrong switch-pin number chosen), else
+      bis.b   #BIT7,&P3DIR          ; P3.7 to output
+      mov     #BIT7,r12             ; BIT reference of pin to be switched into r12            
+CheckChar2
+      cmp     #0,2(r14)             ; is char at SeqBuffer+2 equal to 0?
+      jne     TestFor1              ; no, then test for 1
+      bic.b   r12,&P3OUT            ; turn target output pin OFF (low)
+      jmp     DoneSwitching
+TestFor1 
+      cmp     #1,2(r14)             ; is char at SeqBuffer(2) 1?
+      jne     SwitchErrorNotify     ; no, then notify of error, else
+      bis.b   r12,&P3OUT            ; turn target output pin ON (high)  
+DoneSwitching
+      call    #PWM_out_mode         ; prepare pins to output PWM wave
+      call    #OutputPWM_AllGood    ; output Done Tone
+MoreSwitching
+      call    #ClearSeqBuffer       ; clear the sequence buffer
+      mov     #0,ActionCnt          ; clear ActionCnt counter
+      jmp     SwitchPrep            ; go and prepare for new switching command
+SwitchErrorNotify
+      call    #PWM_out_mode         ; prepare pins to output PWM wave
+      call    #OutputPWM_Bad        ; output Error Notification tone
+      jmp     MoreSwitching         ;
+Term_Now
+      call    #ClearSeqBuffer       ;     
+      jmp     HangUpNotify          ;
+;-----------------------------------------------------------------------------------------------------------------------
+
+;_______________________________________________________________________________________________________________________
+Init_Sys                ; subroutine to initialize system
+;_______________________________________________________________________________________________________________________
+InitVars   
+      mov     #0,RingCnt              ; initialize counter variables
+      mov     #0,DTMFCnt              ;
+      mov     #0,ActionCnt            ;
+      mov     #0,TimeOutCnt           ;
+      mov     #0,ModeControl          ; start off in Password_Mode
+ShutdownOpamp
+      bis.b   #BIT5,&P2DIR            ; P2.5 to output direction, initial state on reset
+      bic.b   #BIT5,&P2OUT            ; pull P2.5 (opamp shutdown terminal) low, to shutdown opamp
+EnableRingInterrupt            
+      bic.b   #BIT2,&P2DIR            ; reset P2.2 for input mode to listen for ring interrupts
+      bis.b   #BIT2,&P2IES            ; choose to set interrupt flag with high-to-low transition on P2.2
+      bic.b   #BIT2,&P2IFG            ; make sure interrupt flag for P2.2 is cleared
+      eint                            ; enable general interrupts
+      bis.b   #BIT2,&P2IE             ; enable interrupts on P2.2
+      ret                             ; return to caller
+;-----------------------------------------------------------------------------------------------------------------------
+
+;_______________________________________________________________________________________________________________________
+Delay                   ; delay subroutine
+;_______________________________________________________________________________________________________________________
+      push.w  #0FFFFh         ; Delay to TOS
+L1    dec.w   0(SP)           ; decrement TOS
+      jnz     L1              ; delay over?
+      incd.w  SP              ; clean TOS
+      ret      
+;-----------------------------------------------------------------------------------------------------------------------
+      
+;_______________________________________________________________________________________________________________________
+ClearSeqBuffer          ; subroutine to clear SeqBuffer
+;_______________________________________________________________________________________________________________________
+      mov     #SeqBuffer,r14
+      mov     #0,0(r14)     
+      mov     #0,2(r14)
+      mov     #0,4(r14)
+      mov     #0,6(r14)
+      ret
+;-----------------------------------------------------------------------------------------------------------------------
+      
+;_______________________________________________________________________________________________________________________
+DTMF_Init               ; ADC10 and Timer_A initializations for DTMF sampling
+;_______________________________________________________________________________________________________________________   
+Init_ADC10    
+      mov.b  #01h,&ADC10AE                              ; Analog input A0 enabled
+      mov.w  #ADC10DF,&ADC10CTL1                        ; Select ADC out data format as signed left justified
+      mov.w  #ADC10SHT_1+ADC10ON+ADC10IE,&ADC10CTL0     ; ADC10 ON and mode set
+      bis.w  #ENC,&ADC10CTL0                            ; Enable conversions                               
+      mov    #0h,COUNT                                        
+      mov    #0h,LCOUNT                                        
+SetoffTA      
+      mov    #8,&CCR0                                   ; CCR0 for sampling rate of 3640Hz from 32768Hz ACLK signal
+                                                        ;   (32768/9 = 3640)
+      bis    #CCIE,&CCTL0                               ; enable CCR0 interrupt
+      mov    #TASSEL0+MC0,&TACTL                        ; TACLK = ACLK, Count up to CCR0 
+      eint                                              ; enable general Interrupts
+      ret                                               ; Return from Subrountine
+;-----------------------------------------------------------------------------------------------------------------------
+
+;_______________________________________________________________________________________________________________________
+DTMF_in_mode            ; subroutine to prepare relevant MSP430 pins for DTMF reception
+;_______________________________________________________________________________________________________________________
+      bic.b   #BIT2,&P1DIR            ; P1.2/TA1 to high impedance input mode
+      bis.b   #BIT1,&P2DIR            ; P2.1 output (for Vcc/2 bias)
+      bis.b   #BIT1,&P2OUT            ; P2.1 high (for Vcc/2 bias)      
+      bis.b   #BIT5,&P2DIR            ; P2.5 output (opamp shutdown pin)
+      bis.b   #BIT5,&P2OUT            ; P2.5 high (turn on opamp)       
+      ret                             ; return to caller
+;-----------------------------------------------------------------------------------------------------------------------
+      
+;_______________________________________________________________________________________________________________________
+PWM_out_mode            ; subroutine to prepare relevant MSP430 pins to output PWM wave
+;_______________________________________________________________________________________________________________________
+      bic.b   #BIT5,&P2OUT            ; P2.5 low (shutdown opamp)
+      bic.b   #BIT1,&P2OUT            ; P2.1 low (turn off supply for Vcc/2 bias to opamp)
+      bis.b   #BIT2,&P1DIR            ; P1.2/TA1 to output mode
+      ret                             ; return to caller
+;-----------------------------------------------------------------------------------------------------------------------
+
+;_______________________________________________________________________________________________________________________
+RING_ISR                 ; ring interrupt service routine
+;_______________________________________________________________________________________________________________________
+OriginCheck    
+      bit.b   #BIT2,&P2IFG            ; check if interrupt came from P2.2
+      jz      Not_RingInt             ; if not, jump to other handler, else...
+      inc     RingCnt                 ; increment the ring count
+PauseHere
+      call    #CountOff_1000ms        ; 1s delay subroutine
+      call    #CountOff_1000ms        ; 2s
+      call    #CountOff_1000ms        ; 3s
+      call    #CountOff_1000ms        ; 4s
+RingInt_Done
+      bic     #LPM0,0(SP)             ; clear LMP0 bits on stack to reti in Active Mode (AM)
+      bic.b   #BIT2,&P2IFG            ; reset interrupt flag for P2.2
+      reti                            ; return from interrupt in AM
+Not_RingInt   
+      reti      ; return without exiting LPM (some other P2 interrupt occurred)
+;-------------------------------------------------------------------------------------------------------------
+
+;___________________________________________________________________________________________
+CCR0_ISR            ; TA interrupt service routine                              
+;___________________________________________________________________________________________
+             inc    TimeOutCnt              ; increment TimeOutCounter
+             bis.w  #ADC10SC,&ADC10CTL0     ; Start a conversion
+             eint                           ;   
+             bis    #CPUOFF,SR              ; Wait in LPM0
+             bic    #LPM0,0(SP)             ; Exit LPM0 on reti                                  
+             reti  
+;-------------------------------------------------------------------------------------------------------------
+
+;___________________________________________________________________________________________________________________
+ADC10_ISR           ; A/D interrupt service routine    
+;___________________________________________________________________________________________________________________
+;;; 10bits of signed left justified data into 'in'   
+             mov.w   &ADC10MEM,in
+             bic     #LPM0,0(SP)            ; Exit LPM0 on reti
+             reti
+;-------------------------------------------------------------------------------------------------------------
+
+;___________________________________________________________________________________________________________________
+CountOff_250ms       ; subroutine to count off 250milliseconds using the Watchdog Timer in Interval mode
+                     ; assumes ACLK = LFXT1 divided by 1, i.e. 32768Hz
+;___________________________________________________________________________________________________________________
+Start_WDT_250 
+      mov.w   #WDT_ADLY_250,&WDTCTL         ; count off 250ms in interval mode, assuming ACLK is 32768Hz
+Test_WDTIFG_250
+      bit.b   #WDTIFG,&IFG1                 ; is WDTIFG set?
+      jz      Test_WDTIFG_250               ; no, then loop, else go on
+Stop_WDT_250
+      mov     #WDTPW+WDTHOLD,&WDTCTL        ; stop watchdog timer
+      bic.b   #WDTIFG,&IFG1                 ; clear WDT interrupt flag
+      ret                                   ; return to caller
+;-------------------------------------------------------------------------------------------------------------
+
+;___________________________________________________________________________________________________________________
+CountOff_1000ms       ; subroutine to count off 1000milliseconds using the Watchdog Timer in Interval mode
+                      ; assumes ACLK = LFXT1 divided by 1, i.e. 32768Hz
+;___________________________________________________________________________________________________________________
+Start_WDT
+      mov.w   #WDT_ADLY_1000,&WDTCTL        ; count off 1000ms in interval mode, assuming ACLK is 32768Hz
+Test_WDTIFG
+      bit.b   #WDTIFG,&IFG1                 ; is WDTIFG set?
+      jz      Test_WDTIFG                   ; no, then loop, else go on
+Stop_WDT
+      mov     #WDTPW+WDTHOLD,&WDTCTL        ; stop watchdog timer
+      bic.b   #WDTIFG,&IFG1                 ; clear WDT interrupt flag
+      ret                                   ; return to caller
+;-------------------------------------------------------------------------------------------------------------
+
+;___________________________________________________________________________________________
+OutputPWM_AllGood   ; subroutine to output "AllGood" signal (~2000Hz)
+                    ; should not generate CCR interrupts!!!
+;___________________________________________________________________________________________
+      push    r11                     ; save r11 contents on stack
+      call    #Delay                  ; short pause
+      mov.w   #TASSEL0+TACLR,&TACTL   ; ACLK, Clear TAR
+      mov.w   #63,&CCR0               ; PWM Period (32768/64 = 512Hz => 1.95ms period) 
+      mov.w   #OUTMOD_3,&CCTL1        ; CCR1 set/reset
+      mov.w   #32,&CCR1               ; CCR1 PWM 50% Duty Cycle	  
+      bis.b   #BIT2,&P1SEL            ; P1.2 TA1 option
+      bis.w   #MC0,&TACTL             ; Start Timer_A in upmode
+WaitA
+      mov.w   #0100,R10               ; counter 1
+LoopA1   
+      mov.w   #07000,R11              ; counter 2
+      dec.w   R10                     ; decrement R10 (counter 1)  
+      jz      WaitA_Over              ; jump to WaitA_Over if delay is over
+LoopA2   
+      dec.w   R11                     ; decrement R11 (counter 2)
+      jnz     LoopA2                  ; keep decrementing R11 till 0
+      jmp     LoopA1                  ; jump to LoopA1 when R11 equals 0
+WaitA_Over
+      bic     #MC0+MC1,&TACTL         ; stop Timer_A
+      bic.b   #BIT2,&P1SEL            ; P1.2 I/O option    
+      pop     r11                     ; restore r11 contents from stack  
+      ret                             ; return to caller
+
+;___________________________________________________________________________________________
+OutputPWM_Bad       ; subroutine to output "Bad" signal (~500Hz)
+                    ; should not generate CCR0 interrupts!!!
+;___________________________________________________________________________________________
+      push    r11                     ; save r11 contents on stack
+      call    #Delay                  ; short pause
+      mov.w   #TASSEL0+TACLR,&TACTL   ; ACLK, Clear TAR  
+      mov.w   #255,&CCR0               ; PWM Period (32768/256 = 128Hz => 7.8ms period)     
+      mov.w   #OUTMOD_3,&CCTL1        ; CCR1 set/reset	
+      mov.w   #128,&CCR1               ; CCR1 PWM 50% Duty Cycle  
+      bis.b   #BIT2,&P1SEL            ; P1.2 TA1 option
+      bis.w   #MC0,&TACTL             ; Start Timer_A in upmode
+WaitB
+      mov.w   #0100,R10               ; counter 1
+LoopB1   
+      mov.w   #07000,R11              ; counter 2
+      dec.w   R10                     ; decrement R10 (counter 1)  
+      jz      WaitB_Over              ; jump to WaitB_Over if delay is over
+LoopB2   
+      dec.w   R11                     ; decrement R11 (counter 2)
+      jnz     LoopB2                  ; keep decrementing R11 till 0
+      jmp     LoopB1                  ; jump to LoopB1 when R11 equals 0
+WaitB_Over
+      bic     #MC0+MC1,&TACTL         ; stop Timer_A
+      bic.b   #BIT2,&P1SEL            ; P1.2 I/O option      
+      pop     r11                     ; restore r11 contents from stack  
+      ret                             ; return to caller
+;-------------------------------------------------------------------------------------------------------------
+
+;_____________________________________________________________________________________________________________
+DTMFDecode    ; the DTMF decoding subroutine     
+;_____________________________________________________________________________________________________________
+        call  #DTMF_Init      ; perform initializations for DMTF decoding
+        bis   #CPUOFF,SR      ; wait in LPM0
+DTMF_FILTER
+	inc COUNT
+	cmp #20,COUNT ;20 sample values?
+	jlo FILTER ;not 20 Samples, jump
+;condition 1
+	cmp #THRE,MAXLO ;Maximum from Lo below threshold?
+	jlo FALSE ;yes, jump out
+	cmp #THRE,MAXHI ;Maximum from Hi below threshold?
+	jlo FALSE ;yes, jump out
+;condition 2
+	rra MAXLO ;divide MAXLO by two
+	cmp MAXLO,MAXHI ;MAXHI > MAXLO/2
+	jlo FALSE ;yes, jump out
+	rla MAXLO ;restore MAXLO
+	rra MAXHI ;divide MAXHI by two
+	cmp MAXHI,MAXLO ;MAXLO > MAXHI/2
+	jlo FALSE ;yes, jump out
+	cmp #LENGTH,LCOUNT ;Signal length valid?
+	jeq DISPLAY ;yes, jump to display
+	inc LCOUNT ;no, increase length counter
+	jmp CONTINUE
+DISPLAY
+	bit #01h,FLAG_REG ;test Flag
+	jnz CONTINUE ;already recognized, continue
+	add ROW,COL  ;add ROW and COLUMN for table
+;send bit pattern to port 1	
+        mov     #0,r11                  ; added this, to clear r11's old contents       
+        mov.b   DTMF_Tab(COL),r11       ; put new decoded character in r11
+        bis     #01h,FLAG_REG           ; set Flag      
+ ;%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+        mov     #0,TimeOutCnt           ; clear time out counter  
+Term_Test             
+        cmp     #0eh,r11                    ; does r11 contain *(E)?
+        jne     SaveDecodedChar             ; no, then go to normal char storage procedure, else
+Term_Seq
+        mov     r11,SeqBuffer               ; store TerminationChar at the beginning of sequence buffer
+        jmp     ExitDTMFDecode        
+SaveDecodedChar
+	cmp     #0,ModeControl              ; is ModeControl 0?
+	jnz     Switch_Mode                 ; no, then we are in Switch_Mode so jump there
+Password_Mode	
+	mov     DTMFCnt,r14                 ;
+        add     r14,r14                     ; r14 = DTMFCnt x 2 (for word addressing)
+        mov     r11,SeqBuffer(r14)          ; store decoded char in sequence buffer
+        inc     DTMFCnt                     ; increment password length counter
+	cmp     #PASSWORD_LENGTH,DTMFCnt    ; is DTMFCnt equal to max password length?
+	jeq     ExitDTMFDecode              ; yes, then exit DTMFDecode subroutine
+	jmp     AfterTests                  ; else, go on 
+Switch_Mode
+        mov     ActionCnt,r14               ;
+        add     r14,r14                     ; r14 = ActionCnt x 2 (for word addressing)
+        mov     r11,SeqBuffer(r14)          ; store decoded char in sequence buffer
+        inc     ActionCnt                   ; increment switch action length counter
+        cmp     #ACTION_LENGTH,ActionCnt    ; is ActionCnt equal to required length?
+        jeq     ExitDTMFDecode              ; yes, then exit DTMFDecode subroutine
+        jmp     AfterTests                  ; else, go on         
+ExitDTMFDecode
+        ; need to stop ADC10?
+        bic     #MC0+MC1,&TACTL             ; not sure if necessary to stop TA
+        mov     #0,DTMFCnt                  ; need to clear DTMFCnt?
+        mov     #0,ActionCnt                ; need to clear ActionCnt?
+        ret                                 ; return from DTMFDecode subroutine
+AfterTests
+;%%%%%%%%%%%%%%%%%%% 
+	jmp CONTINUE
+FALSE
+	tst LCOUNT
+	jnz FALSE1
+;this is a valid pause
+;code can be inserted here to indicate any program about this valid pause
+	bic #01h,FLAG_REG ;clear Flag
+	jmp CONTINUE
+FALSE1
+	dec LCOUNT
+CONTINUE
+	clr MAXHI
+	clr MAXLO
+	clr COUNT
+;%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+TimeOutCheck
+        cmp   #TIMEOUT_VALUE,TimeOutCnt   ; TimeOutCnt >= TIMEOUT_VALUE?
+        jge   TimeOutNow                  ; yes, then go here, else
+        jmp   FILTER
+TimeOutNow
+        mov   #0,TimeOutCnt
+        mov   #0eh,SeqBuffer             ; store termination char at start of SeqBuffer
+        jmp   ExitDTMFDecode             ; go to exit        	
+;%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+FILTER
+	
+    IF FILTER_1
+FILTER_1633
+	mov T2_1633,r12 ;N11=T2/4-T1
+	mov r12,r13
+	rra r12
+	rra r12
+	sub T1_1633,r12 ;N11 in r12
+	mov r12,r14 ;N11*2*alpha-T2
+	rra r12
+	rra r12
+	rra r12
+	mov r12,r11
+	rra r12
+	add r12,r11
+	sub r13,r11 ;N15 in r11
+	mov r11,T2_1633 ;N3=N15/4-N11
+	rra r11
+	rra r11
+	sub r14,r11 ;N3 in r11
+
+;"Common" Lossy-Adaptor
+;expects N3 in r11
+;1/n1=32, gamma_2=-1+1/32)
+;n1*gamma_1=1/32
+	mov r11,r13 ;save N3 to r13
+	mov in,r12 ;T1=N3*gamma_2+n1*gamma_1*in
+	rra r12
+	rra r12
+	rra r12
+	rra r12
+	rra r12 ;n1*gamma_1*in in r12
+	sub r11,r12
+	rra r11
+	rra r11
+	rra r11
+	rra r11
+	rra r11
+	add r11,r12 ;T1 in r12
+	mov r12,T1_1633 ;save T1 to RAM
+	rla r13 ;N3 * 32
+	rla r13
+	rla r13
+	rla r13
+	rla r13
+	rla r12 ;T1 * 32
+	rla r12
+	rla r12
+	rla r12
+	rla r12
+	sub in,r12
+	add r12,OUTPUT ;r13 is OUTPUT
+
+;-------------------------------------------------------------------------------------------------------------
+
+	cmp OUTPUT,MAXHI ;compare Output with MAX
+	jge SWAP1
+	mov OUTPUT,MAXHI ;big value to MAX
+	mov #03,COL ;set Column to 3
+SWAP1 ;************************************
+;Standard-Lossy End
+FILTER_1633_END
+	ENDIF
+	IF FILTER_2
+FILTER_1477
+	mov T2_1477,r12 ;N11=T/2-T1
+	mov r12,r13
+	rra r12
+	sub T1_1477,r12 ;N11 in r12
+	mov r12,r14 ;N15=N11*2*alpha-T2
+	rra r12
+	rra r12
+	mov r12,r11
+	rra r12
+	rra r12
+	add r12,r11
+	rra r12
+	add r12,r11
+	sub r13,r11 ;N15 in r11
+	mov r11,T2_1477 ;N3=N15/2-N11
+	rra r11
+	sub r14,r11 ;N3 in r11
+;"Common" Lossy-Adaptor
+;expects N3 in r11
+;1/n1=32, gamma_2=-1+1/32)
+;n1*gamma_1=1/32
+	mov r11,r13 ;save N3 to r13
+	mov in,r12 ;T1=N3*gamma_2+n1*gamma_1*in
+	rra r12
+	rra r12
+	rra r12
+	rra r12
+	rra r12 ;n1*gamma_1*in in r12
+	sub r11,r12
+	rra r11
+	rra r11
+	rra r11
+	rra r11
+	rra r11
+	add r11,r12 ;T1 in r12
+	mov r12,T1_1477 ;save T1 to RAM
+	rla r13 ;N3 * 32
+	rla r13
+	rla r13
+	rla r13
+	rla r13
+	rla r12 ;T1 * 32
+	rla r12
+	rla r12
+	rla r12
+	rla r12
+	sub in,r12
+	add r12,OUTPUT ;r13 is OUTPUT
+;-------------------------------------------------------------------------------------------------------------
+	cmp OUTPUT,MAXHI ;compare Output with MAX
+	jge SWAP2
+	mov OUTPUT,MAXHI ;big value to MAX
+	mov #02,COL ;set Column to 2
+SWAP2 ;************************************
+;Common-Lossy End
+FILTER_1477_END
+	ENDIF
+	IF FILTER_3
+FILTER_1336
+	mov T2_1336,r12 ;N11=T2-T1
+	mov r12,r13
+	sub T1_1336,r12 ;N11 in r12
+	mov r12,r14 ;N15=N11*alpha-T2
+	rra r12
+	rra r12
+	mov r12,r11
+	rra r12
+	rra r12
+	add r12,r11
+	rra r12
+	rra r12
+	add r12,r11
+	sub r13,r11 ;N15 in r11
+	mov r11,T2_1336
+	sub r14,r11 ;N3=N15-N11 in r11
+;"Common" Lossy-Adaptor
+;expects N3 in r11
+;1/n1=32, gamma_2=-1+1/32)
+;n1*gamma_1=1/32
+	mov r11,r13 ;save N3 to r13
+	mov in,r12 ;T1=N3*gamma_2+n1*gamma_1*in
+	rra r12
+	rra r12
+	rra r12
+	rra r12
+	rra r12 ;n1*gamma_1*in in r12
+	sub r11,r12
+	rra r11
+	rra r11
+	rra r11
+	rra r11
+	rra r11
+	add r11,r12 ;T1 in r12
+	mov r12,T1_1336 ;save T1 to RAM
+	rla r13 ;N3 * 32
+	rla r13
+	rla r13
+	rla r13
+	rla r13
+	rla r12 ;T1 * 32
+	rla r12
+	rla r12
+	rla r12
+	rla r12
+	sub in,r12
+	add r12,OUTPUT ;r13 is OUTPUT
+;-------------------------------------------------------------------------------------------------------------
+	cmp OUTPUT,MAXHI ;compare Output with MAX
+	jge SWAP3
+	mov r13,MAXHI ;big value to MAX
+	mov #01,COL ;set Column to 1
+SWAP3 ;************************************
+;Common-Lossy End
+FILTER_1336_END
+	ENDIF
+	IF FILTER_4
+FILTER_1209
+	mov T2_1209,r13 ;N1=(T1-T2)*alpha
+	mov T1_1209,r11
+	mov r11,r14
+	sub r13,r11
+	rra r11 ;N1 in r11
+	mov r11,r12 ;N3=N1-T2
+	sub r13,r11 ;N3 in r11
+	sub r14,r12 ;N2=N1-T1 in r12
+	mov r12,T2_1209
+;"Common" Lossy-Adaptor
+;expects N3 in r11
+;1/n1=32, gamma_2=-1+1/32)
+;n1*gamma_1=1/32
+	mov r11,r13 ;save N3 to r13
+	mov in,r12 ;T1=N3*gamma_2+n1*gamma_1*in
+	rra r12
+	rra r12
+	rra r12
+	rra r12
+	rra r12 ;n1*gamma_1*in in r12
+	sub r11,r12
+	rra r11
+	rra r11
+	rra r11
+	rra r11
+	rra r11
+	add r11,r12 ;T1 in r12
+	mov r12,T1_1209 ;save T1 to RAM
+	rla r13 ;N3 * 32
+	rla r13
+	rla r13
+	rla r13
+	rla r13
+	rla r12 ;T1 * 32
+	rla r12
+	rla r12
+	rla r12
+	rla r12
+	sub in,r12
+	add r12,OUTPUT ;r13 is OUTPUT
+;-------------------------------------------------------------------------------------------------------------
+	cmp OUTPUT,MAXHI ;compare Output with MAX
+	jge SWAP4
+	mov r13,MAXHI ;big value to MAX
+	mov #00,COL ;set Column to 0
+SWAP4 ;************************************
+;Common-Lossy End
+FILTER_1209_END
+	ENDIF
+	IF FILTER_5
+FILTER_941
+	mov T2_941,r13 ;N1=(T1-T2)*alpha
+	mov T1_941,r12
+	mov r12,r14
+	sub r13,r12
+	rra r12
+	rra r12
+	rra r12
+	rra r12
+	rra r12
+	mov r12,r11
+	rra r12
+	add r12,r11
+	mov r11,r12 ;N1 in r11/r12
+	sub r13,r11 ;N3=N1-T2 in r11
+	sub r14,r12 ;N2=N1-T1
+	mov r12,T2_941
+;"Common" Lossy-Adaptor
+;expects N3 in r11
+;1/n1=32, gamma_2=-1+1/32)
+;n1*gamma_1=1/32
+	mov r11,r13 ;save N3 to r13
+	mov in,r12 ;T1=N3*gamma_2+n1*gamma_1*in
+	rra r12
+	rra r12
+	rra r12
+	rra r12
+	rra r12 ;n1*gamma_1*in in r12
+	sub r11,r12
+	rra r11
+	rra r11
+	rra r11
+	rra r11
+	rra r11
+	add r11,r12 ;T1 in r12
+	mov r12,T1_941 ;save T1 to RAM
+	rla r13 ;N3 * 32
+	rla r13
+	rla r13
+	rla r13
+	rla r13
+	rla r12 ;T1 * 32
+	rla r12
+	rla r12
+	rla r12
+	rla r12
+	sub in,r12
+	add r12,OUTPUT ;r13 is OUTPUT
+;-------------------------------------------------------------------------------------------------------------
+	cmp OUTPUT,MAXLO ;compare Output with MAX
+	jge SWAP5
+	mov r13,MAXLO ;big value to MAX
+	mov #012,ROW ;set Row to 12
+SWAP5 ;************************************
+;Common-Lossy End
+FILTER_941_END
+	ENDIF
+	IF FILTER_6
+FILTER_852
+	mov T2_852,r11 ;N1=(T2-T1)*alpha
+	mov r11,r12
+	mov T1_852,r13
+	sub r13,r12
+	rra r12
+	rra r12
+	rra r12
+	rra r12
+	mov r12,r14
+	rra r12
+	add r12,r14 ;N1 in r14
+	add r14,r11 ;N3=T2+N1 in r11
+	add r14,r13 ;N2=T1+N1
+	mov r13,T2_852
+;"Common" Lossy-Adaptor
+;expects N3 in r11
+;1/n1=32, gamma_2=-1+1/32)
+;n1*gamma_1=1/32
+	mov r11,r13 ;save N3 to r13
+	mov in,r12 ;T1=N3*gamma_2+n1*gamma_1*in
+	rra r12
+	rra r12
+	rra r12
+	rra r12
+	rra r12 ;n1*gamma_1*in in r12
+	sub r11,r12
+	rra r11
+	rra r11
+	rra r11
+	rra r11
+	rra r11
+	add r11,r12 ;T1 in r12
+	mov r12,T1_852 ;save T1 to RAM
+	rla r13 ;N3 * 32
+	rla r13
+	rla r13
+	rla r13
+	rla r13
+	rla r12 ;T1 * 32
+	rla r12
+	rla r12
+	rla r12
+	rla r12
+	sub in,r12
+	add r12,OUTPUT ;r13 is OUTPUT
+;-------------------------------------------------------------------------------------------------------------
+	cmp OUTPUT,MAXLO ;compare Output with MAX
+	jge SWAP6
+	mov r13,MAXLO ;big value to MAX
+	mov #08,ROW ;set Row to 8
+SWAP6 ;************************************
+;Common-Lossy End
+FILTER_852_END
+	ENDIF
+	IF FILTER_7
+FILTER_770
+	mov T2_770,r11 ;N1=(T2-T1)*alpha
+	mov r11,r12
+	mov T1_770,r13
+	sub r13,r12
+	rra r12
+	rra r12
+	mov r12,r14
+	rra r12
+	rra r12
+	rra r12
+	rra r12
+	sub r12,r14 ;N1 in r14
+	add r14,r11 ;N3=T2+N1 in r11
+	add r14,r13 ;N2=T1+N1
+	mov r13,T2_770
+;"Common" Lossy-Adaptor
+;expects N3 in r11
+;1/n1=32, gamma_2=-1+1/32)
+;n1*gamma_1=1/32
+	mov r11,r13 ;save N3 to r13
+	mov in,r12 ;T1=N3*gamma_2+n1*gamma_1*in
+	rra r12
+	rra r12
+	rra r12
+	rra r12
+	rra r12 ;n1*gamma_1*in in r12
+	sub r11,r12
+	rra r11
+	rra r11
+	rra r11
+	rra r11
+	rra r11
+	add r11,r12 ;T1 in r12
+	mov r12,T1_770 ;save T1 to RAM
+	rla r13 ;N3 * 32
+	rla r13
+	rla r13
+	rla r13
+	rla r13
+	rla r12 ;T1 * 32
+	rla r12
+	rla r12
+	rla r12
+	rla r12
+	sub in,r12
+	add r12,OUTPUT ;r13 is OUTPUT
+;-------------------------------------------------------------------------------------------------------------
+	cmp OUTPUT,MAXLO ;compare Output with MAX
+	jge SWAP7
+	mov r13,MAXLO ;big value to MAX
+	mov #04,ROW ;set Row to 4
+SWAP7 ;************************************
+;Common-Lossy End
+FILTER_770_END
+	ENDIF
+	IF FILTER_8
+FILTER_697
+	mov T2_697,r11
+	mov r11,r12
+	mov T1_697,r13
+	sub r13,r12
+	rra r12
+	rra r12
+	mov r12,r14
+	rra r12
+	add r12,r14
+	rra r12
+	rra r12
+	rra r12
+	sub r12,r14 ;N1 in r14
+	add r14,r11 ;N3=T2+N1 in r11
+	add r14,r13
+	mov r13,T2_697
+;"Common" Lossy-Adaptor
+;expects N3 in r11
+;1/n1=32, gamma_2=-1+1/32)
+;n1*gamma_1=1/32
+	mov r11,r13 ;save N3 to r13
+	mov in,r12 ;T1=N3*gamma_2+n1*gamma_1*in
+	rra r12
+	rra r12
+	rra r12
+	rra r12
+	rra r12 ;n1*gamma_1*in in r12
+	sub r11,r12
+	rra r11
+	rra r11
+	rra r11
+	rra r11
+	rra r11
+	add r11,r12 ;T1 in r12
+	mov r12,T1_697 ;save T1 to RAM
+	rla r13 ;N3 * 32
+	rla r13
+	rla r13
+	rla r13
+	rla r13
+	rla r12 ;T1 * 32
+	rla r12
+	rla r12
+	rla r12
+	rla r12
+	sub in,r12
+	add r12,OUTPUT ;r13 is OUTPUT
+;-------------------------------------------------------------------------------------------------------------
+	cmp OUTPUT,MAXLO ;compare Output with MAX
+	jge SWAP8
+	mov OUTPUT,MAXLO ;big value to MAX
+	mov #00,ROW ;set Row to 0
+SWAP8 ;************************************
+;Common-Lossy End
+FILTER_697_END
+	ENDIF
+FILTER_END
+
+	bis  #CPUOFF,SR ;wait in LPM0
+	br #DTMF_FILTER
+
+
+;------------------------------------------------------------------------------------------------------------------------
+; Table for DTMF Numbers
+;------------------------------------------------------------------------------------------------------------------------
+DTMF_Tab
+	DB 01h ; displays "1"
+	DB 02h ; displays "2"
+	DB 03h ; displays "3"
+	DB 0ah ; displays "A"
+	DB 04h ; displays "4"
+	DB 05h ; displays "5"
+	DB 06h ; displays "6"
+	DB 0bh ; displays "B" b
+	DB 07h ; displays "7"
+	DB 08h ; displays "8"
+	DB 09h ; displays "9"
+	DB 0ch ; displays "C"
+	DB 0eh ; displays "E"
+	DB 00h ; displays "0"
+	DB 0fh ; displays "F"
+	DB 0dh ; displays "D" d
+
+;------------------------------------------------------------------------------------------------------------------------
+; Password Table   (NB: byte constants, need to be addressed as such.)
+;------------------------------------------------------------------------------------------------------------------------
+Password_Tab
+      DB  01h     ; password char 1 = 1
+      DB  02h     ; password char 2 = 2
+      DB  03h     ; password char 3 = 3
+      DB  04h     ; password char 4 = 4
+;------------------------------------------------------------------------------------------------------------------------
+
+;________________________________________________________________________________________________________________________
+             RSEG   INTVEC                  ; MSP430x11x1 interrupt vectors
+;________________________________________________________________________________________________________________________
+             DW     RESET                   ; no source   
+             DW     RESET                   ; no source
+             DW     RESET                   ; no source
+             DW     RING_ISR                ; P2, RingDetect
+             DW     RESET                   ; no source
+             DW     ADC10_ISR               ; no source
+             DW     RESET                   ; no source
+             DW     RESET                   ; no source
+             DW     RESET                   ; Timer_AX
+             DW     CCR0_ISR                ; Timer_A0
+             DW     RESET                   ; Watchdog/Timer, Timer mode
+             DW     RESET                   ; Comparator_A
+             DW     RESET                   ; no source
+             DW     RESET                   ; no source
+             DW     RESET                   ; NMI, Osc. fault
+             DW     RESET                   ; POR, ext. Reset, Watchdog
+             
+             
+             END    main
+
+;________________________________________________________________________________________________________________________

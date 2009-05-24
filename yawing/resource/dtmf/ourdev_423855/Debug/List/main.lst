@@ -1,0 +1,594 @@
+##############################################################################
+#                                                                            #
+#                                                      11/Dec/2008  18:17:08 #
+# IAR Atmel AVR C/C++ Compiler V4.20A/W32, Evaluation Version                #
+# Copyright 1996-2006 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Source file  =  E:\Â¼ÒôºÐ¹¤×÷Ä¿Â¼\Èí¼þ½âÂë²âÊÔ\·¢²¼DTMF½âÂëMega³ÌÐò\mai #
+#                    n.c                                                     #
+#    Command line =  E:\Â¼ÒôºÐ¹¤×÷Ä¿Â¼\Èí¼þ½âÂë²âÊÔ\·¢²¼DTMF½âÂëMega³ÌÐò\mai #
+#                    n.c --cpu=m8 -ms -o E:\Â¼ÒôºÐ¹¤×÷Ä¿Â¼\Èí¼þ½âÂë²âÊÔ\·¢²¼ #
+#                    DTMF½âÂëMega³ÌÐò\Debug\Obj\ -lC                         #
+#                    E:\Â¼ÒôºÐ¹¤×÷Ä¿Â¼\Èí¼þ½âÂë²âÊÔ\·¢²¼DTMF½âÂëMega³ÌÐò\Deb #
+#                    ug\List\ -lA E:\Â¼ÒôºÐ¹¤×÷Ä¿Â¼\Èí¼þ½âÂë²âÊÔ\·¢²¼DTMF½âÂ #
+#                    ëMega³ÌÐò\Debug\List\ --initializers_in_flash -z3       #
+#                    --no_cse --no_inline --no_code_motion --no_cross_call   #
+#                    --no_clustering --no_tbaa --debug                       #
+#                    -DENABLE_BIT_DEFINITIONS -e -I "C:\Program Files\IAR    #
+#                    Systems\Embedded Workbench 4.0 Evaluation\avr\INC\" -I  #
+#                    "C:\Program Files\IAR Systems\Embedded Workbench 4.0    #
+#                    Evaluation\avr\INC\CLIB\" --eeprom_size 512             #
+#    List file    =  E:\Â¼ÒôºÐ¹¤×÷Ä¿Â¼\Èí¼þ½âÂë²âÊÔ\·¢²¼DTMF½âÂëMega³ÌÐò\Deb #
+#                    ug\List\main.lst                                        #
+#    Object file  =  E:\Â¼ÒôºÐ¹¤×÷Ä¿Â¼\Èí¼þ½âÂë²âÊÔ\·¢²¼DTMF½âÂëMega³ÌÐò\Deb #
+#                    ug\Obj\main.r90                                         #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+E:\Â¼ÒôºÐ¹¤×÷Ä¿Â¼\Èí¼þ½âÂë²âÊÔ\·¢²¼DTMF½âÂëMega³ÌÐò\main.c
+      1          
+      2          #include <ioavr.h>
+
+   \                                 In segment ABSOLUTE, at 0x24
+   \   union <unnamed> volatile __io _A_ADC
+   \                     _A_ADC:
+   \   00000000                      DS 2
+
+   \                                 In segment ABSOLUTE, at 0x26
+   \   union <unnamed> volatile __io _A_ADCSR
+   \                     _A_ADCSR:
+   \   00000000                      DS 1
+
+   \                                 In segment ABSOLUTE, at 0x27
+   \   union <unnamed> volatile __io _A_ADMUX
+   \                     _A_ADMUX:
+   \   00000000                      DS 1
+
+   \                                 In segment ABSOLUTE, at 0x29
+   \   union <unnamed> volatile __io _A_UBRRL
+   \                     _A_UBRRL:
+   \   00000000                      DS 1
+
+   \                                 In segment ABSOLUTE, at 0x2a
+   \   union <unnamed> volatile __io _A_UCSRB
+   \                     _A_UCSRB:
+   \   00000000                      DS 1
+
+   \                                 In segment ABSOLUTE, at 0x2b
+   \   union <unnamed> volatile __io _A_UCSRA
+   \                     _A_UCSRA:
+   \   00000000                      DS 1
+
+   \                                 In segment ABSOLUTE, at 0x2c
+   \   union <unnamed> volatile __io _A_UDR
+   \                     _A_UDR:
+   \   00000000                      DS 1
+
+   \                                 In segment ABSOLUTE, at 0x40
+   \   union <unnamed> volatile __io _A_UBRRH
+   \                     _A_UBRRH:
+   \   00000000                      DS 1
+
+   \                                 In segment ABSOLUTE, at 0x4a
+   \   union <unnamed> volatile __io _A_OCR1A
+   \                     _A_OCR1A:
+   \   00000000                      DS 2
+
+   \                                 In segment ABSOLUTE, at 0x4e
+   \   union <unnamed> volatile __io _A_TCCR1B
+   \                     _A_TCCR1B:
+   \   00000000                      DS 1
+
+   \                                 In segment ABSOLUTE, at 0x59
+   \   union <unnamed> volatile __io _A_TIMSK
+   \                     _A_TIMSK:
+   \   00000000                      DS 1
+      3          
+      4          
+      5          //
+      6          // ËµÃ÷
+      7          //
+      8          // Õâ¸öÐ¡³ÌÐòÊÇ²âÊÔ DTMF ½âÂëÆ÷¹¤×÷µÄ¡£
+      9          // ²âÊÔÆ½Ì¨: ATMega8L, 3.3V¹©µç, 8M¾§ÕñÍâ½Ó, IAR
+     10          // ADC0 ¹Ü½ÅÖ±Á÷Æ«Ñ¹ÖÁ Vcc/2 (Í¨¹ýÁ½¸öÏàµÈµÄµç×è¶Ô Vcc ·ÖÑ¹)
+     11          // DTMF ÐÅºÅÍ¨¹ý 1 ¸öµçÈÝñîºÏ½øADC0 ¹Ü½Å
+     12          // ²âÊÔ·½·¨£ºÊ×ÏÈ°´ÕÕÉÏÊöËùËµ½ÓºÃÓ²¼þ
+     13          //           Íâ²¿²úÉú DTMF ÐÅºÅÊäÈë½øÀ´
+     14          //           ÔËÐÐ±¾³ÌÐò
+     15          //           ´Ó´®¿Ú½ÓÊÕ DTMF ½âÂë½á¹û
+     16          //
+     17          // author: hendry
+     18          // date: 2008/12
+     19          //
+     20          
+     21          
+     22          
+     23          //
+     24          // ×Ô¶¨ÒåÀàÐÍ
+     25          //
+     26          typedef		unsigned char		bool;
+     27          #define		true				1
+     28          #define		false				0
+     29          
+     30          
+     31          //
+     32          // A/D ²ÉÑù»º´æ
+     33          //
+     34          #define			FIFO_LEN				8
+     35          
+
+   \                                 In segment NEAR_Z, align 1, keep-with-next
+   \   00000000                      REQUIRE `?<Segment init: NEAR_Z>`
+     36          unsigned char	g_fifo_p0 = 0, g_fifo_p1 = 0;
+   \                     g_fifo_p0:
+   \   00000000                      DS 1
+
+   \                                 In segment NEAR_Z, align 1, keep-with-next
+   \   00000000                      REQUIRE `?<Segment init: NEAR_Z>`
+   \                     g_fifo_p1:
+   \   00000000                      DS 1
+
+   \                                 In segment NEAR_Z, align 1, keep-with-next
+   \   00000000                      REQUIRE `?<Segment init: NEAR_Z>`
+     37          unsigned char	g_fifo[FIFO_LEN];
+   \                     g_fifo:
+   \   00000000                      DS 8
+     38          
+
+   \                                 In segment CODE, align 2, keep-with-next
+     39          unsigned char get_fifo_len()
+   \                     get_fifo_len:
+     40          {
+     41          	if (g_fifo_p1 >= g_fifo_p0)
+   \   00000000   9100....           LDS     R16, g_fifo_p1
+   \   00000004   9110....           LDS     R17, g_fifo_p0
+   \   00000008   1701               CP      R16, R17
+   \   0000000A   F030               BRCS    ??get_fifo_len_0
+     42          	{
+     43          		return (g_fifo_p1 - g_fifo_p0);
+   \   0000000C   9100....           LDS     R16, g_fifo_p1
+   \   00000010   9110....           LDS     R17, g_fifo_p0
+   \   00000014   1B01               SUB     R16, R17
+   \   00000016   9508               RET
+     44          	}
+     45          	else
+     46          	{
+     47          		return (g_fifo_p1 + FIFO_LEN - g_fifo_p0);
+   \                     ??get_fifo_len_0:
+   \   00000018   9100....           LDS     R16, g_fifo_p1
+   \   0000001C   5F08               SUBI    R16, 248
+   \   0000001E   9110....           LDS     R17, g_fifo_p0
+   \   00000022   1B01               SUB     R16, R17
+   \   00000024   9508               RET
+     48          	}
+     49          }
+     50          
+
+   \                                 In segment CODE, align 2, keep-with-next
+     51          bool is_fifo_empty()
+   \                     is_fifo_empty:
+     52          {
+     53          	return (get_fifo_len() == 0);
+   \   00000000   ....               RCALL   get_fifo_len
+   \   00000002   2300               TST     R16
+   \   00000004   F411               BRNE    ??is_fifo_empty_0
+   \   00000006   E001               LDI     R16, 1
+   \   00000008   9508               RET
+   \                     ??is_fifo_empty_0:
+   \   0000000A   E000               LDI     R16, 0
+   \   0000000C   9508               RET
+     54          }
+     55          
+
+   \                                 In segment CODE, align 2, keep-with-next
+     56          bool is_fifo_full()
+   \                     is_fifo_full:
+     57          {
+     58          	return (get_fifo_len() == (FIFO_LEN - 1));
+   \   00000000   ....               RCALL   get_fifo_len
+   \   00000002   3007               CPI     R16, 7
+   \   00000004   F411               BRNE    ??is_fifo_full_0
+   \   00000006   E001               LDI     R16, 1
+   \   00000008   9508               RET
+   \                     ??is_fifo_full_0:
+   \   0000000A   E000               LDI     R16, 0
+   \   0000000C   9508               RET
+     59          }
+     60          
+
+   \                                 In segment CODE, align 2, keep-with-next
+     61          unsigned char read_fifo()
+   \                     read_fifo:
+     62          {
+     63          	unsigned char	ch;
+     64          	
+     65          	ch = g_fifo[g_fifo_p0 ++];
+   \   00000000   9100....           LDS     R16, g_fifo_p0
+   \   00000004   E010               LDI     R17, 0
+   \   00000006   01F8               MOVW    R31:R30, R17:R16
+   \   00000008   ....               SUBI    R30, LOW((-(g_fifo) & 0xFFFF))
+   \   0000000A   ....               SBCI    R31, (-(g_fifo) & 0xFFFF) >> 8
+   \   0000000C   8100               LD      R16, Z
+   \   0000000E   ....               LDI     R30, LOW(g_fifo_p0)
+   \   00000010   ....               LDI     R31, (g_fifo_p0) >> 8
+   \   00000012   8110               LD      R17, Z
+   \   00000014   9513               INC     R17
+   \   00000016   8310               ST      Z, R17
+     66          	
+     67          	if (g_fifo_p0 == FIFO_LEN)
+   \   00000018   9110....           LDS     R17, g_fifo_p0
+   \   0000001C   3018               CPI     R17, 8
+   \   0000001E   F419               BRNE    ??read_fifo_0
+     68          	{
+     69          		g_fifo_p0 = 0;
+   \   00000020   E010               LDI     R17, 0
+   \   00000022   9310....           STS     g_fifo_p0, R17
+     70          	}
+     71          	
+     72          	return ch;
+   \                     ??read_fifo_0:
+   \   00000026   9508               RET
+     73          }
+     74          
+
+   \                                 In segment CODE, align 2, keep-with-next
+     75          void write_fifo(unsigned char ch)
+   \                     write_fifo:
+     76          {
+     77          	g_fifo[g_fifo_p1 ++] = ch;
+   \   00000000   9120....           LDS     R18, g_fifo_p1
+   \   00000004   E030               LDI     R19, 0
+   \   00000006   01F9               MOVW    R31:R30, R19:R18
+   \   00000008   ....               SUBI    R30, LOW((-(g_fifo) & 0xFFFF))
+   \   0000000A   ....               SBCI    R31, (-(g_fifo) & 0xFFFF) >> 8
+   \   0000000C   8300               ST      Z, R16
+   \   0000000E   ....               LDI     R30, LOW(g_fifo_p1)
+   \   00000010   ....               LDI     R31, (g_fifo_p1) >> 8
+   \   00000012   8100               LD      R16, Z
+   \   00000014   9503               INC     R16
+   \   00000016   8300               ST      Z, R16
+     78          	
+     79          	if (g_fifo_p1 == FIFO_LEN)
+   \   00000018   9100....           LDS     R16, g_fifo_p1
+   \   0000001C   3008               CPI     R16, 8
+   \   0000001E   F419               BRNE    ??write_fifo_0
+     80          	{
+     81          		g_fifo_p1 = 0;
+   \   00000020   E000               LDI     R16, 0
+   \   00000022   9300....           STS     g_fifo_p1, R16
+     82          	}
+     83          }
+   \                     ??write_fifo_0:
+   \   00000026   9508               RET
+     84          
+     85          
+     86          
+     87          
+     88          
+     89          //
+     90          // ³õÊ¼»¯´®¿Ú
+     91          // Ê¹ÓÃ 8MHz ¾§Õñ£¬115200bps
+     92          //
+
+   \                                 In segment CODE, align 2, keep-with-next
+     93          void init_uart()
+   \                     init_uart:
+     94          {
+     95          	UBRRL = 8;					
+   \   00000000   E008               LDI     R16, 8
+   \   00000002   B909               OUT     0x09, R16
+     96          	UCSRA = (1<<U2X);
+   \   00000004   E002               LDI     R16, 2
+   \   00000006   B90B               OUT     0x0B, R16
+     97          	UCSRB = (1<<RXCIE) | (1<<TXEN);
+   \   00000008   E808               LDI     R16, 136
+   \   0000000A   B90A               OUT     0x0A, R16
+     98          	UCSRC = (1<<URSEL) | (1<<UCSZ1) | (1<<UCSZ0);
+   \   0000000C   E806               LDI     R16, 134
+   \   0000000E   BD00               OUT     0x20, R16
+     99          }
+   \   00000010   9508               RET
+    100          
+    101          //
+    102          // ´®¿Ú·¢ËÍ
+    103          //
+
+   \                                 In segment CODE, align 2, keep-with-next
+    104          void write_uart(char ch)
+   \                     write_uart:
+   \                     ??write_uart_0:
+    105          {
+    106          	while (!(UCSRA & (1<<UDRE)))
+   \   00000000   9B5D               SBIS    0x0B, 0x05
+   \   00000002   CFFE               RJMP    ??write_uart_0
+    107          	{}
+    108          	
+    109          	UDR = ch;
+   \   00000004   B90C               OUT     0x0C, R16
+    110          }
+   \   00000006   9508               RET
+    111          
+    112          
+    113          //
+    114          // ³õÊ¼»¯ A/D ºÍ timer
+    115          //
+
+   \                                 In segment CODE, align 2, keep-with-next
+    116          void init_ad()
+   \                     init_ad:
+    117          {
+    118          	ADMUX = (1<<REFS0);
+   \   00000000   E400               LDI     R16, 64
+   \   00000002   B907               OUT     0x07, R16
+    119          	ADCSR = (1<<ADEN) | (1<<ADSC) | (1<<ADFR) | ( 1<<ADPS1) | (1<<ADPS0);
+   \   00000004   EE03               LDI     R16, 227
+   \   00000006   B906               OUT     0x06, R16
+    120          	TCCR1B = (1<<WGM12)| (1<<CS11);
+   \   00000008   E00A               LDI     R16, 10
+   \   0000000A   BD0E               OUT     0x2E, R16
+    121          	OCR1A = 249;
+   \   0000000C   EF09               LDI     R16, 249
+   \   0000000E   E010               LDI     R17, 0
+   \   00000010   BD1B               OUT     0x2B, R17
+   \   00000012   BD0A               OUT     0x2A, R16
+    122          	TIMSK |= (1 << OCIE1A);	
+   \   00000014   B709               IN      R16, 0x39
+   \   00000016   6100               ORI     R16, 0x10
+   \   00000018   BF09               OUT     0x39, R16
+    123          }
+   \   0000001A   9508               RET
+    124          
+    125          
+    126          //
+    127          // timer ÖÐ¶Ï
+    128          //
+    129          #pragma vector = TIMER1_COMPA_vect
+
+   \                                 In segment CODE, align 2, keep-with-next
+    130          __interrupt void on_timer1_compA()
+   \                     on_timer1_compA:
+    131          {
+   \   00000000   93AA               ST      -Y, R26
+   \   00000002   939A               ST      -Y, R25
+   \   00000004   938A               ST      -Y, R24
+   \   00000006   93FA               ST      -Y, R31
+   \   00000008   93EA               ST      -Y, R30
+   \   0000000A   923A               ST      -Y, R3
+   \   0000000C   922A               ST      -Y, R2
+   \   0000000E   921A               ST      -Y, R1
+   \   00000010   920A               ST      -Y, R0
+   \   00000012   937A               ST      -Y, R23
+   \   00000014   936A               ST      -Y, R22
+   \   00000016   935A               ST      -Y, R21
+   \   00000018   934A               ST      -Y, R20
+   \   0000001A   933A               ST      -Y, R19
+   \   0000001C   932A               ST      -Y, R18
+   \   0000001E   931A               ST      -Y, R17
+   \   00000020   930A               ST      -Y, R16
+   \   00000022   B7AF               IN      R26, 0x3F
+    132          	unsigned char	low, high;
+    133          	unsigned short	adc_value;
+    134          	
+    135          	//
+    136          	// ¶ÁÈ¡ A/D ²ÉÑùÖµ
+    137          	//
+    138          	low = ADCL;
+   \   00000024   B104               IN      R16, 0x04
+    139          	high = ADCH;
+   \   00000026   B195               IN      R25, 0x05
+    140          	adc_value = (low + (high << 8));
+   \   00000028   E010               LDI     R17, 0
+   \   0000002A   E080               LDI     R24, 0
+   \   0000002C   0F80               ADD     R24, R16
+   \   0000002E   1F91               ADC     R25, R17
+    141          	
+    142          	//
+    143          	// ÏÞ·ù
+    144          	//
+    145          	if (adc_value < 0x180)
+   \   00000030   3880               CPI     R24, 128
+   \   00000032   E001               LDI     R16, 1
+   \   00000034   0790               CPC     R25, R16
+   \   00000036   F410               BRCC    ??on_timer1_compA_0
+    146          	{
+    147          		adc_value = 0;
+   \   00000038   E080               LDI     R24, 0
+   \   0000003A   C007               RJMP    ??on_timer1_compA_1
+    148          	}
+    149          	else if (adc_value > 0x27f)
+   \                     ??on_timer1_compA_0:
+   \   0000003C   3880               CPI     R24, 128
+   \   0000003E   E002               LDI     R16, 2
+   \   00000040   0790               CPC     R25, R16
+   \   00000042   F010               BRCS    ??on_timer1_compA_2
+    150          	{
+    151          		adc_value = 0xff;
+   \   00000044   EF8F               LDI     R24, 255
+   \   00000046   C001               RJMP    ??on_timer1_compA_1
+    152          	}
+    153          	else
+    154          	{
+    155          		adc_value = adc_value - 0x180;
+   \                     ??on_timer1_compA_2:
+   \   00000048   5880               SUBI    R24, 128
+    156          	}
+    157          
+    158          	//
+    159          	// Ð´Èë fifo
+    160          	//
+    161          	if (!is_fifo_full())
+   \                     ??on_timer1_compA_1:
+   \   0000004A   ....               RCALL   is_fifo_full
+   \   0000004C   2300               TST     R16
+   \   0000004E   F411               BRNE    ??on_timer1_compA_3
+    162          	{
+    163          		write_fifo((unsigned char)adc_value);
+   \   00000050   2F08               MOV     R16, R24
+   \   00000052   ....               RCALL   write_fifo
+    164          	}	
+    165          }
+   \                     ??on_timer1_compA_3:
+   \   00000054   BFAF               OUT     0x3F, R26
+   \   00000056   9109               LD      R16, Y+
+   \   00000058   9119               LD      R17, Y+
+   \   0000005A   9129               LD      R18, Y+
+   \   0000005C   9139               LD      R19, Y+
+   \   0000005E   9149               LD      R20, Y+
+   \   00000060   9159               LD      R21, Y+
+   \   00000062   9169               LD      R22, Y+
+   \   00000064   9179               LD      R23, Y+
+   \   00000066   9009               LD      R0, Y+
+   \   00000068   9019               LD      R1, Y+
+   \   0000006A   9029               LD      R2, Y+
+   \   0000006C   9039               LD      R3, Y+
+   \   0000006E   91E9               LD      R30, Y+
+   \   00000070   91F9               LD      R31, Y+
+   \   00000072   9189               LD      R24, Y+
+   \   00000074   9199               LD      R25, Y+
+   \   00000076   91A9               LD      R26, Y+
+   \   00000078   9518               RETI
+    166          
+    167          
+    168          
+    169          
+
+   \                                 In segment CODE, align 2, keep-with-next
+    170          void main( void )
+   \                     main:
+    171          {
+    172          	signed char	ch;
+    173          	
+    174          	//
+    175          	// DTMF ½âÂë³ÌÐòÉùÃ÷
+    176          	//
+    177          	extern void init_dtmf_decoder();
+    178          	extern unsigned char decode_dtmf(signed char sample);
+    179          
+    180          	//
+    181          	// ³õÊ¼»¯Ó²¼þ
+    182          	//
+    183          	init_uart();
+   \   00000000   ....               RCALL   init_uart
+    184          	init_ad();
+   \   00000002   ....               RCALL   init_ad
+    185          	asm("SEI");
+   \   00000004   9478               SEI
+    186          	
+    187          	
+    188          	//
+    189          	// ³õÊ¼»¯½âÂëÆ÷
+    190          	//
+    191          	init_dtmf_decoder();
+   \   00000006   ....               RCALL   init_dtmf_decoder
+    192          		
+    193          	
+    194          	while (1)
+    195          	{
+    196          		if (!is_fifo_empty())
+   \                     ??main_0:
+   \   00000008   ....               RCALL   is_fifo_empty
+   \   0000000A   2300               TST     R16
+   \   0000000C   F7E9               BRNE    ??main_0
+    197          		{
+    198          			// ¶ÁÈ¡ fifo
+    199          			ch = read_fifo();
+   \   0000000E   ....               RCALL   read_fifo
+    200          			
+    201          			// ×ª³ÉÓÐ·ûºÅÊý
+    202          			ch += -128;
+   \   00000010   5800               SUBI    R16, 128
+    203          			
+    204          			// ËÍÈë½âÂëÆ÷
+    205          			ch = decode_dtmf(ch);
+   \   00000012   ....               RCALL   decode_dtmf
+    206          			
+    207          			// Êä³ö½âÂë½á¹û
+    208          			if (ch != 0)
+   \   00000014   2300               TST     R16
+   \   00000016   F3C1               BREQ    ??main_0
+    209          			{
+    210          				write_uart(ch);
+   \   00000018   ....               RCALL   write_uart
+   \   0000001A   CFF6               RJMP    ??main_0
+    211          			}
+    212          		}
+    213          	}
+    214          }
+
+   \                                 In segment INTVEC, offset 0xc, root
+   \                     `??on_timer1_compA??INTVEC 12`:
+   \   0000000C   ....               RJMP    on_timer1_compA
+    215          
+    216          
+
+   Maximum stack usage in bytes:
+
+     Function               CSTACK RSTACK
+     --------               ------ ------
+     get_fifo_len               0      2
+     init_ad                    0      2
+     init_uart                  0      2
+     is_fifo_empty              0      2
+       -> get_fifo_len          0      2
+     is_fifo_full               0      2
+       -> get_fifo_len          0      2
+     main                       0      2
+       -> init_uart             0      2
+       -> init_ad               0      2
+       -> init_dtmf_decoder     0      2
+       -> is_fifo_empty         0      2
+       -> read_fifo             0      2
+       -> decode_dtmf           0      2
+       -> write_uart            0      2
+     on_timer1_compA           17      2
+       -> is_fifo_full         17      2
+       -> write_fifo           17      2
+     read_fifo                  0      2
+     write_fifo                 0      2
+     write_uart                 0      2
+
+
+   Segment part sizes:
+
+     Function/Label               Bytes
+     --------------               -----
+     _A_ADC                          2
+     _A_ADCSR                        1
+     _A_ADMUX                        1
+     _A_UBRRL                        1
+     _A_UCSRB                        1
+     _A_UCSRA                        1
+     _A_UDR                          1
+     _A_UBRRH                        1
+     _A_OCR1A                        2
+     _A_TCCR1B                       1
+     _A_TIMSK                        1
+     g_fifo_p0                       1
+     g_fifo_p1                       1
+     g_fifo                          8
+     get_fifo_len                   38
+     is_fifo_empty                  14
+     is_fifo_full                   14
+     read_fifo                      40
+     write_fifo                     40
+     init_uart                      18
+     ??write_uart_0                  8
+     init_ad                        28
+     on_timer1_compA               122
+     main                           28
+     ??on_timer1_compA??INTVEC 12    2
+      Others                         6
+
+ 
+  13 bytes in segment ABSOLUTE
+ 350 bytes in segment CODE
+   6 bytes in segment INITTAB
+   2 bytes in segment INTVEC
+  10 bytes in segment NEAR_Z
+ 
+ 350 bytes of CODE memory (+  8 bytes shared)
+  10 bytes of DATA memory (+ 13 bytes shared)
+
+Errors: none
+Warnings: none
